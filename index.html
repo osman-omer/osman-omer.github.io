@@ -2,69 +2,142 @@
 <html lang="en">
 <head>
  <​meta charset="UTF-8">
- <title>Osman Omer</title>
+ <title>Osman Omer | Medical Student</title>
+ <​meta name="viewport" content="width=device-width, initial-scale=1.0">
 
  <​style>
  body {
- font-family: Arial, sans-serif;
- max-width: 800px;
- margin: 40px auto;
- line-height: 1.6;
+ font-family: "Inter", Arial, sans-serif;
+ background-color: hashtag#f5f7fa;
  color: #222;
+ max-width: 900px;
+ margin: 0 auto;
+ padding: 40px 20px;
+ line-height: 1.7;
  }
 
- h1, h2 {
+ .header {
+ text-align: center;
+ margin-bottom: 50px;
+ }
+
+ .header h1 {
+ font-size: 2.6rem;
+ color: hashtag#1f2d3d;
+ margin-bottom: 6px;
+ }
+
+ .subtitle {
+ font-size: 1.1rem;
+ color: hashtag#4f6d7a;
+ }
+
+ .card {
+ background: hashtag#ffffff;
+ padding: 25px 30px;
+ border-radius: 14px;
+ margin-bottom: 30px;
+ box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+ }
+
+ h2 {
  color: hashtag#2c3e50;
+ margin-bottom: 15px;
+ }
+
+ ul {
+ padding-left: 20px;
+ }
+
+ li {
+ margin-bottom: 8px;
  }
 
  a {
  color: hashtag#0066cc;
+ font-weight: 500;
  text-decoration: none;
  }
 
  a:hover {
  text-decoration: underline;
  }
- <​/style>
 
+ .footer {
+ text-align: center;
+ margin-top: 60px;
+ color: #777;
+ font-size: 0.9rem;
+ }
+
+ @media (max-width: 600px) {
+ .header h1 {
+ font-size: 2rem;
+ }
+
+ .card {
+ padding: 20px;
+ }
+ }
+ <​/style>
 </head>
 
 <body>
 
-<h1>Osman Omer</h1>
-<p>Fourth-year medical student interested in clinical research and medical statistics.</p>
+ <header class="header">
+ <h1>Osman Omer</h1>
+ <p class="subtitle">Fourth-year Medical Student</p>
+ </header>
 
-<h2>About Me</h2>
-<p>
-I am a fourth-year medical student with a growing interest in clinical research methods,
-particularly systematic reviews, meta-analysis, and medical statistics using R.
-This website serves as a personal space to document my learning journey and future research work.
-</p>
+ <section class="card">
+ <h2>About Me</h2>
+ <p>
+ I am a fourth-year medical student with a growing interest in clinical research methods,
+ particularly systematic reviews, meta-analysis, and medical statistics using R.
+ This website serves as a personal space to document my learning journey and future research work.
+ </p>
+ </section>
 
-<h2>Current Learning Focus</h2>
-<ul>
+ <section class="card">
+ <h2>Current Learning Focus</h2>
+ <ul>
  <li>Fundamentals of clinical research</li>
  <li>Systematic review methodology (beginner level)</li>
  <li>Introduction to meta-analysis</li>
  <li>R programming for medical statistics (beginner)</li>
-</ul>
+ </ul>
+ </section>
 
-<h2>Future Goals</h2>
-<p>
-My goal is to gradually build skills in research methodology and data analysis,
-and to contribute to systematic reviews, meta-analyses, and other research projects in the future.
-</p>
+ <section class="card">
+ <h2>Future Goals</h2>
+ <p>
+ My goal is to gradually build skills in research methodology and data analysis,
+ and to contribute to systematic reviews, meta-analyses, and other research projects in the future.
+ </p>
+ </section>
 
-<h2>Learning Log</h2>
-<p>
-This section will be used to document my learning progress in clinical research,
-systematic reviews, meta-analysis, and R programming.
-</p>
+ <section class="card">
+ <h2>Learning Log</h2>
+ <p>
+ This section will be used to document my learning progress in clinical research,
+ systematic reviews, meta-analysis, and R programming.
+ </p>
+ </section>
 
-<h2>Contact</h2>
-<p>
-GitHub: <a href="https://github.com/osman-omer">https://github.com/osman-omer</a>
-</p>
+ <section class="card">
+ <h2>Contact</h2>
+ <p>
+ GitHub:
+ <a href="https://github.com/osman-omer" target="_blank">
+ github.com/osman-omer
+ </a>
+ </p>
+ </section>
+
+ <footer class="footer">
+ <p>© 2026 Osman Omer</p>
+ </footer>
 
 </body>
 </html>
+
