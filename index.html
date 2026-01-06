@@ -1,202 +1,243 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Osman Omer | Medical Student</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>Osman Omer | Medical Student</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f5f7fa;
-      color: #222;
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 40px 20px;
-      line-height: 1.7;
-    }
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f5f7fa;
+  color: #222;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  line-height: 1.7;
+}
 
-    header {
-      text-align: center;
-      margin-bottom: 50px;
-    }
+header {
+  text-align: center;
+  margin-bottom: 50px;
+}
 
-    header h1 {
-      font-size: 2.5rem;
-      color: #1f2d3d;
-      margin-bottom: 6px;
-    }
+header h1 {
+  font-size: 2.5rem;
+  color: #1f2d3d;
+  margin-bottom: 6px;
+}
 
-    header p {
-      color: #4f6d7a;
-      font-size: 1.1rem;
-    }
+header p {
+  color: #4f6d7a;
+  font-size: 1.1rem;
+}
 
-    section {
-      background: #ffffff;
-      padding: 25px 30px;
-      border-radius: 14px;
-      margin-bottom: 30px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
-    }
+section {
+  background: #ffffff;
+  padding: 25px 30px;
+  border-radius: 14px;
+  margin-bottom: 30px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+}
 
-    h2 {
-      color: #2c3e50;
-      margin-bottom: 15px;
-    }
+h2 { color: #2c3e50; }
+h3 { color: #34495e; }
 
-    h3 {
-      color: #34495e;
-      margin-top: 15px;
-      margin-bottom: 10px;
-    }
+a {
+  color: #0066cc;
+  text-decoration: none;
+  font-weight: 500;
+}
 
-    ul {
-      padding-left: 20px;
-    }
+footer {
+  text-align: center;
+  margin-top: 60px;
+  color: #777;
+  font-size: 0.9rem;
+}
 
-    li {
-      margin-bottom: 8px;
-    }
+/* ===== Learning Log Slider (Reusable) ===== */
 
-    a {
-      color: #0066cc;
-      text-decoration: none;
-      font-weight: 500;
-    }
+.learning-group {
+  margin-top: 20px;
+}
 
-    a:hover {
-      text-decoration: underline;
-    }
+.slider-wrapper {
+  position: relative;
+  overflow: hidden;
+}
 
-    footer {
-      text-align: center;
-      margin-top: 60px;
-      color: #777;
-      font-size: 0.9rem;
-    }
+.slider {
+  display: flex;
+  transition: transform 0.4s ease;
+}
 
-    /* ===== Learning Log (Horizontal, Simple & Safe) ===== */
+.project-card {
+  min-width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
 
-    .learning-scroll {
-      display: flex;
-      gap: 20px;
-      overflow-x: auto;
-      padding-bottom: 10px;
-    }
+.project-date {
+  font-size: 0.85rem;
+  color: #888;
+  margin-bottom: 6px;
+}
 
-    .learning-scroll .card {
-      min-width: 280px;
-      max-width: 280px;
-      padding: 16px;
-      background: #ffffff;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-      flex-shrink: 0;
-    }
+/* Dots */
+.dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 12px;
+}
 
-    .project-date {
-      font-size: 0.85rem;
-      color: #888;
-      margin-bottom: 6px;
-    }
-  </style>
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #cbd5e1;
+  cursor: pointer;
+}
+
+.dot.active {
+  background: #0066cc;
+}
+
+/* Arrow (desktop only) */
+.arrow {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  font-size: 1.8rem;
+  color: #0066cc;
+  cursor: pointer;
+  user-select: none;
+}
+
+@media (max-width: 768px) {
+  .arrow { display: none; }
+}
+</style>
 </head>
 
 <body>
 
-  <header>
-    <h1>Osman Omer</h1>
-    <p>Fourth-year Medical Student</p>
-  </header>
+<header>
+  <h1>Osman Omer</h1>
+  <p>Fourth-year Medical Student</p>
+</header>
 
-  <section>
-    <h2>About Me</h2>
-    <p>
-      I am a fourth-year medical student with a growing interest in clinical research methods,
-      particularly systematic reviews, meta-analysis, and medical statistics using R.
-      This website serves as a personal space to document my learning journey and future research work.
-    </p>
-  </section>
+<section>
+  <h2>About Me</h2>
+  <p>
+    I am a fourth-year medical student with a growing interest in clinical research methods,
+    particularly systematic reviews, meta-analysis, and medical statistics using R.
+    This website serves as a personal space to document my learning journey and future research work.
+  </p>
+</section>
 
-  <section>
-    <h2>Current Learning Focus</h2>
-    <ul>
-      <li>Fundamentals of clinical research</li>
-      <li>Systematic review methodology (beginner level)</li>
-      <li>Introduction to meta-analysis</li>
-      <li>R programming for medical statistics (beginner)</li>
-    </ul>
-  </section>
+<section>
+  <h2>Current Learning Focus</h2>
+  <ul>
+    <li>Fundamentals of clinical research</li>
+    <li>Systematic review methodology (beginner level)</li>
+    <li>Introduction to meta-analysis</li>
+    <li>R programming for medical statistics (beginner)</li>
+  </ul>
+</section>
 
-  <section>
-    <h2>Future Goals</h2>
-    <p>
-      My goal is to gradually build skills in research methodology and data analysis,
-      and to contribute to systematic reviews, meta-analyses, and other research projects in the future.
-    </p>
-  </section>
+<section>
+  <h2>Future Goals</h2>
+  <p>
+    My goal is to gradually build skills in research methodology and data analysis,
+    and to contribute to systematic reviews, meta-analyses, and other research projects in the future.
+  </p>
+</section>
 
-  <section>
-    <h2>Learning Log</h2>
+<section>
+  <h2>Learning Log</h2>
+
+  <!-- ===== EDA Group ===== -->
+  <div class="learning-group" data-group="eda">
     <h3>Exploratory Data Analysis (EDA)</h3>
 
-    <div class="learning-scroll">
+    <div class="slider-wrapper">
+      <div class="slider">
+        <div class="project-card">
+          <div class="project-date">4 January 2026</div>
+          <h3>Project 1: Clinical Data Exploration Using R</h3>
+          <p>First learning project focused on exploratory data analysis.</p>
+          <p><strong>AI Assistance:</strong> ~90%</p>
+          <a href="https://github.com/osman-omer/clinical-data-analysis-r">View on GitHub</a>
+        </div>
 
-      <div class="card">
-        <div class="project-date">4 January 2026</div>
-        <h3>Project 1: Clinical Data Exploration Using R</h3>
-        <p>
-          First learning project focused on exploratory data analysis using a public
-          clinical dataset.
-        </p>
-        <p>
-          <strong>AI Assistance:</strong> ~90%<br>
-          <strong>Status:</strong> Completed learning project
-        </p>
-        <a href="https://github.com/osman-omer/clinical-data-analysis-r" target="_blank">
-          View on GitHub
-        </a>
+        <div class="project-card">
+          <div class="project-date">6 January 2026</div>
+          <h3>Project 2: Heart Disease Exploratory Data Analysis</h3>
+          <p>Guided learning project practicing the full EDA workflow.</p>
+          <p><strong>AI Assistance:</strong> ~60%</p>
+          <a href="https://github.com/osman-omer/project-2-heart-disease-eda">View on GitHub</a>
+        </div>
       </div>
 
-      <div class="card">
-        <div class="project-date">6 January 2026</div>
-        <h3>Project 2: Heart Disease Exploratory Data Analysis</h3>
-        <p>
-          Guided learning project focused on practicing the full EDA workflow
-          using a public heart disease dataset.
-        </p>
-        <p>
-          <strong>AI Assistance:</strong> ~60%<br>
-          <strong>Status:</strong> Completed learning project
-        </p>
-        <a href="https://github.com/osman-omer/project-2-heart-disease-eda" target="_blank">
-          View on GitHub
-        </a>
-      </div>
-
+      <div class="arrow">→</div>
     </div>
-  </section>
 
-  <section>
-    <h2>Contact</h2>
-    <p>
-      GitHub:
-      <a href="https://github.com/osman-omer" target="_blank">
-        github.com/osman-omer
-      </a>
-    </p>
-    <p>
-      Email:
-      <a href="mailto:osman.omer249@med.aun.edu.eg">
-        osman.omer249@med.aun.edu.eg
-      </a>
-    </p>
-  </section>
+    <div class="dots">
+      <div class="dot active"></div>
+      <div class="dot"></div>
+    </div>
+  </div>
 
-  <footer>
-    <p>© 2026 Osman Omer</p>
-  </footer>
+</section>
+
+<section>
+  <h2>Contact</h2>
+  <p>Email: <a href="mailto:osman.omer249@med.aun.edu.eg">osman.omer249@med.aun.edu.eg</a></p>
+  <p>GitHub: <a href="https://github.com/osman-omer">github.com/osman-omer</a></p>
+</section>
+
+<footer>© 2026 Osman Omer</footer>
+
+<script>
+document.querySelectorAll(".learning-group").forEach(group => {
+  const slider = group.querySelector(".slider");
+  const dots = group.querySelectorAll(".dot");
+  const arrow = group.querySelector(".arrow");
+  let index = 0;
+  let startX = 0;
+
+  function update() {
+    slider.style.transform = `translateX(-${index * 100}%)`;
+    dots.forEach(d => d.classList.remove("active"));
+    dots[index].classList.add("active");
+  }
+
+  dots.forEach((dot, i) => {
+    dot.onclick = () => { index = i; update(); };
+  });
+
+  if (arrow) {
+    arrow.onclick = () => {
+      index = (index + 1) % dots.length;
+      update();
+    };
+  }
+
+  slider.addEventListener("touchstart", e => startX = e.touches[0].clientX);
+  slider.addEventListener("touchend", e => {
+    let endX = e.changedTouches[0].clientX;
+    if (endX < startX - 50 && index < dots.length - 1) index++;
+    if (endX > startX + 50 && index > 0) index--;
+    update();
+  });
+});
+</script>
 
 </body>
 </html>
