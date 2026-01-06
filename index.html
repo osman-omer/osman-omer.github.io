@@ -64,6 +64,7 @@ footer {
 
 .learning-group {
   margin-top: 20px;
+  outline: none; /* hide focus box */
 }
 
 .slider-wrapper {
@@ -183,7 +184,6 @@ footer {
       <div class="dot"></div>
     </div>
   </div>
-
 </section>
 
 <section>
@@ -213,7 +213,7 @@ document.querySelectorAll(".learning-group").forEach(group => {
     dot.onclick = () => { index = i; update(); };
   });
 
-  // Swipe support
+  // Touch swipe
   slider.addEventListener("touchstart", e => startX = e.touches[0].clientX);
   slider.addEventListener("touchend", e => {
     let endX = e.changedTouches[0].clientX;
@@ -228,6 +228,9 @@ document.querySelectorAll(".learning-group").forEach(group => {
     if (e.key === "ArrowLeft" && index > 0) index--;
     update();
   });
+
+  // Auto-focus so keyboard works immediately
+  group.focus();
 });
 </script>
 
