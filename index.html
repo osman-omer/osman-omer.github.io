@@ -42,12 +42,12 @@
 
     h2 {
       color: #2c3e50;
-      margin-bottom: 15px;
+      margin-bottom: 10px;
     }
 
     h3 {
       color: #34495e;
-      margin-top: 20px;
+      margin-top: 15px;
       margin-bottom: 10px;
     }
 
@@ -76,67 +76,75 @@
       font-size: 0.9rem;
     }
 
-    /* ===== Timeline / Learning Log ===== */
+    /* ===== Horizontal Learning Log ===== */
+
+    .learning-log-wrapper {
+      position: relative;
+      margin-top: 15px;
+    }
+
+    .scroll-indicator {
+      text-align: right;
+      font-size: 0.85rem;
+      color: #888;
+      margin-bottom: 8px;
+    }
 
     .learning-log {
       display: flex;
-      flex-direction: column;
-      gap: 30px;
-      margin-top: 20px;
-      position: relative;
+      gap: 20px;
+      overflow-x: auto;
+      padding: 20px 10px 30px;
+      scroll-snap-type: x mandatory;
     }
 
-    .learning-log::before {
-      content: "";
-      position: absolute;
-      left: 50%;
-      top: 0;
-      bottom: 0;
-      width: 2px;
-      background-color: #e0e6ed;
-      transform: translateX(-50%);
+    .learning-log::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    .learning-log::-webkit-scrollbar-thumb {
+      background: #d0d7de;
+      border-radius: 4px;
     }
 
     .card {
-      max-width: 75%;
+      min-width: 280px;
+      max-width: 280px;
+      flex-shrink: 0;
       padding: 16px;
       background: #ffffff;
       border-radius: 12px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-      position: relative;
+      scroll-snap-align: start;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
     }
 
-    .card.left {
-      align-self: flex-start;
+    /* Glow on hover */
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 22px rgba(0,102,204,0.25);
     }
 
-    .card.right {
-      align-self: flex-end;
-    }
-
-    .card::before {
-      content: "";
-      position: absolute;
-      top: 20px;
-      width: 12px;
-      height: 12px;
-      background-color: #ffffff;
-      border: 2px solid #0066cc;
-      border-radius: 50%;
-    }
-
-    .card.left::before {
-      right: -26px;
-    }
-
-    .card.right::before {
-      left: -26px;
+    /* Subtle glow when user scrolls */
+    .learning-log:active .card {
+      box-shadow: 0 6px 18px rgba(0,102,204,0.18);
     }
 
     .project-date {
       font-size: 0.85rem;
       color: #888;
       margin-bottom: 6px;
+    }
+
+    .scroll-arrow {
+      position: absolute;
+      right: -10px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.8rem;
+      color: #0066cc;
+      opacity: 0.6;
+      pointer-events: none;
     }
   </style>
 </head>
@@ -179,42 +187,45 @@
     <h2>Learning Log</h2>
     <h3>Exploratory Data Analysis (EDA)</h3>
 
-    <div class="learning-log">
+    <div class="learning-log-wrapper">
+      <div class="scroll-indicator">Scroll →</div>
+      <div class="scroll-arrow">→</div>
 
-      <!-- Project 1 -->
-      <div class="card left">
-        <div class="project-date">January 2026</div>
-        <h3>Project 1: Clinical Data Exploration Using R</h3>
-        <p>
-          First learning project focused on exploratory data analysis using a public
-          clinical dataset.
-        </p>
-        <p>
-          <strong>AI Assistance:</strong> ~90%<br>
-          <strong>Status:</strong> Completed learning project
-        </p>
-        <a href="https://github.com/osman-omer/clinical-data-analysis-r" target="_blank">
-          View on GitHub
-        </a>
+      <div class="learning-log">
+
+        <div class="card">
+          <div class="project-date">4 January 2026</div>
+          <h3>Project 1: Clinical Data Exploration Using R</h3>
+          <p>
+            First learning project focused on exploratory data analysis using a public
+            clinical dataset.
+          </p>
+          <p>
+            <strong>AI Assistance:</strong> ~90%<br>
+            <strong>Status:</strong> Completed learning project
+          </p>
+          <a href="https://github.com/osman-omer/clinical-data-analysis-r" target="_blank">
+            View on GitHub
+          </a>
+        </div>
+
+        <div class="card">
+          <div class="project-date">6 January 2026</div>
+          <h3>Project 2: Heart Disease Exploratory Data Analysis</h3>
+          <p>
+            Guided learning project focused on practicing the full EDA workflow
+            using a public heart disease dataset.
+          </p>
+          <p>
+            <strong>AI Assistance:</strong> ~60%<br>
+            <strong>Status:</strong> Completed learning project
+          </p>
+          <a href="https://github.com/osman-omer/project-2-heart-disease-eda" target="_blank">
+            View on GitHub
+          </a>
+        </div>
+
       </div>
-
-      <!-- Project 2 -->
-      <div class="card right">
-        <div class="project-date">February 2026</div>
-        <h3>Project 2: Heart Disease Exploratory Data Analysis</h3>
-        <p>
-          Guided learning project focused on practicing the full EDA workflow
-          using a public heart disease dataset.
-        </p>
-        <p>
-          <strong>AI Assistance:</strong> ~60%<br>
-          <strong>Status:</strong> Completed learning project
-        </p>
-        <a href="https://github.com/osman-omer/project-2-heart-disease-eda" target="_blank">
-          View on GitHub
-        </a>
-      </div>
-
     </div>
   </section>
 
