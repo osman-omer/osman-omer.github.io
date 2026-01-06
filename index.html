@@ -47,7 +47,7 @@
 
     h3 {
       color: #34495e;
-      margin-top: 20px;
+      margin-top: 15px;
       margin-bottom: 10px;
     }
 
@@ -76,13 +76,29 @@
       font-size: 0.9rem;
     }
 
-    /* Simple cards for Learning Log */
-    .card {
+    /* ===== Learning Log (Horizontal, Simple & Safe) ===== */
+
+    .learning-scroll {
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+      padding-bottom: 10px;
+    }
+
+    .learning-scroll .card {
+      min-width: 280px;
+      max-width: 280px;
       padding: 16px;
       background: #ffffff;
       border-radius: 12px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-      margin-bottom: 20px;
+      flex-shrink: 0;
+    }
+
+    .project-date {
+      font-size: 0.85rem;
+      color: #888;
+      margin-bottom: 6px;
     }
   </style>
 </head>
@@ -125,36 +141,41 @@
     <h2>Learning Log</h2>
     <h3>Exploratory Data Analysis (EDA)</h3>
 
-    <div class="card">
-      <h3>Project 1: Clinical Data Exploration Using R</h3>
-      <p>
-        First learning project focused on exploratory data analysis using a public
-        clinical dataset.
-      </p>
-      <p>
-        <strong>AI Assistance:</strong> ~90%<br>
-        <strong>Status:</strong> Completed learning project
-      </p>
-      <a href="https://github.com/osman-omer/clinical-data-analysis-r" target="_blank">
-        View on GitHub
-      </a>
-    </div>
+    <div class="learning-scroll">
 
-    <div class="card">
-      <h3>Project 2: Heart Disease Exploratory Data Analysis</h3>
-      <p>
-        Guided learning project focused on practicing the full EDA workflow
-        using a public heart disease dataset.
-      </p>
-      <p>
-        <strong>AI Assistance:</strong> ~60%<br>
-        <strong>Status:</strong> Completed learning project
-      </p>
-      <a href="https://github.com/osman-omer/project-2-heart-disease-eda" target="_blank">
-        View on GitHub
-      </a>
-    </div>
+      <div class="card">
+        <div class="project-date">4 January 2026</div>
+        <h3>Project 1: Clinical Data Exploration Using R</h3>
+        <p>
+          First learning project focused on exploratory data analysis using a public
+          clinical dataset.
+        </p>
+        <p>
+          <strong>AI Assistance:</strong> ~90%<br>
+          <strong>Status:</strong> Completed learning project
+        </p>
+        <a href="https://github.com/osman-omer/clinical-data-analysis-r" target="_blank">
+          View on GitHub
+        </a>
+      </div>
 
+      <div class="card">
+        <div class="project-date">6 January 2026</div>
+        <h3>Project 2: Heart Disease Exploratory Data Analysis</h3>
+        <p>
+          Guided learning project focused on practicing the full EDA workflow
+          using a public heart disease dataset.
+        </p>
+        <p>
+          <strong>AI Assistance:</strong> ~60%<br>
+          <strong>Status:</strong> Completed learning project
+        </p>
+        <a href="https://github.com/osman-omer/project-2-heart-disease-eda" target="_blank">
+          View on GitHub
+        </a>
+      </div>
+
+    </div>
   </section>
 
   <section>
