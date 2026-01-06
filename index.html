@@ -76,58 +76,34 @@
       font-size: 0.9rem;
     }
 
-    /* ===== Horizontal Learning Log ===== */
+    /* ===== Horizontal Snap Learning Log ===== */
 
     .learning-log-wrapper {
       position: relative;
-      margin-top: 15px;
-    }
-
-    .scroll-indicator {
-      text-align: right;
-      font-size: 0.85rem;
-      color: #888;
-      margin-bottom: 8px;
+      overflow: hidden;
     }
 
     .learning-log {
       display: flex;
-      gap: 20px;
       overflow-x: auto;
-      padding: 20px 10px 30px;
       scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
     }
 
     .learning-log::-webkit-scrollbar {
-      height: 8px;
-    }
-
-    .learning-log::-webkit-scrollbar-thumb {
-      background: #d0d7de;
-      border-radius: 4px;
+      display: none;
     }
 
     .card {
-      min-width: 280px;
-      max-width: 280px;
+      min-width: 100%;
+      max-width: 100%;
       flex-shrink: 0;
-      padding: 16px;
+      scroll-snap-align: center;
+      padding: 20px;
       background: #ffffff;
       border-radius: 12px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-      scroll-snap-align: start;
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-    }
-
-    /* Glow on hover */
-    .card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 22px rgba(0,102,204,0.25);
-    }
-
-    /* Subtle glow when user scrolls */
-    .learning-log:active .card {
-      box-shadow: 0 6px 18px rgba(0,102,204,0.18);
+      text-align: left;
     }
 
     .project-date {
@@ -136,15 +112,24 @@
       margin-bottom: 6px;
     }
 
-    .scroll-arrow {
-      position: absolute;
-      right: -10px;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 1.8rem;
-      color: #0066cc;
-      opacity: 0.6;
-      pointer-events: none;
+    /* ===== Dot Indicators (Visual only) ===== */
+
+    .dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 15px;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      background-color: #cbd5e1;
+      border-radius: 50%;
+    }
+
+    .dot.active {
+      background-color: #0066cc;
     }
   </style>
 </head>
@@ -188,11 +173,9 @@
     <h3>Exploratory Data Analysis (EDA)</h3>
 
     <div class="learning-log-wrapper">
-      <div class="scroll-indicator">Scroll →</div>
-      <div class="scroll-arrow">→</div>
-
       <div class="learning-log">
 
+        <!-- Project 1 -->
         <div class="card">
           <div class="project-date">4 January 2026</div>
           <h3>Project 1: Clinical Data Exploration Using R</h3>
@@ -209,6 +192,7 @@
           </a>
         </div>
 
+        <!-- Project 2 -->
         <div class="card">
           <div class="project-date">6 January 2026</div>
           <h3>Project 2: Heart Disease Exploratory Data Analysis</h3>
@@ -227,6 +211,13 @@
 
       </div>
     </div>
+
+    <!-- Dot indicator (static for now) -->
+    <div class="dots">
+      <div class="dot active"></div>
+      <div class="dot"></div>
+    </div>
+
   </section>
 
   <section>
