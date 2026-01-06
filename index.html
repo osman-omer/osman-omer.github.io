@@ -37,7 +37,7 @@ section {
   padding: 25px 30px;
   border-radius: 14px;
   margin-bottom: 30px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
 }
 
 h2 { color: #2c3e50; }
@@ -49,6 +49,10 @@ a {
   font-weight: 500;
 }
 
+a:hover {
+  text-decoration: underline;
+}
+
 footer {
   text-align: center;
   margin-top: 60px;
@@ -56,20 +60,19 @@ footer {
   font-size: 0.9rem;
 }
 
-/* ===== Learning Log Slider (Reusable) ===== */
+/* ===== Learning Log Slider ===== */
 
 .learning-group {
   margin-top: 20px;
 }
 
 .slider-wrapper {
-  position: relative;
   overflow: hidden;
 }
 
 .slider {
   display: flex;
-  transition: transform 0.4s ease;
+  transition: transform 0.35s ease;
 }
 
 .project-card {
@@ -105,22 +108,6 @@ footer {
 
 .dot.active {
   background: #0066cc;
-}
-
-/* Arrow (desktop only) */
-.arrow {
-  position: absolute;
-  top: 50%;
-  right: 10px;
-  transform: translateY(-50%);
-  font-size: 1.8rem;
-  color: #0066cc;
-  cursor: pointer;
-  user-select: none;
-}
-
-@media (max-width: 768px) {
-  .arrow { display: none; }
 }
 </style>
 </head>
@@ -162,30 +149,33 @@ footer {
 <section>
   <h2>Learning Log</h2>
 
-  <!-- ===== EDA Group ===== -->
-  <div class="learning-group" data-group="eda">
+  <div class="learning-group" tabindex="0">
     <h3>Exploratory Data Analysis (EDA)</h3>
 
     <div class="slider-wrapper">
       <div class="slider">
+
         <div class="project-card">
           <div class="project-date">4 January 2026</div>
           <h3>Project 1: Clinical Data Exploration Using R</h3>
           <p>First learning project focused on exploratory data analysis.</p>
           <p><strong>AI Assistance:</strong> ~90%</p>
-          <a href="https://github.com/osman-omer/clinical-data-analysis-r">View on GitHub</a>
+          <a href="https://github.com/osman-omer/clinical-data-analysis-r" target="_blank">
+            View on GitHub
+          </a>
         </div>
 
         <div class="project-card">
           <div class="project-date">6 January 2026</div>
           <h3>Project 2: Heart Disease Exploratory Data Analysis</h3>
-          <p>Guided learning project practicing the full EDA workflow.</p>
+          <p>Guided learning project focused on practicing the full EDA workflow.</p>
           <p><strong>AI Assistance:</strong> ~60%</p>
-          <a href="https://github.com/osman-omer/project-2-heart-disease-eda">View on GitHub</a>
+          <a href="https://github.com/osman-omer/project-2-heart-disease-eda" target="_blank">
+            View on GitHub
+          </a>
         </div>
-      </div>
 
-      <div class="arrow">→</div>
+      </div>
     </div>
 
     <div class="dots">
@@ -202,13 +192,14 @@ footer {
   <p>GitHub: <a href="https://github.com/osman-omer">github.com/osman-omer</a></p>
 </section>
 
-<footer>© 2026 Osman Omer</footer>
+<footer>
+  <p>© 2026 Osman Omer</p>
+</footer>
 
 <script>
 document.querySelectorAll(".learning-group").forEach(group => {
   const slider = group.querySelector(".slider");
   const dots = group.querySelectorAll(".dot");
-  const arrow = group.querySelector(".arrow");
   let index = 0;
   let startX = 0;
 
@@ -222,18 +213,19 @@ document.querySelectorAll(".learning-group").forEach(group => {
     dot.onclick = () => { index = i; update(); };
   });
 
-  if (arrow) {
-    arrow.onclick = () => {
-      index = (index + 1) % dots.length;
-      update();
-    };
-  }
-
+  // Swipe support
   slider.addEventListener("touchstart", e => startX = e.touches[0].clientX);
   slider.addEventListener("touchend", e => {
     let endX = e.changedTouches[0].clientX;
     if (endX < startX - 50 && index < dots.length - 1) index++;
     if (endX > startX + 50 && index > 0) index--;
+    update();
+  });
+
+  // Keyboard arrows
+  group.addEventListener("keydown", e => {
+    if (e.key === "ArrowRight" && index < dots.length - 1) index++;
+    if (e.key === "ArrowLeft" && index > 0) index--;
     update();
   });
 });
