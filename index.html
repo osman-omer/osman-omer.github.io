@@ -45,6 +45,12 @@
       margin-bottom: 15px;
     }
 
+    h3 {
+      color: #34495e;
+      margin-top: 20px;
+      margin-bottom: 10px;
+    }
+
     ul {
       padding-left: 20px;
     }
@@ -68,28 +74,70 @@
       margin-top: 60px;
       color: #777;
       font-size: 0.9rem;
-    }.learning-log {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
+    }
 
-.card {
-  max-width: 80%;
-  padding: 16px;
-  background: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-}
+    /* ===== Timeline / Learning Log ===== */
 
-.card.left {
-  align-self: flex-start;
-}
+    .learning-log {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      margin-top: 20px;
+      position: relative;
+    }
 
-.card.right {
-  align-self: flex-end;
-}
+    .learning-log::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background-color: #e0e6ed;
+      transform: translateX(-50%);
+    }
 
+    .card {
+      max-width: 75%;
+      padding: 16px;
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      position: relative;
+    }
+
+    .card.left {
+      align-self: flex-start;
+    }
+
+    .card.right {
+      align-self: flex-end;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      top: 20px;
+      width: 12px;
+      height: 12px;
+      background-color: #ffffff;
+      border: 2px solid #0066cc;
+      border-radius: 50%;
+    }
+
+    .card.left::before {
+      right: -26px;
+    }
+
+    .card.right::before {
+      left: -26px;
+    }
+
+    .project-date {
+      font-size: 0.85rem;
+      color: #888;
+      margin-bottom: 6px;
+    }
   </style>
 </head>
 
@@ -126,47 +174,49 @@
       and to contribute to systematic reviews, meta-analyses, and other research projects in the future.
     </p>
   </section>
-  
- <section>
-   
- <section>
-  <h2>Learning Log</h2>
 
-  <div class="learning-log">
+  <section>
+    <h2>Learning Log</h2>
+    <h3>Exploratory Data Analysis (EDA)</h3>
 
-    <div class="card left">
-      <h3>Project 1: Clinical Data Exploration Using R</h3>
-      <p>
-        First learning project focused on exploratory data analysis using a public
-        clinical dataset.
-      </p>
-      <p>
-        <strong>AI Assistance:</strong> ~90%<br>
-        <strong>Status:</strong> Completed learning project
-      </p>
-      <a href="https://github.com/osman-omer/clinical-data-analysis-r" target="_blank">
-        View on GitHub
-      </a>
+    <div class="learning-log">
+
+      <!-- Project 1 -->
+      <div class="card left">
+        <div class="project-date">January 2026</div>
+        <h3>Project 1: Clinical Data Exploration Using R</h3>
+        <p>
+          First learning project focused on exploratory data analysis using a public
+          clinical dataset.
+        </p>
+        <p>
+          <strong>AI Assistance:</strong> ~90%<br>
+          <strong>Status:</strong> Completed learning project
+        </p>
+        <a href="https://github.com/osman-omer/clinical-data-analysis-r" target="_blank">
+          View on GitHub
+        </a>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="card right">
+        <div class="project-date">February 2026</div>
+        <h3>Project 2: Heart Disease Exploratory Data Analysis</h3>
+        <p>
+          Guided learning project focused on practicing the full EDA workflow
+          using a public heart disease dataset.
+        </p>
+        <p>
+          <strong>AI Assistance:</strong> ~60%<br>
+          <strong>Status:</strong> Completed learning project
+        </p>
+        <a href="https://github.com/osman-omer/project-2-heart-disease-eda" target="_blank">
+          View on GitHub
+        </a>
+      </div>
+
     </div>
-
-    <div class="card right">
-      <h3>Project 2: Heart Disease Exploratory Data Analysis</h3>
-      <p>
-        Guided learning project focused on practicing the full EDA workflow
-        using a public heart disease dataset.
-      </p>
-      <p>
-        <strong>AI Assistance:</strong> ~50%<br>
-        <strong>Status:</strong> Completed learning project
-      </p>
-      <a href="https://github.com/osman-omer/project-2-heart-disease-eda" target="_blank">
-        View on GitHub
-      </a>
-    </div>
-
-  </div>
-</section>
-
+  </section>
 
   <section>
     <h2>Contact</h2>
@@ -174,6 +224,12 @@
       GitHub:
       <a href="https://github.com/osman-omer" target="_blank">
         github.com/osman-omer
+      </a>
+    </p>
+    <p>
+      Email:
+      <a href="mailto:osman.omer249@med.aun.edu.eg">
+        osman.omer249@med.aun.edu.eg
       </a>
     </p>
   </section>
