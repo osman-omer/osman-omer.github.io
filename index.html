@@ -3,261 +3,147 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Osman Omer | Medical Student & Researcher</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>Osman Omer | Medical Student</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-blue: #004a99;
-            --accent-blue: #eef6ff;
-            --text-main: #1a1c1e;
-            --text-muted: #5f6368;
-            --border-color: #e2e8f0;
+            --primary: #004a99;
+            --text: #2d3436;
+            --muted: #636e72;
+            --bg: #ffffff;
+            --border: #f1f2f6;
         }
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #ffffff;
-            color: var(--text-main);
-            max-width: 800px;
+            color: var(--text);
+            max-width: 700px;
             margin: 0 auto;
-            padding: 50px 25px;
-            line-height: 1.7;
+            padding: 60px 20px;
+            line-height: 1.8;
+            background-color: var(--bg);
         }
 
-        /* Header Section */
+        /* Header - Very Clean */
         header {
+            margin-bottom: 60px;
             display: flex;
             justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 60px;
-        }
-
-        .profile-info h1 {
-            font-size: 2.8rem;
-            font-weight: 700;
-            margin: 0;
-            letter-spacing: -1px;
-            color: var(--primary-blue);
-        }
-
-        .profile-info p {
-            font-size: 1.2rem;
-            color: var(--text-muted);
-            margin: 8px 0;
-        }
-
-        .uni-badge {
-            display: inline-flex;
             align-items: center;
-            gap: 10px;
-            margin-top: 10px;
-            font-weight: 600;
-            color: var(--text-main);
         }
 
-        .uni-logo { width: 55px; height: auto; border-radius: 4px; }
+        h1 { font-size: 2rem; margin: 0; color: var(--primary); font-weight: 700; }
+        .sub-header { font-size: 1.1rem; color: var(--muted); font-weight: 500; margin-top: 5px; }
+        .uni-name { font-size: 0.9rem; color: var(--muted); margin-top: 2px; }
+        .uni-logo { width: 65px; height: auto; }
 
-        /* Section Styling */
+        /* Sections */
         section { margin-bottom: 50px; }
+        h2 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; color: var(--muted); margin-bottom: 30px; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
 
-        h2 {
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: var(--text-muted);
-            border-bottom: 2px solid var(--accent-blue);
-            padding-bottom: 8px;
-            margin-bottom: 25px;
-        }
-
-        /* Journey/Project List */
-        .journey-container { position: relative; padding-left: 20px; }
+        /* Journey List - No Clutter */
+        .project-list { position: relative; }
+        .project-item { margin-bottom: 40px; }
         
-        .project-item {
-            position: relative;
-            padding-bottom: 40px;
-            padding-left: 25px;
-            border-left: 1px solid var(--border-color);
-        }
-
-        .project-item:last-child { border-left: 1px solid transparent; }
-
-        .project-item::before {
-            content: '';
-            position: absolute;
-            left: -5.5px;
-            top: 5px;
-            width: 10px;
-            height: 10px;
-            background: var(--primary-blue);
-            border-radius: 50%;
-            border: 2px solid white;
-        }
-
-        .project-date { font-size: 0.85rem; color: var(--text-muted); font-weight: 600; }
+        .date-label { font-size: 0.8rem; font-weight: 700; color: var(--primary); display: block; margin-bottom: 5px; }
+        h3 { font-size: 1.25rem; margin: 0; color: #111; }
+        .description { font-size: 1rem; color: #444; margin: 8px 0; }
         
-        .project-content h3 { margin: 5px 0; font-size: 1.25rem; }
+        .tools { display: flex; gap: 10px; margin: 12px 0; }
+        .tool { font-size: 0.75rem; background: #f8fafc; color: var(--muted); padding: 2px 8px; border: 1px solid var(--border); border-radius: 4px; font-weight: 600; }
         
-        .tags { display: flex; gap: 8px; margin: 12px 0; }
-        
-        .tag {
-            font-size: 0.7rem;
-            background: var(--accent-blue);
-            color: var(--primary-blue);
-            padding: 3px 10px;
-            border-radius: 5px;
-            font-weight: 700;
-        }
+        .meta-info { font-size: 0.85rem; color: var(--muted); font-style: italic; background: #fcfcfc; padding: 5px 0; }
+        .repo-link { font-size: 0.9rem; font-weight: 600; color: var(--primary); text-decoration: none; display: inline-block; margin-top: 10px; }
+        .repo-link:hover { text-decoration: underline; }
 
-        .methodology {
-            font-size: 0.85rem;
-            background: #f8fafc;
-            padding: 8px 12px;
-            border-radius: 8px;
-            border-left: 3px solid #cbd5e1;
-            margin: 10px 0;
-        }
-
-        .git-link {
-            display: inline-block;
-            margin-top: 10px;
-            color: var(--primary-blue);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-
-        .git-link:hover { text-decoration: underline; }
-
-        /* Academic Buttons */
-        .social-links {
+        /* Contact Grid */
+        .contact-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 12px;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 10px;
         }
 
-        .social-card {
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .contact-card {
             padding: 12px;
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
-            text-decoration: none;
-            color: var(--text-main);
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-
-        .social-card:hover {
-            background: var(--primary-blue);
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,74,153,0.15);
-        }
-
-        footer {
-            margin-top: 100px;
             text-align: center;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            text-decoration: none;
+            color: var(--text);
             font-size: 0.85rem;
-            color: var(--text-muted);
-            border-top: 1px solid var(--border-color);
-            padding-top: 30px;
+            font-weight: 500;
+            transition: 0.2s;
         }
 
-        @media (max-width: 600px) {
-            header { flex-direction: column-reverse; gap: 20px; }
-            .profile-info h1 { font-size: 2.2rem; }
-        }
+        .contact-card:hover { background: var(--primary); color: white; border-color: var(--primary); }
+
+        footer { text-align: center; margin-top: 100px; font-size: 0.8rem; color: var(--muted); }
+
     </style>
 </head>
 <body>
 
 <header>
-    <div class="profile-info">
+    <div class="header-text">
         <h1>Osman Omer</h1>
-        <p>Medical Student & Aspiring Researcher</p>
-        <div class="uni-badge">
-            Assiut University, Egypt
-        </div>
+        <p class="sub-header">Medical Student & Data Analyst</p>
+        <div class="uni-name">Assiut University | Faculty of Medicine</div>
     </div>
-    <img src="https://upload.wikimedia.org/wikipedia/ar/0/00/Assiut_University_logo.png" alt="AUN Logo" class="uni-logo">
+    <img src="https://upload.wikimedia.org/wikipedia/en/c/cf/Assiut_University_logo.png" alt="AUN" class="uni-logo">
 </header>
 
 <section>
     <h2>Brief</h2>
-    <p>
-        A 4th-year medical student at Assiut University, deeply interested in the intersection of <strong>Clinical Medicine</strong> and <strong>Data Science</strong>. 
-        Currently developing a robust foundation in medical statistics, R programming, and systematic review methodologies to contribute to high-quality evidence-based research.
-    </p>
+    <p>A medical student at Assiut University passionate about <strong>Clinical Data Analysis</strong>. Focusing on the practical application of R to improve healthcare research and evidence-based practice.</p>
 </section>
 
 <section>
-    <h2>Research Learning Path</h2>
-    <div class="journey-container">
+    <h2>Timeline</h2>
+    <div class="project-list">
         
         <div class="project-item">
-            <div class="project-date">JAN 2026</div>
-            <div class="project-content">
-                <h3>Heart Disease EDA</h3>
-                <p>An exploratory data analysis of cardiovascular risk factors using R to identify key clinical correlations.</p>
-                <div class="tags">
-                    <span class="tag">R LANGUAGE</span>
-                    <span class="tag">GGPLOT2</span>
-                    <span class="tag">CARDIOLOGY</span>
-                </div>
-                <div class="methodology">
-                    <strong>Methodology:</strong> Advanced data visualization and coding with 75% AI-assisted optimization.
-                </div>
-                <a href="https://github.com/osman-omer/project-2-heart-disease-eda" target="_blank" class="git-link">Access Repository →</a>
+            <span class="date-label">6 JANUARY 2026</span>
+            <h3>Project 2: Heart Disease Data Analysis</h3>
+            <p class="description">Utilizing R for exploratory analysis of cardiovascular risk factors and data distribution.</p>
+            <div class="tools">
+                <span class="tool">R</span>
+                <span class="tool">HISTOGRAMS</span>
+                <span class="tool">CARDIOLOGY</span>
             </div>
+            <p class="meta-info">Note: 75% AI-assisted code optimization.</p>
+            <a href="https://github.com/osman-omer/project-2-heart-disease-eda" target="_blank" class="repo-link">GitHub Repository →</a>
         </div>
 
         <div class="project-item">
-            <div class="project-date">JAN 2026</div>
-            <div class="project-content">
-                <h3>Clinical Data Exploration</h3>
-                <p>Initial framework for cleaning and describing clinical datasets as part of the research training workflow.</p>
-                <div class="tags">
-                    <span class="tag">DATA CLEANING</span>
-                    <span class="tag">STATISTICS</span>
-                </div>
-                <div class="methodology">
-                    <strong>Methodology:</strong> Fundamental R scripting with 90% AI-assisted workflow.
-                </div>
-                <a href="https://github.com/osman-omer/clinical-data-analysis-r" target="_blank" class="git-link">Access Repository →</a>
+            <span class="date-label">4 JANUARY 2026</span>
+            <h3>Project 1: Clinical Data Exploration</h3>
+            <p class="description">Introductory analysis focusing on cleaning and processing medical datasets.</p>
+            <div class="tools">
+                <span class="tool">R</span>
+                <span class="tool">DATA ANALYSIS</span>
+                <span class="tool">CLEANING</span>
             </div>
-        </div>
-
-        <div class="project-item" style="opacity: 0.5;">
-            <div class="project-date">FUTURE</div>
-            <div class="project-content">
-                <h3>Systematic Review & Meta-Analysis</h3>
-                <p>Upcoming projects focused on evidence synthesis and meta-analytical models.</p>
-            </div>
+            <p class="meta-info">Note: 90% AI-assisted workflow.</p>
+            <a href="https://github.com/osman-omer/clinical-data-analysis-r" target="_blank" class="repo-link">GitHub Repository →</a>
         </div>
 
     </div>
 </section>
 
 <section>
-    <h2>Academic Profiles</h2>
-    <div class="social-links">
-        <a href="https://www.linkedin.com/in/osmanomer10/" target="_blank" class="social-card">LinkedIn</a>
-        <a href="https://orcid.org/0009-0003-4138-029X" target="_blank" class="social-card">ORCID</a>
-        <a href="https://scholar.google.com/citations?user=1DifMQUAAAAJ" target="_blank" class="social-card">Google Scholar</a>
-        <a href="https://www.researchgate.net/profile/Osman-Omer-Mustafa" target="_blank" class="social-card">ResearchGate</a>
-        <a href="mailto:osman.omer249@med.aun.edu.eg" class="social-card">Email Contact</a>
+    <h2>Academic Links</h2>
+    <div class="contact-grid">
+        <a href="https://www.linkedin.com/in/osmanomer10/" target="_blank" class="contact-card">LinkedIn</a>
+        <a href="https://orcid.org/0009-0003-4138-029X" target="_blank" class="contact-card">ORCID</a>
+        <a href="https://scholar.google.com/citations?user=1DifMQUAAAAJ" target="_blank" class="contact-card">Scholar</a>
+        <a href="https://www.researchgate.net/profile/Osman-Omer-Mustafa" target="_blank" class="contact-card">ResearchGate</a>
+        <a href="mailto:osman.omer249@med.aun.edu.eg" class="contact-card">Email</a>
     </div>
 </section>
 
 <footer>
-    <p>© 2026 Osman Omer. Documenting the professional evolution of a medical researcher.</p>
+    <p>© 2026 Osman Omer | Assiut University</p>
 </footer>
 
 </body>
-    </html>
-    
+</html>
