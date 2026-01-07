@@ -1,238 +1,285 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Osman Omer | Medical Student</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>Osman Omer | Medical Student</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f5f7fa;
-  color: #222;
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 40px 20px;
-  line-height: 1.7;
-}
+  <!-- Canonical URL -->
+  https://osman-omer.me/
 
-header {
-  text-align: center;
-  margin-bottom: 50px;
-}
+  <!-- SEO -->
+  <meta name="description" content="Osman Omer — fourth‑year medical student learning clinical research, systematic reviews, meta‑analysis, and R for medical statistics.">
 
-header h1 {
-  font-size: 2.5rem;
-  color: #1f2d3d;
-  margin-bottom: 6px;
-}
+  <!-- Favicon سريع بدون ملفات خارجية (حرف O داخل دائرة زرقاء) -->
+  data:image/svg+xml,%3Csvg xmlns=
 
-header p {
-  color: #4f6d7a;
-  font-size: 1.1rem;
-}
+  <!-- Open Graph / Twitter -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Osman Omer | Medical Student">
+  <meta property="og:description" content="Learning clinical research, systematic reviews, meta‑analysis, and R.">
+  <meta property="og:url" content="https://osman-omer.me/">
+  <!-- لو أنشأت صورة مشاركة لاحقًا سميها og-image.jpg وخلي السطر أدناه -->
+  <meta property="og:image" content="https://osman-omer.me/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
 
-section {
-  background: #ffffff;
-  padding: 25px 30px;
-  border-radius: 14px;
-  margin-bottom: 30px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-}
+  <!-- Color scheme hint -->
+  <meta name="color-scheme" content="light dark">
 
-h2 { color: #2c3e50; }
-h3 { color: #34495e; }
+  <style>
+    :root{
+      --bg: #f5f7fa;
+      --card: #ffffff;
+      --text: #222;
+      --subtext:#4f6d7a;
+      --heading:#1f2d3d;
+      --h2:#2c3e50;
+      --h3:#34495e;
+      --link:#0066cc;
+      --muted:#cbd5e1;
+      --shadow: 0 8px 20px rgba(0,0,0,0.05);
+      --radius:14px;
+    }
+    @media (prefers-color-scheme: dark){
+      :root{
+        --bg:#0f141a;
+        --card:#121a22;
+        --text:#e7edf3;
+        --subtext:#a8bac7;
+        --heading:#eaf2f9;
+        --h2:#d8e6f1;
+        --h3:#c8d7e2;
+        --link:#7db8ff;
+        --muted:#3b4756;
+        --shadow: 0 8px 24px rgba(0,0,0,0.35);
+      }
+    }
 
-a {
-  color: #0066cc;
-  text-decoration: none;
-  font-weight: 500;
-}
+    *{box-sizing:border-box}
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      line-height: 1.7;
+    }
 
-a:hover {
-  text-decoration: underline;
-}
+    header { text-align: center; margin-bottom: 50px; }
+    header h1 {
+      font-size: clamp(2rem, 3.2vw, 2.6rem);
+      color: var(--heading);
+      margin-bottom: 6px;
+    }
+    header p { color: var(--subtext); font-size: 1.05rem; }
 
-footer {
-  text-align: center;
-  margin-top: 60px;
-  color: #777;
-  font-size: 0.9rem;
-}
+    section {
+      background: var(--card);
+      padding: 25px 30px;
+      border-radius: var(--radius);
+      margin-bottom: 30px;
+      box-shadow: var(--shadow);
+    }
 
-/* ===== Learning Log Slider ===== */
+    h2 { color: var(--h2); margin-top:0 }
+    h3 { color: var(--h3); }
 
-.learning-group {
-  margin-top: 20px;
-  outline: none; /* hide focus box */
-}
+    a {
+      color: var(--link);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    a:hover, a:focus { text-decoration: underline; outline: none; }
 
-.slider-wrapper {
-  overflow: hidden;
-}
+    footer { text-align: center; margin-top: 60px; color: #777; font-size: 0.9rem; }
 
-.slider {
-  display: flex;
-  transition: transform 0.35s ease;
-}
+    /* ===== Learning Log Slider ===== */
+    .learning-group { margin-top: 20px; }
 
-.project-card {
-  min-width: 100%;
-  padding: 20px;
-  box-sizing: border-box;
-  border-radius: 12px;
-  background: #fff;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-}
+    .slider-wrapper { overflow: hidden; position: relative; }
 
-.project-date {
-  font-size: 0.85rem;
-  color: #888;
-  margin-bottom: 6px;
-}
+    .slider {
+      display: flex;
+      transition: transform 0.35s ease;
+      will-change: transform;
+    }
+    @media (prefers-reduced-motion: reduce) { .slider { transition: none; } }
 
-/* Dots */
-.dots {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 12px;
-}
+    .project-card {
+      min-width: 100%;
+      padding: 20px;
+      border-radius: 12px;
+      background: var(--card);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      border: 1px solid rgba(0,0,0,0.04);
+    }
+    .project-date { font-size: 0.85rem; color: #888; margin-bottom: 6px; }
 
-.dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #cbd5e1;
-  cursor: pointer;
-}
+    /* Controls */
+    .controls {
+      display:flex; justify-content: space-between; gap: 10px; margin-top: 10px;
+    }
+    .control-btn {
+      background: transparent; border: 1px solid var(--muted); color: var(--text);
+      border-radius: 8px; padding: 8px 12px; cursor: pointer;
+    }
+    .control-btn:hover, .control-btn:focus { border-color: var(--link); outline: none; }
 
-.dot.active {
-  background: #0066cc;
-}
-</style>
+    /* Dots */
+    .dots { display: flex; justify-content: center; gap: 8px; margin-top: 12px; }
+    .dot {
+      width: 9px; height: 9px; border-radius: 50%; background: var(--muted);
+      cursor: pointer; border: none;
+    }
+    .dot.active { background: var(--link); }
+
+    /* Misc */
+    .contact-list a{ word-break: break-all; }
+    ul{ padding-left: 1.1rem; }
+  </style>
 </head>
-
 <body>
 
-<header>
-  <h1>Osman Omer</h1>
-  <p>Fourth-year Medical Student</p>
-</header>
+  <header>
+    <h1>Osman Omer</h1>
+    <p>Fourth-year Medical Student</p>
+  </header>
 
-<section>
-  <h2>About Me</h2>
-  <p>
-    I am a fourth-year medical student with a growing interest in clinical research methods,
-    particularly systematic reviews, meta-analysis, and medical statistics using R.
-    This website serves as a personal space to document my learning journey and future research work.
-  </p>
-</section>
+  <section>
+    <h2>About Me</h2>
+    <p>
+      I am a fourth-year medical student with a growing interest in clinical research methods,
+      particularly systematic reviews, meta-analysis, and medical statistics using R.
+      This website serves as a personal space to document my learning journey and future research work.
+    </p>
+  </section>
 
-<section>
-  <h2>Current Learning Focus</h2>
-  <ul>
-    <li>Fundamentals of clinical research</li>
-    <li>Systematic review methodology (beginner level)</li>
-    <li>Introduction to meta-analysis</li>
-    <li>R programming for medical statistics (beginner)</li>
-  </ul>
-</section>
+  <section>
+    <h2>Current Learning Focus</h2>
+    <ul>
+      <li>Fundamentals of clinical research</li>
+      <li>Systematic review methodology (beginner level)</li>
+      <li>Introduction to meta-analysis</li>
+      <li>R programming for medical statistics (beginner)</li>
+    </ul>
+  </section>
 
-<section>
-  <h2>Future Goals</h2>
-  <p>
-    My goal is to gradually build skills in research methodology and data analysis,
-    and to contribute to systematic reviews, meta-analyses, and other research projects in the future.
-  </p>
-</section>
+  <section>
+    <h2>Future Goals</h2>
+    <p>
+      My goal is to gradually build skills in research methodology and data analysis,
+      and to contribute to systematic reviews, meta-analyses, and other research projects in the future.
+    </p>
+  </section>
 
-<section>
-  <h2>Learning Log</h2>
+  <section>
+    <h2>Learning Log</h2>
 
-  <div class="learning-group" tabindex="0">
-    <h3>Exploratory Data Analysis (EDA)</h3>
+    <div class="learning-group" aria-roledescription="carousel" aria-label="Exploratory Data Analysis (EDA)" aria-live="polite">
+      <h3>Exploratory Data Analysis (EDA)</h3>
 
-    <div class="slider-wrapper">
-      <div class="slider">
+      <div class="slider-wrapper">
+        <div class="slider" id="eda-slider">
 
-        <div class="project-card">
-          <div class="project-date">4 January 2026</div>
-          <h3>Project 1: Clinical Data Exploration Using R</h3>
-          <p>First learning project focused on exploratory data analysis.</p>
-          <p><strong>AI Assistance:</strong> ~90%</p>
-          <a href="https://github.com/osman-omer/clinical-data-analysis-r" target="_blank">
-            View on GitHub
-          </a>
+          <article class="project-card" aria-label="Project 1: Clinical Data Exploration Using R">
+            <div class="project-date">4 January 2026</div>
+            <h3>Project 1: Clinical Data Exploration Using R</h3>
+            <p>First learning project focused on exploratory data analysis.</p>
+            <p><strong>AI Assistance:</strong> ~90%</p>
+            <p>https://github.com/osman-omer/clinical-data-analysis-rView on GitHub</a></p>
+          </article>
+
+          <article class="project-card" aria-label="Project 2: Heart Disease Exploratory Data Analysis">
+            <div class="project-date">6 January 2026</div>
+            <h3>Project 2: Heart Disease Exploratory Data Analysis</h3>
+            <p>Guided learning project focused on practicing the full EDA workflow.</p>
+            <p><strong>AI Assistance:</strong> ~60%</p>
+            <p>https://github.com/osman-omer/project-2-heart-disease-edaView on GitHub</a></p>
+          </article>
+
         </div>
+      </div>
 
-        <div class="project-card">
-          <div class="project-date">6 January 2026</div>
-          <h3>Project 2: Heart Disease Exploratory Data Analysis</h3>
-          <p>Guided learning project focused on practicing the full EDA workflow.</p>
-          <p><strong>AI Assistance:</strong> ~60%</p>
-          <a href="https://github.com/osman-omer/project-2-heart-disease-eda" target="_blank">
-            View on GitHub
-          </a>
-        </div>
+      <div class="controls" aria-label="Slide controls">
+        <button class="control-btn prev" aria-controls="eda-slider" aria-label="Previous slide">◀ Prev</button>
+        <button class="control-btn next" aria-controls="eda-slider" aria-label="Next slide">Next ▶</button>
+      </div>
 
+      <div class="dots" role="tablist" aria-label="Slides">
+        <button class="dot active" role="tab" aria-selected="true" aria-controls="slide-0" tabindex="0"></button>
+        <button class="dot" role="tab" aria-selected="false" aria-controls="slide-1" tabindex="-1"></button>
       </div>
     </div>
+  </section>
 
-    <div class="dots">
-      <div class="dot active"></div>
-      <div class="dot"></div>
-    </div>
-  </div>
-</section>
+  <section>
+    <h2>Contact</h2>
+    <ul class="contact-list">
+      <li>Email: mailto:osman.omer249@med.aun.edu.egosman.omer249@med.aun.edu.eg</a></li>
+      <li>GitHub: https://github.com/osman-omergithub.com/osman-omer</a></li>
+    </ul>
+  </section>
 
-<section>
-  <h2>Contact</h2>
-  <p>Email: <a href="mailto:osman.omer249@med.aun.edu.eg">osman.omer249@med.aun.edu.eg</a></p>
-  <p>GitHub: <a href="https://github.com/osman-omer">github.com/osman-omer</a></p>
-</section>
+  <footer>
+    <p>© 2026 Osman Omer</p>
+  </footer>
 
-<footer>
-  <p>© 2026 Osman Omer</p>
-</footer>
+  <script>
+    (function(){
+      const group = document.querySelector(".learning-group");
+      const slider = group.querySelector(".slider");
+      const cards = group.querySelectorAll(".project-card");
+      const dots = group.querySelectorAll(".dot");
+      const prev = group.querySelector(".prev");
+      const next = group.querySelector(".next");
 
-<script>
-document.querySelectorAll(".learning-group").forEach(group => {
-  const slider = group.querySelector(".slider");
-  const dots = group.querySelectorAll(".dot");
-  let index = 0;
-  let startX = 0;
+      let index = 0;
+      let startX = 0;
+      const count = cards.length;
 
-  function update() {
-    slider.style.transform = `translateX(-${index * 100}%)`;
-    dots.forEach(d => d.classList.remove("active"));
-    dots[index].classList.add("active");
-  }
+      function update(){
+        slider.style.transform = `translateX(-${index * 100}%)`;
+        dots.forEach((d,i)=>{
+          d.classList.toggle("active", i===index);
+          d.setAttribute("aria-selected", i===index ? "true" : "false");
+          d.tabIndex = i===index ? 0 : -1;
+        });
+      }
 
-  dots.forEach((dot, i) => {
-    dot.onclick = () => { index = i; update(); };
-  });
+      dots.forEach((dot,i)=>{
+        dot.addEventListener("click", ()=>{ index=i; update(); });
+        dot.addEventListener("keydown", (e)=>{
+          if(e.key==="Enter" || e.key===" "){ e.preventDefault(); index=i; update(); }
+        });
+      });
 
-  // Touch swipe
-  slider.addEventListener("touchstart", e => startX = e.touches[0].clientX);
-  slider.addEventListener("touchend", e => {
-    let endX = e.changedTouches[0].clientX;
-    if (endX < startX - 50 && index < dots.length - 1) index++;
-    if (endX > startX + 50 && index > 0) index--;
-    update();
-  });
+      prev.addEventListener("click", ()=>{
+        if(index>0){ index--; update(); }
+      });
+      next.addEventListener("click", ()=>{
+        if(index<count-1){ index++; update(); }
+      });
 
-  // Keyboard arrows
-  group.addEventListener("keydown", e => {
-    if (e.key === "ArrowRight" && index < dots.length - 1) index++;
-    if (e.key === "ArrowLeft" && index > 0) index--;
-    update();
-  });
+      // Touch swipe
+      slider.addEventListener("touchstart", e => startX = e.touches[0].clientX, {passive:true});
+      slider.addEventListener("touchend", e => {
+        const endX = e.changedTouches[0].clientX;
+        if (endX < startX - 50 && index < count - 1) index++;
+        if (endX > startX + 50 && index > 0) index--;
+        update();
+      });
 
-  // Auto-focus so keyboard works immediately
-  group.focus();
-});
-</script>
+      // Keyboard arrows for the whole group
+      group.tabIndex = 0;
+      group.addEventListener("keydown", e=>{
+        if (e.key === "ArrowRight" && index < count - 1) { index++; update(); }
+        if (e.key === "ArrowLeft" && index > 0) { index--; update(); }
+      });
 
+      update();
+    })();
+  </script>
 </body>
 </html>
