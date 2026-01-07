@@ -4,274 +4,259 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Osman Omer | Medical Student & Researcher</title>
-    <meta name="description" content="Osman Omer, 4th-year Medical Student at Assiut University. Focused on Clinical Research, Systematic Reviews, and R programming.">
-    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #0066cc;
-            --text-dark: #1e293b;
-            --text-light: #64748b;
-            --bg-body: #f1f5f9;
-            --bg-card: #ffffff;
+            --primary-blue: #004a99;
+            --accent-blue: #eef6ff;
+            --text-main: #1a1c1e;
+            --text-muted: #5f6368;
+            --border-color: #e2e8f0;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg-body);
-            color: var(--text-dark);
-            max-width: 850px;
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: var(--text-main);
+            max-width: 800px;
             margin: 0 auto;
-            padding: 40px 20px;
-            line-height: 1.6;
+            padding: 50px 25px;
+            line-height: 1.7;
         }
 
+        /* Header Section */
         header {
-            margin-bottom: 50px;
-            padding-left: 15px;
-            border-left: 4px solid var(--primary-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 60px;
         }
 
-        header h1 {
-            font-size: 2.5rem;
+        .profile-info h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
             margin: 0;
-            color: #0f172a;
+            letter-spacing: -1px;
+            color: var(--primary-blue);
         }
 
-        header p {
-            color: var(--text-light);
+        .profile-info p {
             font-size: 1.2rem;
-            margin-top: 5px;
+            color: var(--text-muted);
+            margin: 8px 0;
         }
 
-        section {
-            background: var(--bg-card);
-            padding: 30px;
-            border-radius: 16px;
-            margin-bottom: 25px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            border: 1px solid #e2e8f0;
+        .uni-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+            font-weight: 600;
+            color: var(--text-main);
         }
+
+        .uni-logo { width: 55px; height: auto; border-radius: 4px; }
+
+        /* Section Styling */
+        section { margin-bottom: 50px; }
 
         h2 {
-            font-size: 1.5rem;
-            margin-top: 0;
-            color: #0f172a;
-            border-bottom: 2px solid #f1f5f9;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-        }
-
-        /* Skill Tags Style */
-        .skills-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            list-style: none;
-            padding: 0;
-        }
-
-        .skill-tag {
-            background: #eef6ff;
-            color: var(--primary-color);
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            border: 1px solid #dbeafe;
-        }
-
-        a {
-            color: var(--primary-color);
-            text-decoration: none;
-            font-weight: 500;
-            transition: opacity 0.2s;
-        }
-
-        a:hover {
-            text-decoration: underline;
-            opacity: 0.8;
-        }
-
-        /* ===== Slider Improvements ===== */
-        .slider-wrapper {
-            overflow: hidden;
-            padding: 10px 0;
-        }
-
-        .slider {
-            display: flex;
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .project-card {
-            min-width: 100%;
-            padding: 25px;
-            box-sizing: border-box;
-            border-radius: 12px;
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
-            transition: transform 0.2s;
-        }
-
-        .project-card:hover {
-            transform: translateY(-3px);
-            border-color: #cbd5e1;
-        }
-
-        .project-date {
-            font-size: 0.85rem;
-            color: var(--text-light);
+            font-size: 1.1rem;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 1.5px;
+            color: var(--text-muted);
+            border-bottom: 2px solid var(--accent-blue);
+            padding-bottom: 8px;
+            margin-bottom: 25px;
         }
 
-        .ai-badge {
-            display: inline-block;
-            background: #f1f5f9;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            margin: 10px 0;
-            color: #475569;
+        /* Journey/Project List */
+        .journey-container { position: relative; padding-left: 20px; }
+        
+        .project-item {
+            position: relative;
+            padding-bottom: 40px;
+            padding-left: 25px;
+            border-left: 1px solid var(--border-color);
         }
 
-        /* Dots */
-        .dots {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 15px;
-        }
+        .project-item:last-child { border-left: 1px solid transparent; }
 
-        .dot {
+        .project-item::before {
+            content: '';
+            position: absolute;
+            left: -5.5px;
+            top: 5px;
             width: 10px;
             height: 10px;
+            background: var(--primary-blue);
             border-radius: 50%;
-            background: #cbd5e1;
-            cursor: pointer;
-            transition: background 0.3s;
+            border: 2px solid white;
         }
 
-        .dot.active {
-            background: var(--primary-color);
-            width: 25px;
+        .project-date { font-size: 0.85rem; color: var(--text-muted); font-weight: 600; }
+        
+        .project-content h3 { margin: 5px 0; font-size: 1.25rem; }
+        
+        .tags { display: flex; gap: 8px; margin: 12px 0; }
+        
+        .tag {
+            font-size: 0.7rem;
+            background: var(--accent-blue);
+            color: var(--primary-blue);
+            padding: 3px 10px;
             border-radius: 5px;
+            font-weight: 700;
+        }
+
+        .methodology {
+            font-size: 0.85rem;
+            background: #f8fafc;
+            padding: 8px 12px;
+            border-radius: 8px;
+            border-left: 3px solid #cbd5e1;
+            margin: 10px 0;
+        }
+
+        .git-link {
+            display: inline-block;
+            margin-top: 10px;
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .git-link:hover { text-decoration: underline; }
+
+        /* Academic Buttons */
+        .social-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 12px;
+        }
+
+        .social-card {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            text-decoration: none;
+            color: var(--text-main);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .social-card:hover {
+            background: var(--primary-blue);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,74,153,0.15);
         }
 
         footer {
+            margin-top: 100px;
             text-align: center;
-            margin-top: 60px;
-            color: var(--text-light);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border-color);
+            padding-top: 30px;
         }
 
         @media (max-width: 600px) {
-            header h1 { font-size: 2rem; }
-            section { padding: 20px; }
+            header { flex-direction: column-reverse; gap: 20px; }
+            .profile-info h1 { font-size: 2.2rem; }
         }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>Osman Omer</h1>
-    <p>Fourth-year Medical Student & Aspiring Researcher</p>
+    <div class="profile-info">
+        <h1>Osman Omer</h1>
+        <p>Medical Student & Aspiring Researcher</p>
+        <div class="uni-badge">
+            Assiut University, Egypt
+        </div>
+    </div>
+    <img src="https://upload.wikimedia.org/wikipedia/ar/0/00/Assiut_University_logo.png" alt="AUN Logo" class="uni-logo">
 </header>
 
 <section>
-    <h2>About Me</h2>
+    <h2>Brief</h2>
     <p>
-        I am a medical student at Assiut University with a keen interest in clinical research methodology. 
-        Currently developing skills in <strong>Systematic Reviews</strong>, <strong>Meta-analysis</strong>, 
-        and medical statistics using <strong>R programming</strong>.
+        A 4th-year medical student at Assiut University, deeply interested in the intersection of <strong>Clinical Medicine</strong> and <strong>Data Science</strong>. 
+        Currently developing a robust foundation in medical statistics, R programming, and systematic review methodologies to contribute to high-quality evidence-based research.
     </p>
 </section>
 
 <section>
-    <h2>Current Learning Focus</h2>
-    <div class="skills-container">
-        <span class="skill-tag">Clinical Research Fundamentals</span>
-        <span class="skill-tag">Systematic Review Methodology</span>
-        <span class="skill-tag">Meta-analysis (Beginner)</span>
-        <span class="skill-tag">R for Medical Statistics</span>
-        <span class="skill-tag">Data Exploration (EDA)</span>
-    </div>
-</section>
-
-<section id="learning-log">
-    <h2>Learning Log</h2>
-    <div class="learning-group" tabindex="0" style="outline: none;">
-        <div class="slider-wrapper">
-            <div class="slider">
-                <div class="project-card">
-                    <div class="project-date">4 January 2026</div>
-                    <h3>Clinical Data Exploration Using R</h3>
-                    <p>Focusing on the initial steps of handling clinical datasets and descriptive statistics.</p>
-                    <div class="ai-badge">AI Assistance: 90%</div>
-                    <br>
-                    <a href="https://github.com/osman-omer/clinical-data-analysis-r" target="_blank">View Project on GitHub →</a>
+    <h2>Research Learning Path</h2>
+    <div class="journey-container">
+        
+        <div class="project-item">
+            <div class="project-date">JAN 2026</div>
+            <div class="project-content">
+                <h3>Heart Disease EDA</h3>
+                <p>An exploratory data analysis of cardiovascular risk factors using R to identify key clinical correlations.</p>
+                <div class="tags">
+                    <span class="tag">R LANGUAGE</span>
+                    <span class="tag">GGPLOT2</span>
+                    <span class="tag">CARDIOLOGY</span>
                 </div>
-                <div class="project-card">
-                    <div class="project-date">6 January 2026</div>
-                    <h3>Heart Disease Analysis</h3>
-                    <p>Applying EDA workflow to a heart disease dataset to identify key variables.</p>
-                    <div class="ai-badge">AI Assistance: 60%</div>
-                    <br>
-                    <a href="https://github.com/osman-omer/project-2-heart-disease-eda" target="_blank">View Project on GitHub →</a>
+                <div class="methodology">
+                    <strong>Methodology:</strong> Advanced data visualization and coding with 75% AI-assisted optimization.
                 </div>
+                <a href="https://github.com/osman-omer/project-2-heart-disease-eda" target="_blank" class="git-link">Access Repository →</a>
             </div>
         </div>
-        <div class="dots">
-            <div class="dot active"></div>
-            <div class="dot"></div>
+
+        <div class="project-item">
+            <div class="project-date">JAN 2026</div>
+            <div class="project-content">
+                <h3>Clinical Data Exploration</h3>
+                <p>Initial framework for cleaning and describing clinical datasets as part of the research training workflow.</p>
+                <div class="tags">
+                    <span class="tag">DATA CLEANING</span>
+                    <span class="tag">STATISTICS</span>
+                </div>
+                <div class="methodology">
+                    <strong>Methodology:</strong> Fundamental R scripting with 90% AI-assisted workflow.
+                </div>
+                <a href="https://github.com/osman-omer/clinical-data-analysis-r" target="_blank" class="git-link">Access Repository →</a>
+            </div>
         </div>
+
+        <div class="project-item" style="opacity: 0.5;">
+            <div class="project-date">FUTURE</div>
+            <div class="project-content">
+                <h3>Systematic Review & Meta-Analysis</h3>
+                <p>Upcoming projects focused on evidence synthesis and meta-analytical models.</p>
+            </div>
+        </div>
+
     </div>
 </section>
 
 <section>
-    <h2>Contact & Networks</h2>
-    <p>📧 Email: <a href="mailto:osman.omer249@med.aun.edu.eg">osman.omer249@med.aun.edu.eg</a></p>
-    <p>💻 GitHub: <a href="https://github.com/osman-omer" target="_blank">github.com/osman-omer</a></p>
+    <h2>Academic Profiles</h2>
+    <div class="social-links">
+        <a href="https://www.linkedin.com/in/osmanomer10/" target="_blank" class="social-card">LinkedIn</a>
+        <a href="https://orcid.org/0009-0003-4138-029X" target="_blank" class="social-card">ORCID</a>
+        <a href="https://scholar.google.com/citations?user=1DifMQUAAAAJ" target="_blank" class="social-card">Google Scholar</a>
+        <a href="https://www.researchgate.net/profile/Osman-Omer-Mustafa" target="_blank" class="social-card">ResearchGate</a>
+        <a href="mailto:osman.omer249@med.aun.edu.eg" class="social-card">Email Contact</a>
+    </div>
 </section>
 
 <footer>
-    <p>© 2026 Osman Omer | Built with Passion for Medicine & Data</p>
+    <p>© 2026 Osman Omer. Documenting the professional evolution of a medical researcher.</p>
 </footer>
-
-<script>
-    document.querySelectorAll(".learning-group").forEach(group => {
-        const slider = group.querySelector(".slider");
-        const dots = group.querySelectorAll(".dot");
-        let index = 0;
-        let startX = 0;
-
-        function update() {
-            slider.style.transform = `translateX(-${index * 100}%)`;
-            dots.forEach(d => d.classList.remove("active"));
-            dots[index].classList.add("active");
-        }
-
-        dots.forEach((dot, i) => {
-            dot.onclick = () => { index = i; update(); };
-        });
-
-        slider.addEventListener("touchstart", e => startX = e.touches[0].clientX);
-        slider.addEventListener("touchend", e => {
-            let endX = e.changedTouches[0].clientX;
-            if (endX < startX - 50 && index < dots.length - 1) index++;
-            if (endX > startX + 50 && index > 0) index--;
-            update();
-        });
-
-        group.addEventListener("keydown", e => {
-            if (e.key === "ArrowRight" && index < dots.length - 1) index++;
-            if (e.key === "ArrowLeft" && index > 0) index--;
-            update();
-        });
-    });
-</script>
 
 </body>
 </html>
-
-
