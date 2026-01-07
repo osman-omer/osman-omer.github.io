@@ -1,238 +1,277 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Osman Omer | Medical Student</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Osman Omer | Medical Student & Researcher</title>
+    <meta name="description" content="Osman Omer, 4th-year Medical Student at Assiut University. Focused on Clinical Research, Systematic Reviews, and R programming.">
+    
+    <style>
+        :root {
+            --primary-color: #0066cc;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --bg-body: #f1f5f9;
+            --bg-card: #ffffff;
+        }
 
-<style>
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f5f7fa;
-  color: #222;
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 40px 20px;
-  line-height: 1.7;
-}
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-dark);
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            line-height: 1.6;
+        }
 
-header {
-  text-align: center;
-  margin-bottom: 50px;
-}
+        header {
+            margin-bottom: 50px;
+            padding-left: 15px;
+            border-left: 4px solid var(--primary-color);
+        }
 
-header h1 {
-  font-size: 2.5rem;
-  color: #1f2d3d;
-  margin-bottom: 6px;
-}
+        header h1 {
+            font-size: 2.5rem;
+            margin: 0;
+            color: #0f172a;
+        }
 
-header p {
-  color: #4f6d7a;
-  font-size: 1.1rem;
-}
+        header p {
+            color: var(--text-light);
+            font-size: 1.2rem;
+            margin-top: 5px;
+        }
 
-section {
-  background: #ffffff;
-  padding: 25px 30px;
-  border-radius: 14px;
-  margin-bottom: 30px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-}
+        section {
+            background: var(--bg-card);
+            padding: 30px;
+            border-radius: 16px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e2e8f0;
+        }
 
-h2 { color: #2c3e50; }
-h3 { color: #34495e; }
+        h2 {
+            font-size: 1.5rem;
+            margin-top: 0;
+            color: #0f172a;
+            border-bottom: 2px solid #f1f5f9;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
 
-a {
-  color: #0066cc;
-  text-decoration: none;
-  font-weight: 500;
-}
+        /* Skill Tags Style */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            list-style: none;
+            padding: 0;
+        }
 
-a:hover {
-  text-decoration: underline;
-}
+        .skill-tag {
+            background: #eef6ff;
+            color: var(--primary-color);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: 1px solid #dbeafe;
+        }
 
-footer {
-  text-align: center;
-  margin-top: 60px;
-  color: #777;
-  font-size: 0.9rem;
-}
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.2s;
+        }
 
-/* ===== Learning Log Slider ===== */
+        a:hover {
+            text-decoration: underline;
+            opacity: 0.8;
+        }
 
-.learning-group {
-  margin-top: 20px;
-  outline: none; /* hide focus box */
-}
+        /* ===== Slider Improvements ===== */
+        .slider-wrapper {
+            overflow: hidden;
+            padding: 10px 0;
+        }
 
-.slider-wrapper {
-  overflow: hidden;
-}
+        .slider {
+            display: flex;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
 
-.slider {
-  display: flex;
-  transition: transform 0.35s ease;
-}
+        .project-card {
+            min-width: 100%;
+            padding: 25px;
+            box-sizing: border-box;
+            border-radius: 12px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            transition: transform 0.2s;
+        }
 
-.project-card {
-  min-width: 100%;
-  padding: 20px;
-  box-sizing: border-box;
-  border-radius: 12px;
-  background: #fff;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-}
+        .project-card:hover {
+            transform: translateY(-3px);
+            border-color: #cbd5e1;
+        }
 
-.project-date {
-  font-size: 0.85rem;
-  color: #888;
-  margin-bottom: 6px;
-}
+        .project-date {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
 
-/* Dots */
-.dots {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 12px;
-}
+        .ai-badge {
+            display: inline-block;
+            background: #f1f5f9;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin: 10px 0;
+            color: #475569;
+        }
 
-.dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #cbd5e1;
-  cursor: pointer;
-}
+        /* Dots */
+        .dots {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
+        }
 
-.dot.active {
-  background: #0066cc;
-}
-</style>
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #cbd5e1;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .dot.active {
+            background: var(--primary-color);
+            width: 25px;
+            border-radius: 5px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 600px) {
+            header h1 { font-size: 2rem; }
+            section { padding: 20px; }
+        }
+    </style>
 </head>
-
 <body>
 
 <header>
-  <h1>Osman Omer</h1>
-  <p>Fourth-year Medical Student</p>
+    <h1>Osman Omer</h1>
+    <p>Fourth-year Medical Student & Aspiring Researcher</p>
 </header>
 
 <section>
-  <h2>About Me</h2>
-  <p>
-    I am a fourth-year medical student with a growing interest in clinical research methods,
-    particularly systematic reviews, meta-analysis, and medical statistics using R.
-    This website serves as a personal space to document my learning journey and future research work.
-  </p>
+    <h2>About Me</h2>
+    <p>
+        I am a medical student at Assiut University with a keen interest in clinical research methodology. 
+        Currently developing skills in <strong>Systematic Reviews</strong>, <strong>Meta-analysis</strong>, 
+        and medical statistics using <strong>R programming</strong>.
+    </p>
 </section>
 
 <section>
-  <h2>Current Learning Focus</h2>
-  <ul>
-    <li>Fundamentals of clinical research</li>
-    <li>Systematic review methodology (beginner level)</li>
-    <li>Introduction to meta-analysis</li>
-    <li>R programming for medical statistics (beginner)</li>
-  </ul>
-</section>
-
-<section>
-  <h2>Future Goals</h2>
-  <p>
-    My goal is to gradually build skills in research methodology and data analysis,
-    and to contribute to systematic reviews, meta-analyses, and other research projects in the future.
-  </p>
-</section>
-
-<section>
-  <h2>Learning Log</h2>
-
-  <div class="learning-group" tabindex="0">
-    <h3>Exploratory Data Analysis (EDA)</h3>
-
-    <div class="slider-wrapper">
-      <div class="slider">
-
-        <div class="project-card">
-          <div class="project-date">4 January 2026</div>
-          <h3>Project 1: Clinical Data Exploration Using R</h3>
-          <p>First learning project focused on exploratory data analysis.</p>
-          <p><strong>AI Assistance:</strong> ~90%</p>
-          <a href="https://github.com/osman-omer/clinical-data-analysis-r" target="_blank">
-            View on GitHub
-          </a>
-        </div>
-
-        <div class="project-card">
-          <div class="project-date">6 January 2026</div>
-          <h3>Project 2: Heart Disease Exploratory Data Analysis</h3>
-          <p>Guided learning project focused on practicing the full EDA workflow.</p>
-          <p><strong>AI Assistance:</strong> ~60%</p>
-          <a href="https://github.com/osman-omer/project-2-heart-disease-eda" target="_blank">
-            View on GitHub
-          </a>
-        </div>
-
-      </div>
+    <h2>Current Learning Focus</h2>
+    <div class="skills-container">
+        <span class="skill-tag">Clinical Research Fundamentals</span>
+        <span class="skill-tag">Systematic Review Methodology</span>
+        <span class="skill-tag">Meta-analysis (Beginner)</span>
+        <span class="skill-tag">R for Medical Statistics</span>
+        <span class="skill-tag">Data Exploration (EDA)</span>
     </div>
+</section>
 
-    <div class="dots">
-      <div class="dot active"></div>
-      <div class="dot"></div>
+<section id="learning-log">
+    <h2>Learning Log</h2>
+    <div class="learning-group" tabindex="0" style="outline: none;">
+        <div class="slider-wrapper">
+            <div class="slider">
+                <div class="project-card">
+                    <div class="project-date">4 January 2026</div>
+                    <h3>Clinical Data Exploration Using R</h3>
+                    <p>Focusing on the initial steps of handling clinical datasets and descriptive statistics.</p>
+                    <div class="ai-badge">AI Assistance: 90%</div>
+                    <br>
+                    <a href="https://github.com/osman-omer/clinical-data-analysis-r" target="_blank">View Project on GitHub →</a>
+                </div>
+                <div class="project-card">
+                    <div class="project-date">6 January 2026</div>
+                    <h3>Heart Disease Analysis</h3>
+                    <p>Applying EDA workflow to a heart disease dataset to identify key variables.</p>
+                    <div class="ai-badge">AI Assistance: 60%</div>
+                    <br>
+                    <a href="https://github.com/osman-omer/project-2-heart-disease-eda" target="_blank">View Project on GitHub →</a>
+                </div>
+            </div>
+        </div>
+        <div class="dots">
+            <div class="dot active"></div>
+            <div class="dot"></div>
+        </div>
     </div>
-  </div>
 </section>
 
 <section>
-  <h2>Contact</h2>
-  <p>Email: <a href="mailto:osman.omer249@med.aun.edu.eg">osman.omer249@med.aun.edu.eg</a></p>
-  <p>GitHub: <a href="https://github.com/osman-omer">github.com/osman-omer</a></p>
+    <h2>Contact & Networks</h2>
+    <p>📧 Email: <a href="mailto:osman.omer249@med.aun.edu.eg">osman.omer249@med.aun.edu.eg</a></p>
+    <p>💻 GitHub: <a href="https://github.com/osman-omer" target="_blank">github.com/osman-omer</a></p>
 </section>
 
 <footer>
-  <p>© 2026 Osman Omer</p>
+    <p>© 2026 Osman Omer | Built with Passion for Medicine & Data</p>
 </footer>
 
 <script>
-document.querySelectorAll(".learning-group").forEach(group => {
-  const slider = group.querySelector(".slider");
-  const dots = group.querySelectorAll(".dot");
-  let index = 0;
-  let startX = 0;
+    document.querySelectorAll(".learning-group").forEach(group => {
+        const slider = group.querySelector(".slider");
+        const dots = group.querySelectorAll(".dot");
+        let index = 0;
+        let startX = 0;
 
-  function update() {
-    slider.style.transform = `translateX(-${index * 100}%)`;
-    dots.forEach(d => d.classList.remove("active"));
-    dots[index].classList.add("active");
-  }
+        function update() {
+            slider.style.transform = `translateX(-${index * 100}%)`;
+            dots.forEach(d => d.classList.remove("active"));
+            dots[index].classList.add("active");
+        }
 
-  dots.forEach((dot, i) => {
-    dot.onclick = () => { index = i; update(); };
-  });
+        dots.forEach((dot, i) => {
+            dot.onclick = () => { index = i; update(); };
+        });
 
-  // Touch swipe
-  slider.addEventListener("touchstart", e => startX = e.touches[0].clientX);
-  slider.addEventListener("touchend", e => {
-    let endX = e.changedTouches[0].clientX;
-    if (endX < startX - 50 && index < dots.length - 1) index++;
-    if (endX > startX + 50 && index > 0) index--;
-    update();
-  });
+        slider.addEventListener("touchstart", e => startX = e.touches[0].clientX);
+        slider.addEventListener("touchend", e => {
+            let endX = e.changedTouches[0].clientX;
+            if (endX < startX - 50 && index < dots.length - 1) index++;
+            if (endX > startX + 50 && index > 0) index--;
+            update();
+        });
 
-  // Keyboard arrows
-  group.addEventListener("keydown", e => {
-    if (e.key === "ArrowRight" && index < dots.length - 1) index++;
-    if (e.key === "ArrowLeft" && index > 0) index--;
-    update();
-  });
-
-  // Auto-focus so keyboard works immediately
-  group.focus();
-});
+        group.addEventListener("keydown", e => {
+            if (e.key === "ArrowRight" && index < dots.length - 1) index++;
+            if (e.key === "ArrowLeft" && index > 0) index--;
+            update();
+        });
+    });
 </script>
 
 </body>
 </html>
+
+
