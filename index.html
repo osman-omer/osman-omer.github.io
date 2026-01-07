@@ -1,238 +1,224 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Osman Omer | Medical Student</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<style>
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f5f7fa;
-  color: #222;
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 40px 20px;
-  line-height: 1.7;
-}
-
-header {
-  text-align: center;
-  margin-bottom: 50px;
-}
-
-header h1 {
-  font-size: 2.5rem;
-  color: #1f2d3d;
-  margin-bottom: 6px;
-}
-
-header p {
-  color: #4f6d7a;
-  font-size: 1.1rem;
-}
-
-section {
-  background: #ffffff;
-  padding: 25px 30px;
-  border-radius: 14px;
-  margin-bottom: 30px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-}
-
-h2 { color: #2c3e50; }
-h3 { color: #34495e; }
-
-a {
-  color: #0066cc;
-  text-decoration: none;
-  font-weight: 500;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-footer {
-  text-align: center;
-  margin-top: 60px;
-  color: #777;
-  font-size: 0.9rem;
-}
-
-/* ===== Learning Log Slider ===== */
-
-.learning-group {
-  margin-top: 20px;
-  outline: none; /* hide focus box */
-}
-
-.slider-wrapper {
-  overflow: hidden;
-}
-
-.slider {
-  display: flex;
-  transition: transform 0.35s ease;
-}
-
-.project-card {
-  min-width: 100%;
-  padding: 20px;
-  box-sizing: border-box;
-  border-radius: 12px;
-  background: #fff;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-}
-
-.project-date {
-  font-size: 0.85rem;
-  color: #888;
-  margin-bottom: 6px;
-}
-
-/* Dots */
-.dots {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 12px;
-}
-
-.dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #cbd5e1;
-  cursor: pointer;
-}
-
-.dot.active {
-  background: #0066cc;
-}
-</style>
+  <meta charset="UTF-8" />
+  <title>Osman Omer | Medical Student</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  https://osman-omer.me/
+  <meta name="description" content="Osman Omer — medical student learning clinical research, systematic reviews, meta-analysis, and R for medical statistics." />
+  data:image/svg+xml,%3Csvg xmlns=
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Osman Omer | Medical Student" />
+  <meta property="og:description" content="Medical student learning clinical research, systematic reviews, meta-analysis, and R programming." />
+  <meta property="og:url" content="https://osman-omer.me/" />
+  <meta property="og:image" content="https://osman-omer.me/og-image.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="color-scheme" content="light dark" />
+  <style>
+    :root {
+      --bg: #f5f7fa;
+      --card: #ffffff;
+      --text: #222;
+      --subtext: #4f6d7a;
+      --heading: #1f2d3d;
+      --h2: #2c3e50;
+      --h3: #34495e;
+      --link: #0066cc;
+      --muted: #cbd5e1;
+      --shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+      --radius: 14px;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0f141a;
+        --card: #121a22;
+        --text: #e7edf3;
+        --subtext: #a8bac7;
+        --heading: #eaf2f9;
+        --h2: #d8e6f1;
+        --h3: #c8d7e2;
+        --link: #7db8ff;
+        --muted: #3b4756;
+        --shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      line-height: 1.7;
+    }
+    header { text-align: center; margin-bottom: 50px; }
+    header h1 {
+      font-size: clamp(2rem, 3.2vw, 2.6rem);
+      color: var(--heading);
+      margin-bottom: 6px;
+    }
+    header p { color: var(--subtext); font-size: 1.05rem; }
+    section {
+      background: var(--card);
+      padding: 25px 30px;
+      border-radius: var(--radius);
+      margin-bottom: 30px;
+      box-shadow: var(--shadow);
+    }
+    h2 { color: var(--h2); margin-top: 0; margin-bottom: 12px; }
+    h3 { color: var(--h3); margin-top: 0; }
+    a {
+      color: var(--link);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    a:hover, a:focus { text-decoration: underline; outline: none; }
+    footer { text-align: center; margin-top: 60px; color: #777; font-size: 0.9rem; }
+    .learning-group { margin-top: 20px; outline: none; }
+    .slider-wrapper { overflow: hidden; }
+    .slider { display: flex; transition: transform 0.35s ease; }
+    .project-card {
+      min-width: 100%;
+      padding: 20px;
+      box-sizing: border-box;
+      border-radius: 12px;
+      background: var(--card);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      border: 1px solid rgba(0, 0, 0, 0.04);
+    }
+    .project-date { font-size: 0.85rem; color: #888; margin-bottom: 6px; }
+    .dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--muted);
+      cursor: pointer;
+    }
+    .dot.active { background: var(--link); }
+    ul { padding-left: 1.1rem; }
+  </style>
 </head>
-
 <body>
+  <header>
+    <h1>Osman Omer</h1>
+    <p>Medical Student</p>
+  </header>
 
-<header>
-  <h1>Osman Omer</h1>
-  <p>Fourth-year Medical Student</p>
-</header>
+  <section>
+    <h2>About Me</h2>
+    <p>
+      I am a <strong>fourth-year medical student</strong> with a growing interest in clinical research methods,
+      particularly systematic reviews, meta-analysis, and medical statistics using R.
+      This website serves as a personal space to document my learning journey and future research work.
+    </p>
+  </section>
 
-<section>
-  <h2>About Me</h2>
-  <p>
-    I am a fourth-year medical student with a growing interest in clinical research methods,
-    particularly systematic reviews, meta-analysis, and medical statistics using R.
-    This website serves as a personal space to document my learning journey and future research work.
-  </p>
-</section>
+  <section>
+    <h2>Current Learning Focus</h2>
+    <ul>
+      <li>Fundamentals of clinical research</li>
+      <li>Systematic review methodology (beginner level)</li>
+      <li>Introduction to meta-analysis</li>
+      <li>R programming for medical statistics (beginner)</li>
+    </ul>
+  </section>
 
-<section>
-  <h2>Current Learning Focus</h2>
-  <ul>
-    <li>Fundamentals of clinical research</li>
-    <li>Systematic review methodology (beginner level)</li>
-    <li>Introduction to meta-analysis</li>
-    <li>R programming for medical statistics (beginner)</li>
-  </ul>
-</section>
+  <section>
+    <h2>Future Goals</h2>
+    <p>
+      My goal is to gradually build skills in research methodology and data analysis,
+      and to contribute to systematic reviews, meta-analyses, and other research projects in the future.
+    </p>
+  </section>
 
-<section>
-  <h2>Future Goals</h2>
-  <p>
-    My goal is to gradually build skills in research methodology and data analysis,
-    and to contribute to systematic reviews, meta-analyses, and other research projects in the future.
-  </p>
-</section>
+  <section>
+    <h2>Learning Log</h2>
 
-<section>
-  <h2>Learning Log</h2>
+    <div class="learning-group" tabindex="0">
+      <h3>Exploratory Data Analysis (EDA)</h3>
 
-  <div class="learning-group" tabindex="0">
-    <h3>Exploratory Data Analysis (EDA)</h3>
+      <div class="slider-wrapper">
+        <div class="slider">
+          <div class="project-card">
+            <div class="project-date">4 January 2026</div>
+            <h3>Project 1: Clinical Data Exploration Using R</h3>
+            <p>First learning project focused on exploratory data analysis.</p>
+            <p><strong>AI Assistance:</strong> ~90%</p>
+            https://github.com/osman-omer/clinical-data-analysis-r
+              View on GitHub
+            </a>
+          </div>
 
-    <div class="slider-wrapper">
-      <div class="slider">
-
-        <div class="project-card">
-          <div class="project-date">4 January 2026</div>
-          <h3>Project 1: Clinical Data Exploration Using R</h3>
-          <p>First learning project focused on exploratory data analysis.</p>
-          <p><strong>AI Assistance:</strong> ~90%</p>
-          <a href="https://github.com/osman-omer/clinical-data-analysis-r" target="_blank">
-            View on GitHub
-          </a>
+          <div class="project-card">
+            <div class="project-date">6 January 2026</div>
+            <h3>Project 2: Heart Disease Exploratory Data Analysis</h3>
+            <p>Guided learning project focused on practicing the full EDA workflow.</p>
+            <p><strong>AI Assistance:</strong> ~75%</p>
+            https://github.com/osman-omer/project-2-heart-disease-eda
+              View on GitHub
+            </a>
+          </div>
         </div>
+      </div>
 
-        <div class="project-card">
-          <div class="project-date">6 January 2026</div>
-          <h3>Project 2: Heart Disease Exploratory Data Analysis</h3>
-          <p>Guided learning project focused on practicing the full EDA workflow.</p>
-          <p><strong>AI Assistance:</strong> ~60%</p>
-          <a href="https://github.com/osman-omer/project-2-heart-disease-eda" target="_blank">
-            View on GitHub
-          </a>
-        </div>
-
+      <div class="dots">
+        <div class="dot active"></div>
+        <div class="dot"></div>
       </div>
     </div>
+  </section>
 
-    <div class="dots">
-      <div class="dot active"></div>
-      <div class="dot"></div>
-    </div>
-  </div>
-</section>
+  <section>
+    <h2>Contact</h2>
+    <p>Email: mailto:osman.omer249@med.aun.edu.egosman.omer249@med.aun.edu.eg</a></p>
+    <p>GitHub: https://github.com/osman-omergithub.com/osman-omer</a></p>
+  </section>
 
-<section>
-  <h2>Contact</h2>
-  <p>Email: <a href="mailto:osman.omer249@med.aun.edu.eg">osman.omer249@med.aun.edu.eg</a></p>
-  <p>GitHub: <a href="https://github.com/osman-omer">github.com/osman-omer</a></p>
-</section>
+  <footer>
+    <p>© 2026 Osman Omer</p>
+  </footer>
 
-<footer>
-  <p>© 2026 Osman Omer</p>
-</footer>
+  <script>
+    document.querySelectorAll(".learning-group").forEach(group => {
+      const slider = group.querySelector(".slider");
+      const dots = group.querySelectorAll(".dot");
+      let index = 0;
+      let startX = 0;
 
-<script>
-document.querySelectorAll(".learning-group").forEach(group => {
-  const slider = group.querySelector(".slider");
-  const dots = group.querySelectorAll(".dot");
-  let index = 0;
-  let startX = 0;
+      function update() {
+        slider.style.transform = `translateX(-${index * 100}%)`;
+        dots.forEach(d => d.classList.remove("active"));
+        dots[index].classList.add("active");
+      }
 
-  function update() {
-    slider.style.transform = `translateX(-${index * 100}%)`;
-    dots.forEach(d => d.classList.remove("active"));
-    dots[index].classList.add("active");
-  }
+      dots.forEach((dot, i) => {
+        dot.onclick = () => { index = i; update(); };
+      });
 
-  dots.forEach((dot, i) => {
-    dot.onclick = () => { index = i; update(); };
-  });
+      slider.addEventListener("touchstart", e => startX = e.touches[0].clientX);
+      slider.addEventListener("touchend", e => {
+        let endX = e.changedTouches[0].clientX;
+        if (endX < startX - 50 && index < dots.length - 1) index++;
+        if (endX > startX + 50 && index > 0) index--;
+        update();
+      });
 
-  // Touch swipe
-  slider.addEventListener("touchstart", e => startX = e.touches[0].clientX);
-  slider.addEventListener("touchend", e => {
-    let endX = e.changedTouches[0].clientX;
-    if (endX < startX - 50 && index < dots.length - 1) index++;
-    if (endX > startX + 50 && index > 0) index--;
-    update();
-  });
+      group.addEventListener("keydown", e => {
+        if (e.key === "ArrowRight" && index < dots.length - 1) index++;
+        if (e.key === "ArrowLeft" && index > 0) index--;
+        update();
+      });
 
-  // Keyboard arrows
-  group.addEventListener("keydown", e => {
-    if (e.key === "ArrowRight" && index < dots.length - 1) index++;
-    if (e.key === "ArrowLeft" && index > 0) index--;
-    update();
-  });
-
-  // Auto-focus so keyboard works immediately
-  group.focus();
-});
-</script>
-
+      group.focus();
+    });
+  </script>
 </body>
 </html>
