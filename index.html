@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Osman Omer | Portfolio</title>
+    <title>Osman Omer Mustafa | Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -19,13 +19,12 @@
             font-family: 'Inter', sans-serif;
             background-color: var(--bg-page);
             color: var(--text-dark);
-            max-width: 750px;
+            max-width: 800px;
             margin: 0 auto;
-            padding: 50px 20px;
+            padding: 40px 20px;
             line-height: 1.6;
         }
 
-        /* Unit System */
         .unit {
             background: var(--bg-unit);
             padding: 30px;
@@ -35,7 +34,6 @@
             box-shadow: 0 1px 3px rgba(0,0,0,0.02);
         }
 
-        /* Header Unit - Vertical Blue Line & Organized Info */
         .header-unit {
             border-left: 6px solid var(--primary-blue);
             display: flex;
@@ -43,11 +41,11 @@
             align-items: center;
         }
 
-        .header-text h1 { margin: 0; font-size: 2.2rem; font-weight: 700; color: var(--text-dark); }
-        .role { font-size: 1.1rem; color: var(--primary-blue); font-weight: 600; margin: 5px 0; }
+        .header-text h1 { margin: 0; font-size: 2.2rem; font-weight: 700; color: #000; }
+        .role { font-size: 1.15rem; color: var(--primary-blue); font-weight: 600; margin: 5px 0; }
         .uni-details { font-size: 0.95rem; color: var(--text-grey); font-weight: 500; }
         
-        .uni-logo { width: 75px; height: auto; }
+        .uni-logo { width: 90px; height: auto; object-fit: contain; }
 
         h2 {
             font-size: 0.85rem;
@@ -59,62 +57,85 @@
             padding-bottom: 8px;
         }
 
-        /* Slides - Horizontal Scroll with Snap */
+        .log-section-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin: 10px 0 20px 0;
+            color: var(--text-dark);
+        }
+
+        .slides-wrapper { position: relative; overflow: hidden; }
+
         .slides-container {
             display: flex;
             overflow-x: auto;
-            gap: 20px;
-            padding-bottom: 15px;
             scroll-snap-type: x mandatory;
-            scrollbar-width: thin;
+            scrollbar-width: none; 
+            gap: 0;
         }
 
-        .project-slide {
-            min-width: 290px;
-            background: #fafbfc;
-            padding: 20px;
+        .slides-container::-webkit-scrollbar { display: none; }
+
+        .project-card {
+            min-width: 100%;
+            scroll-snap-align: start;
+            background: #fff;
+            padding: 25px;
             border-radius: 10px;
             border: 1px solid var(--border);
-            flex-shrink: 0;
-            scroll-snap-align: start;
+            box-sizing: border-box;
         }
 
         .p-date { font-size: 0.75rem; font-weight: 700; color: #00a8ff; text-transform: uppercase; }
-        .p-title { font-size: 1.15rem; font-weight: 600; margin: 8px 0; color: #000; }
-        .p-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
-        .tag { font-size: 0.65rem; background: #ffffff; color: #475569; padding: 2px 8px; border-radius: 4px; border: 1px solid #e2e8f0; font-weight: 600; }
-        .p-link { font-size: 0.85rem; color: var(--primary-blue); text-decoration: none; font-weight: 700; }
-
-        /* Links Grid */
-        .links-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: 12px;
+        .p-title { font-size: 1.3rem; font-weight: 700; margin: 12px 0; }
+        .p-desc { font-size: 1rem; color: #475569; margin-bottom: 15px; }
+        
+        .tag { 
+            font-size: 0.7rem; 
+            background: #f1f5f9; 
+            color: #475569; 
+            padding: 4px 12px; 
+            border-radius: 6px; 
+            font-weight: 600; 
+            margin-right: 8px; 
         }
 
-        .l-card {
-            padding: 12px;
-            text-align: center;
-            background: #fff;
-            border: 1px solid var(--border);
-            border-radius: 8px;
+        .p-link {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: var(--primary-blue);
+            color: white;
             text-decoration: none;
-            color: var(--text-dark);
-            font-size: 0.85rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
             font-weight: 600;
-            transition: 0.2s;
         }
 
-        .l-card:hover { background: var(--primary-blue); color: #fff; transform: translateY(-2px); }
+        .dots { display: flex; justify-content: center; gap: 8px; margin-top: 15px; }
+        .dot { width: 8px; height: 8px; border-radius: 50%; background: #cbd5e1; transition: 0.3s; }
+        .dot.active { background: var(--primary-blue); width: 20px; border-radius: 4px; }
 
-        footer { text-align: center; font-size: 0.8rem; color: var(--text-grey); margin-top: 40px; padding-bottom: 20px; }
+        .links-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; }
+        .l-card { 
+            padding: 14px; text-align: center; background: #fff; border: 1px solid var(--border); 
+            border-radius: 10px; text-decoration: none; color: var(--text-dark); font-size: 0.9rem; font-weight: 600; 
+        }
+        .l-card:hover { border-color: var(--primary-blue); color: var(--primary-blue); }
+
+        footer { text-align: center; font-size: 0.85rem; color: var(--text-grey); margin-top: 50px; border-top: 1px solid var(--border); padding-top: 20px; }
+
+        @media (max-width: 600px) {
+            .header-unit { flex-direction: column; text-align: center; border-left: none; border-top: 6px solid var(--primary-blue); }
+            .uni-logo { margin-top: 20px; }
+        }
     </style>
 </head>
 <body>
 
     <div class="unit header-unit">
         <div class="header-text">
-            <h1>Osman Omer</h1>
+            <h1>Osman Omer Mustafa</h1>
             <p class="role">Medical Student & Aspiring Researcher</p>
             <p class="uni-details">Assiut University | Faculty of Medicine</p>
         </div>
@@ -124,42 +145,40 @@
     <div class="unit">
         <h2>About Me</h2>
         <p style="margin:0; font-size: 1.05rem;">
-            A Sudanese medical student at Assiut University (Class of 2027). Dedicated to the field of <strong>Clinical Research</strong>, I focus on using R for <strong>Data Analysis</strong> to build evidence-based medical insights.
+            Fourth-year Medical Student at Assiut University. Currently building a foundation in <strong>Clinical Research</strong> with a focus on <strong>Medical Data Analysis</strong>. I am actively learning <strong>R programming</strong> and statistical methods to contribute to evidence-based medicine.
         </p>
     </div>
 
     <div class="unit">
-        <h2>Exploratory Data Analysis (EDA)</h2>
-        <div class="slides-container">
-            
-            <div class="project-slide">
-                <span class="p-date">Jan 4, 2026</span>
-                <div class="p-title">Clinical Data Analysis with R</div>
-                <div class="p-tags">
-                    <span class="tag">R LANGUAGE</span>
-                    <span class="tag">CLEANING</span>
-                    <span class="tag">STATISTICS</span>
+        <h2>Learning Log</h2>
+        <div class="log-section-title">📊 Exploratory Data Analysis (EDA)</div>
+        <div class="slides-wrapper">
+            <div class="slides-container" id="slider">
+                <div class="project-card">
+                    <span class="p-date">Jan 4, 2026</span>
+                    <div class="p-title">Clinical Data Exploration</div>
+                    <p class="p-desc">A simple exploratory project on medical records using a public dataset from Kaggle.</p>
+                    <div class="p-tools">
+                        <span class="tag">R</span> <span class="tag">Tidyverse</span> <span class="tag">Box plots</span>
+                    </div>
+                    <a href="https://github.com/osman-omer/clinical-data-analysis-r" target="_blank" class="p-link">View on GitHub →</a>
                 </div>
-                <a href="https://github.com/osman-omer/clinical-data-analysis-r" target="_blank" class="p-link">View Repository →</a>
-            </div>
-
-            <div class="project-slide">
-                <span class="p-date">Jan 6, 2026</span>
-                <div class="p-title">Heart Disease Analysis</div>
-                <div class="p-tags">
-                    <span class="tag">HISTOGRAMS</span>
-                    <span class="tag">CARDIOLOGY</span>
-                    <span class="tag">EDA</span>
+                <div class="project-card">
+                    <span class="p-date">Jan 6, 2026</span>
+                    <div class="p-title">Heart Disease Descriptive Study</div>
+                    <p class="p-desc">A descriptive study focusing on visual comparison through histograms to analyze data distribution.</p>
+                    <div class="p-tools">
+                        <span class="tag">R</span> <span class="tag">Tidyverse</span> <span class="tag">Histograms</span>
+                    </div>
+                    <a href="https://github.com/osman-omer/project-2-heart-disease-eda" target="_blank" class="p-link">View on GitHub →</a>
                 </div>
-                <a href="https://github.com/osman-omer/project-2-heart-disease-eda" target="_blank" class="p-link">View Repository →</a>
             </div>
+            <div class="dots"><div class="dot active"></div><div class="dot"></div></div>
+        </div>
 
-            <div class="project-slide" style="opacity: 0.5; background: #f1f5f9; border: 1px dashed #cbd5e1;">
-                <span class="p-date">Upcoming</span>
-                <div class="p-title">Systematic Review Protocol</div>
-                <p style="font-size: 0.8rem; color: #64748b;">In preparation phase...</p>
-            </div>
-
+        <div class="log-section-title" style="margin-top: 40px; color: var(--text-grey);">📚 Systematic Review & Meta-analysis</div>
+        <div class="project-card" style="border: 2px dashed var(--border); background: #fcfcfc; text-align: center;">
+            <p style="margin:0; font-weight: 600; color: var(--text-grey);">Upcoming Soon</p>
         </div>
     </div>
 
@@ -168,15 +187,27 @@
         <div class="links-grid">
             <a href="https://www.linkedin.com/in/osmanomer10/" target="_blank" class="l-card">LinkedIn</a>
             <a href="https://orcid.org/0009-0003-4138-029X" target="_blank" class="l-card">ORCID</a>
-            <a href="https://scholar.google.com/citations?user=1DifMQUAAAAJ" target="_blank" class="l-card">Scholar</a>
+            <a href="https://scholar.google.com/citations?user=1DifMQUAAAAJ" target="_blank" class="l-card">Google Scholar</a>
             <a href="https://www.researchgate.net/profile/Osman-Omer-Mustafa" target="_blank" class="l-card">ResearchGate</a>
             <a href="mailto:osman.omer249@med.aun.edu.eg" class="l-card">Email</a>
         </div>
     </div>
 
     <footer>
-        <p>© 2026 Osman Omer | Sudanese Medical Student Journey</p>
+        <p>© 2026 Osman Omer Mustafa | Documentation of a Medical Journey</p>
     </footer>
 
+    <script>
+        const slider = document.getElementById('slider');
+        const dots = document.querySelectorAll('.dot');
+        slider.addEventListener('scroll', () => {
+            const index = Math.round(slider.scrollLeft / slider.offsetWidth);
+            dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+        });
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') slider.scrollBy({ left: slider.offsetWidth, behavior: 'smooth' });
+            if (e.key === 'ArrowLeft') slider.scrollBy({ left: -slider.offsetWidth, behavior: 'smooth' });
+        });
+    </script>
 </body>
 </html>
