@@ -14,7 +14,6 @@
             --text-dark: #1e293b;
             --text-grey: #64748b;
             --border: #e2e8f0;
-            --footer-bg: #334155; 
         }
 
         body {
@@ -61,6 +60,7 @@
 
         .log-section-title { font-size: 1.1rem; font-weight: 700; margin: 10px 0 20px 0; }
         
+        /* Slider Styling */
         .slides-wrapper { position: relative; overflow: hidden; }
         .slides-container {
             display: flex;
@@ -68,6 +68,7 @@
             scroll-snap-type: x mandatory;
             scrollbar-width: none; 
             gap: 0;
+            scroll-behavior: smooth;
         }
         .slides-container::-webkit-scrollbar { display: none; }
 
@@ -102,53 +103,30 @@
         .dot { width: 8px; height: 8px; border-radius: 50%; background: #cbd5e1; transition: 0.3s; }
         .dot.active { background: var(--primary-blue); width: 18px; border-radius: 4px; }
 
-        .footer-unit {
-            background: var(--footer-bg);
-            color: #f1f5f9;
-            padding: 35px 30px;
+        /* Academic Profiles - Simple & White */
+        .links-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; }
+        .l-card { 
+            padding: 12px; text-align: center; background: #fff; border: 1px solid var(--border); 
+            border-radius: 8px; text-decoration: none; color: var(--text-dark); font-size: 0.85rem; font-weight: 600;
+            transition: 0.2s; 
+        }
+        .l-card:hover { border-color: var(--primary-blue); color: var(--primary-blue); }
+
+        /* The GitHub Style Black Footer */
+        .black-footer {
+            background: #1b1f23; /* GitHub's Dark Slate */
+            color: #ffffff;
+            padding: 25px;
             border-radius: 12px;
             text-align: center;
-        }
-        
-        .footer-unit h2 { 
-            color: #cbd5e1; 
-            border-color: #475569; 
-            margin-bottom: 25px;
-        }
-
-        .links-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; }
-        
-        .l-card { 
-            padding: 12px; 
-            text-align: center; 
-            background: #475569; 
-            border: 1px solid #64748b; 
-            border-radius: 8px; 
-            text-decoration: none; 
-            color: #f1f5f9; 
-            font-size: 0.85rem; 
-            font-weight: 600;
-            transition: all 0.3s ease;
+            font-size: 0.9rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 12px;
+            margin-top: 10px;
         }
-
-        .l-card:hover { 
-            background: var(--primary-blue); 
-            border-color: var(--primary-blue); 
-            transform: translateY(-3px);
-            color: white;
-        }
-
-        .copyright {
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid #475569;
-            font-size: 0.8rem;
-            color: #94a3b8;
-        }
+        .black-footer i { font-size: 1.3rem; }
 
         @media (max-width: 600px) {
             .header-unit { flex-direction: column; text-align: center; border-left: none; border-top: 6px solid var(--primary-blue); }
@@ -212,32 +190,29 @@
         </div>
     </div>
 
-    <div class="unit footer-unit">
+    <div class="unit">
         <h2>Academic Profiles</h2>
         <div class="links-grid">
-            <a href="https://github.com/osman-omer" target="_blank" class="l-card"><i class="fab fa-github"></i> GitHub</a>
-            <a href="https://www.linkedin.com/in/osmanomer10/" target="_blank" class="l-card"><i class="fab fa-linkedin"></i> LinkedIn</a>
-            <a href="https://orcid.org/0009-0003-4138-029X" target="_blank" class="l-card"><i class="fab fa-orcid"></i> ORCID</a>
-            <a href="https://scholar.google.com/citations?user=1DifMQUAAAAJ" target="_blank" class="l-card"><i class="fas fa-graduation-cap"></i> Scholar</a>
-            <a href="https://www.researchgate.net/profile/Osman-Omer-Mustafa" target="_blank" class="l-card"><i class="fab fa-researchgate"></i> ResearchGate</a>
-            <a href="mailto:osman.omer249@med.aun.edu.eg" class="l-card"><i class="fas fa-envelope"></i> Email</a>
+            <a href="https://github.com/osman-omer" target="_blank" class="l-card">GitHub</a>
+            <a href="https://www.linkedin.com/in/osmanomer10/" target="_blank" class="l-card">LinkedIn</a>
+            <a href="https://orcid.org/0009-0003-4138-029X" target="_blank" class="l-card">ORCID</a>
+            <a href="https://scholar.google.com/citations?user=1DifMQUAAAAJ" target="_blank" class="l-card">Scholar</a>
+            <a href="https://www.researchgate.net/profile/Osman-Omer-Mustafa" target="_blank" class="l-card">ResearchGate</a>
+            <a href="mailto:osman.omer249@med.aun.edu.eg" class="l-card">Email</a>
         </div>
-        <div class="copyright">
-            © 2026 Osman Omer Mustafa | Documentation of a Medical Journey
-        </div>
+    </div>
+
+    <div class="black-footer">
+        <i class="fab fa-github"></i>
+        <span>© 2026 Osman Omer Mustafa | Documentation of a Medical Journey</span>
     </div>
 
     <script>
         const slider = document.getElementById('slider');
         const dots = document.querySelectorAll('.dot');
+
+        // Update dots on scroll
         slider.addEventListener('scroll', () => {
             const index = Math.round(slider.scrollLeft / slider.offsetWidth);
-            dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
-        });
-        window.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowRight') slider.scrollBy({ left: slider.offsetWidth, behavior: 'smooth' });
-            if (e.key === 'ArrowLeft') slider.scrollBy({ left: -slider.offsetWidth, behavior: 'smooth' });
-        });
-    </script>
-</body>
-</html>
+            dots.forEach((dot, i) => dot.classList.toggle('active
+        
