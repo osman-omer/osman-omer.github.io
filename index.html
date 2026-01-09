@@ -4,8 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Osman Omer Mustafa | Portfolio</title>
+
+    <meta name="description" content="Osman Omer Mustafa: Medical Student at Assiut University. Exploring Clinical Research, Medical Data Analysis with R, and Evidence-Based Medicine. Documentation of an aspiring researcher's journey.">
+    
+    <meta property="og:title" content="Osman Omer Mustafa | Medical Student & Researcher">
+    <meta property="og:description" content="Documentation of my journey in Medical Data Analysis and Clinical Research.">
+    <meta property="og:image" content="https://osman-omer.github.io/favicon.jpg">
+    <meta property="og:url" content="https://osman-omer.github.io/">
+
+    <link rel="icon" type="image/jpeg" href="https://osman-omer.github.io/favicon.jpg">
+    <link rel="shortcut icon" type="image/jpeg" href="https://osman-omer.github.io/favicon.jpg">
+    <link rel="apple-touch-icon" href="https://osman-omer.github.io/favicon.jpg">
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
     <style>
         :root {
             --bg-page: #f8fafc;
@@ -15,6 +28,8 @@
             --text-grey: #64748b;
             --border: #e2e8f0;
         }
+
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: 'Inter', sans-serif;
@@ -34,16 +49,18 @@
             border: 1px solid var(--border);
         }
 
-        .header-unit {
+        /* Responsive Header Setup */
+        header.header-unit {
             border-left: 6px solid var(--primary-blue);
             display: flex; justify-content: space-between; align-items: center;
+            gap: 20px;
         }
 
         .header-text h1 { margin: 0; font-size: 2.1rem; font-weight: 700; color: #000; }
         .role { font-size: 1.1rem; color: var(--primary-blue); font-weight: 600; margin: 4px 0; }
         .uni-details { font-size: 0.9rem; color: var(--text-grey); font-weight: 500; }
         
-        .logo-container { width: 100px; height: 100px; display: flex; align-items: center; justify-content: center; }
+        .logo-container { width: 100px; height: 100px; display: flex; flex-shrink: 0; align-items: center; justify-content: center; }
         .uni-logo { max-width: 100%; max-height: 100%; object-fit: contain; }
 
         h2 {
@@ -53,7 +70,7 @@
 
         .log-section-title { font-size: 1.1rem; font-weight: 700; margin: 10px 0 20px 0; }
         
-        /* Slider Settings */
+        /* Slider Components */
         .slides-wrapper { position: relative; overflow: hidden; }
         .slides-container {
             display: flex; overflow-x: auto; scroll-snap-type: x mandatory;
@@ -78,10 +95,10 @@
         }
 
         .dots { display: flex; justify-content: center; gap: 8px; margin-top: 15px; }
-        .dot { width: 8px; height: 8px; border-radius: 50%; background: #cbd5e1; transition: 0.3s; }
+        .dot { width: 8px; height: 8px; border-radius: 50%; background: #cbd5e1; transition: 0.3s; cursor: pointer; }
         .dot.active { background: var(--primary-blue); width: 18px; border-radius: 4px; }
 
-        /* Academic Links with Icons & Hover */
+        /* Professional Links Grid */
         .links-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; }
         .l-card { 
             padding: 12px; text-align: center; background: #fff; border: 1px solid var(--border); 
@@ -89,28 +106,27 @@
             transition: all 0.2s ease; display: flex; align-items: center; justify-content: center; gap: 8px;
         }
         .l-card:hover { 
-            border-color: var(--primary-blue); 
-            color: var(--primary-blue);
-            background: #f0f7ff;
+            border-color: var(--primary-blue); color: var(--primary-blue); background: #f0f7ff;
         }
 
-        /* GitHub Style Footer */
+        /* Black Footer */
         .black-footer {
             background: #1b1f23; color: #ffffff; padding: 25px;
-            border-radius: 12px; text-align: center; font-size: 0.9rem;
-            display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 10px;
+            border-radius: 12px; text-align: center; font-size: 0.85rem;
+            display: flex; flex-direction: column; align-items: center; gap: 8px; margin-top: 10px;
         }
-        .black-footer i { font-size: 1.3rem; }
+        .footer-main { display: flex; align-items: center; gap: 10px; }
+        .last-updated { font-size: 0.7rem; color: #8b949e; }
 
         @media (max-width: 600px) {
-            .header-unit { flex-direction: column; text-align: center; border-left: none; border-top: 6px solid var(--primary-blue); }
-            .logo-container { margin-top: 15px; }
+            header.header-unit { flex-direction: column; text-align: center; border-left: none; border-top: 6px solid var(--primary-blue); }
+            .logo-container { margin-top: 10px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="unit header-unit">
+    <header class="unit header-unit">
         <div class="header-text">
             <h1>Osman Omer Mustafa</h1>
             <p class="role">Medical Student & Aspiring Researcher</p>
@@ -119,41 +135,41 @@
         <div class="logo-container">
             <img src="logo.png" alt="Assiut University Logo" class="uni-logo">
         </div>
-    </div>
+    </header>
 
-    <div class="unit">
+    <section class="unit">
         <h2>About Me</h2>
         <p style="margin:0;">
             Fourth-year Medical Student at Assiut University. Building a foundation in <strong>Clinical Research</strong> with a focus on <strong>Medical Data Analysis</strong>. Actively learning <strong>R programming</strong> and statistical methods to contribute to evidence-based medicine.
         </p>
-    </div>
+    </section>
 
-    <div class="unit">
+    <section class="unit">
         <h2>Learning Log</h2>
         <div class="log-section-title">📊 Exploratory Data Analysis (EDA)</div>
         <div class="slides-wrapper">
             <div class="slides-container" id="slider">
-                <div class="project-card">
+                <article class="project-card">
                     <span class="p-date">Jan 4, 2026</span>
                     <div class="p-title">Clinical Data Exploration</div>
                     <p class="p-desc">Initial exploratory project on medical records utilizing public datasets to understand data structure.</p>
                     <div class="p-tools"><span class="tag">R</span> <span class="tag">Tidyverse</span> <span class="tag">Box plots</span></div>
                     <a href="https://github.com/osman-omer/clinical-data-analysis-r" target="_blank" class="p-link">View on GitHub →</a>
-                </div>
-                <div class="project-card">
+                </article>
+                <article class="project-card">
                     <span class="p-date">Jan 6, 2026</span>
                     <div class="p-title">Heart Disease Descriptive Study</div>
                     <p class="p-desc">Descriptive analysis focusing on visual comparisons through histograms to evaluate data distribution.</p>
                     <div class="p-tools"><span class="tag">R</span> <span class="tag">Tidyverse</span> <span class="tag">Histograms</span></div>
                     <a href="https://github.com/osman-omer/project-2-heart-disease-eda" target="_blank" class="p-link">View on GitHub →</a>
-                </div>
-                <div class="project-card">
+                </article>
+                <article class="project-card">
                     <span class="p-date">Jan 9, 2026</span>
                     <div class="p-title">Heart Failure Clinical Analysis</div>
                     <p class="p-desc">Applying EDA skills to explore clinical features and correlations within heart failure patient data.</p>
                     <div class="p-tools"><span class="tag">R</span> <span class="tag">Tidyverse</span> <span class="tag">Box plots</span> <span class="tag">Histograms</span></div>
                     <a href="https://github.com/osman-omer/heart-failure-eda-learning" target="_blank" class="p-link">View on GitHub →</a>
-                </div>
+                </article>
             </div>
             <div class="dots"><div class="dot active"></div><div class="dot"></div><div class="dot"></div></div>
         </div>
@@ -162,9 +178,9 @@
         <div class="project-card" style="border: 2px dashed var(--border); background: #fcfcfc; text-align: center;">
             <p style="margin:0; font-weight: 600; color: var(--text-grey);">Upcoming Soon</p>
         </div>
-    </div>
+    </section>
 
-    <div class="unit">
+    <section class="unit">
         <h2>Academic Profiles</h2>
         <div class="links-grid">
             <a href="https://github.com/osman-omer" target="_blank" class="l-card"><i class="fab fa-github"></i> GitHub</a>
@@ -172,14 +188,17 @@
             <a href="https://orcid.org/0009-0003-4138-029X" target="_blank" class="l-card"><i class="fab fa-orcid"></i> ORCID</a>
             <a href="https://scholar.google.com/citations?user=1DifMQUAAAAJ" target="_blank" class="l-card"><i class="fas fa-graduation-cap"></i> Scholar</a>
             <a href="https://www.researchgate.net/profile/Osman-Omer-Mustafa" target="_blank" class="l-card"><i class="fab fa-researchgate"></i> ResearchGate</a>
-            <a href="mailto:osman.omer249@med.aun.edu.eg" class="l-card"><i class="fas fa-envelope"></i> Email</a>
+            <a href="mailto:osman.omer249&#64;med.aun.edu.eg" class="l-card"><i class="fas fa-envelope"></i> Email</a>
         </div>
-    </div>
+    </section>
 
-    <div class="black-footer">
-        <i class="fab fa-github"></i>
-        <span>© 2026 Osman Omer Mustafa | Medical Journey Documentation</span>
-    </div>
+    <footer class="black-footer">
+        <div class="footer-main">
+            <i class="fab fa-github"></i>
+            <span>© 2026 Osman Omer Mustafa | Medical Journey Documentation</span>
+        </div>
+        <div class="last-updated">Page last updated: Jan 9, 2026</div>
+    </footer>
 
     <script>
         const slider = document.getElementById('slider');
@@ -192,6 +211,11 @@
         window.addEventListener('keydown', (e) => {
             if (e.key === 'ArrowRight') slider.scrollBy({ left: slider.offsetWidth, behavior: 'smooth' });
             if (e.key === 'ArrowLeft') slider.scrollBy({ left: -slider.offsetWidth, behavior: 'smooth' });
+        });
+        dots.forEach((dot, i) => {
+            dot.addEventListener('click', () => {
+                slider.scrollTo({ left: i * slider.offsetWidth, behavior: 'smooth' });
+            });
         });
     </script>
 </body>
