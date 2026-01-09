@@ -53,6 +53,7 @@
 
         .log-section-title { font-size: 1.1rem; font-weight: 700; margin: 10px 0 20px 0; }
         
+        /* Slider Settings */
         .slides-wrapper { position: relative; overflow: hidden; }
         .slides-container {
             display: flex; overflow-x: auto; scroll-snap-type: x mandatory;
@@ -80,17 +81,17 @@
         .dot { width: 8px; height: 8px; border-radius: 50%; background: #cbd5e1; transition: 0.3s; }
         .dot.active { background: var(--primary-blue); width: 18px; border-radius: 4px; }
 
-        /* Links Section with Blue Hover */
+        /* Academic Links with Icons & Hover */
         .links-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; }
         .l-card { 
             padding: 12px; text-align: center; background: #fff; border: 1px solid var(--border); 
             border-radius: 8px; text-decoration: none; color: var(--text-dark); font-size: 0.85rem; font-weight: 600;
-            transition: all 0.2s ease;
+            transition: all 0.2s ease; display: flex; align-items: center; justify-content: center; gap: 8px;
         }
         .l-card:hover { 
             border-color: var(--primary-blue); 
             color: var(--primary-blue);
-            background: #f0f7ff; /* خلفية زرقاء خفيفة جداً عند اللمس */
+            background: #f0f7ff;
         }
 
         /* GitHub Style Footer */
@@ -166,31 +167,28 @@
     <div class="unit">
         <h2>Academic Profiles</h2>
         <div class="links-grid">
-            <a href="https://github.com/osman-omer" target="_blank" class="l-card">GitHub</a>
-            <a href="https://www.linkedin.com/in/osmanomer10/" target="_blank" class="l-card">LinkedIn</a>
-            <a href="https://orcid.org/0009-0003-4138-029X" target="_blank" class="l-card">ORCID</a>
-            <a href="https://scholar.google.com/citations?user=1DifMQUAAAAJ" target="_blank" class="l-card">Scholar</a>
-            <a href="https://www.researchgate.net/profile/Osman-Omer-Mustafa" target="_blank" class="l-card">ResearchGate</a>
-            <a href="mailto:osman.omer249@med.aun.edu.eg" class="l-card">Email</a>
+            <a href="https://github.com/osman-omer" target="_blank" class="l-card"><i class="fab fa-github"></i> GitHub</a>
+            <a href="https://www.linkedin.com/in/osmanomer10/" target="_blank" class="l-card"><i class="fab fa-linkedin"></i> LinkedIn</a>
+            <a href="https://orcid.org/0009-0003-4138-029X" target="_blank" class="l-card"><i class="fab fa-orcid"></i> ORCID</a>
+            <a href="https://scholar.google.com/citations?user=1DifMQUAAAAJ" target="_blank" class="l-card"><i class="fas fa-graduation-cap"></i> Scholar</a>
+            <a href="https://www.researchgate.net/profile/Osman-Omer-Mustafa" target="_blank" class="l-card"><i class="fab fa-researchgate"></i> ResearchGate</a>
+            <a href="mailto:osman.omer249@med.aun.edu.eg" class="l-card"><i class="fas fa-envelope"></i> Email</a>
         </div>
     </div>
 
     <div class="black-footer">
         <i class="fab fa-github"></i>
-        <span>© 2026 Osman Omer Mustafa | Documentation of a Medical Journey</span>
+        <span>© 2026 Osman Omer Mustafa | Medical Journey Documentation</span>
     </div>
 
     <script>
         const slider = document.getElementById('slider');
         const dots = document.querySelectorAll('.dot');
-
         const updateDots = () => {
             const index = Math.round(slider.scrollLeft / slider.offsetWidth);
             dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
         };
-
         slider.addEventListener('scroll', updateDots);
-
         window.addEventListener('keydown', (e) => {
             if (e.key === 'ArrowRight') slider.scrollBy({ left: slider.offsetWidth, behavior: 'smooth' });
             if (e.key === 'ArrowLeft') slider.scrollBy({ left: -slider.offsetWidth, behavior: 'smooth' });
