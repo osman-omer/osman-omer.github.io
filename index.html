@@ -36,9 +36,7 @@
 
         .header-unit {
             border-left: 6px solid var(--primary-blue);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            display: flex; justify-content: space-between; align-items: center;
         }
 
         .header-text h1 { margin: 0; font-size: 2.1rem; font-weight: 700; color: #000; }
@@ -49,37 +47,22 @@
         .uni-logo { max-width: 100%; max-height: 100%; object-fit: contain; }
 
         h2 {
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: var(--text-grey);
-            margin-bottom: 20px;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 8px;
+            font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1.5px;
+            color: var(--text-grey); margin-bottom: 20px; border-bottom: 1px solid var(--border); padding-bottom: 8px;
         }
 
         .log-section-title { font-size: 1.1rem; font-weight: 700; margin: 10px 0 20px 0; }
         
-        /* Slider Styling */
         .slides-wrapper { position: relative; overflow: hidden; }
         .slides-container {
-            display: flex;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            scrollbar-width: none; 
-            gap: 0;
-            scroll-behavior: smooth;
+            display: flex; overflow-x: auto; scroll-snap-type: x mandatory;
+            scrollbar-width: none; gap: 0; scroll-behavior: smooth;
         }
         .slides-container::-webkit-scrollbar { display: none; }
 
         .project-card {
-            min-width: 100%;
-            scroll-snap-align: start;
-            background: #fff;
-            padding: 25px;
-            border-radius: 10px;
-            border: 1px solid var(--border);
-            box-sizing: border-box;
+            min-width: 100%; scroll-snap-align: start; background: #fff;
+            padding: 25px; border-radius: 10px; border: 1px solid var(--border); box-sizing: border-box;
         }
 
         .p-date { font-size: 0.75rem; font-weight: 700; color: #00a8ff; text-transform: uppercase; }
@@ -88,43 +71,33 @@
         .tag { font-size: 0.7rem; background: #f1f5f9; color: #475569; padding: 4px 10px; border-radius: 6px; font-weight: 600; margin-right: 6px; }
         
         .p-link {
-            display: inline-block;
-            margin-top: 10px;
-            padding: 8px 18px;
-            background: var(--primary-blue);
-            color: white;
-            text-decoration: none;
-            border-radius: 6px;
-            font-size: 0.85rem;
-            font-weight: 600;
+            display: inline-block; margin-top: 10px; padding: 8px 18px;
+            background: var(--primary-blue); color: white; text-decoration: none;
+            border-radius: 6px; font-size: 0.85rem; font-weight: 600;
         }
 
         .dots { display: flex; justify-content: center; gap: 8px; margin-top: 15px; }
         .dot { width: 8px; height: 8px; border-radius: 50%; background: #cbd5e1; transition: 0.3s; }
         .dot.active { background: var(--primary-blue); width: 18px; border-radius: 4px; }
 
-        /* Academic Profiles - Simple & White */
+        /* Links Section with Blue Hover */
         .links-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; }
         .l-card { 
             padding: 12px; text-align: center; background: #fff; border: 1px solid var(--border); 
             border-radius: 8px; text-decoration: none; color: var(--text-dark); font-size: 0.85rem; font-weight: 600;
-            transition: 0.2s; 
+            transition: all 0.2s ease;
         }
-        .l-card:hover { border-color: var(--primary-blue); color: var(--primary-blue); }
+        .l-card:hover { 
+            border-color: var(--primary-blue); 
+            color: var(--primary-blue);
+            background: #f0f7ff; /* خلفية زرقاء خفيفة جداً عند اللمس */
+        }
 
-        /* The GitHub Style Black Footer */
+        /* GitHub Style Footer */
         .black-footer {
-            background: #1b1f23; /* GitHub's Dark Slate */
-            color: #ffffff;
-            padding: 25px;
-            border-radius: 12px;
-            text-align: center;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            margin-top: 10px;
+            background: #1b1f23; color: #ffffff; padding: 25px;
+            border-radius: 12px; text-align: center; font-size: 0.9rem;
+            display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 10px;
         }
         .black-footer i { font-size: 1.3rem; }
 
@@ -211,8 +184,17 @@
         const slider = document.getElementById('slider');
         const dots = document.querySelectorAll('.dot');
 
-        // Update dots on scroll
-        slider.addEventListener('scroll', () => {
+        const updateDots = () => {
             const index = Math.round(slider.scrollLeft / slider.offsetWidth);
-            dots.forEach((dot, i) => dot.classList.toggle('active
-        
+            dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+        };
+
+        slider.addEventListener('scroll', updateDots);
+
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') slider.scrollBy({ left: slider.offsetWidth, behavior: 'smooth' });
+            if (e.key === 'ArrowLeft') slider.scrollBy({ left: -slider.offsetWidth, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
