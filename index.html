@@ -4,19 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Osman Omer Mustafa | Portfolio</title>
-
     <link rel="canonical" href="https://osman-omer.github.io/">
     
-    <meta name="description" content="Osman Omer Mustafa: Medical Student at Assiut University. Exploring Clinical Research, Medical Data Analysis with R, and Evidence-Based Medicine.">
-    
-    <meta property="og:title" content="Osman Omer Mustafa | Medical Student & Researcher">
-    <meta property="og:description" content="Medical Research & Data Analysis Journey.">
-    <meta property="og:image" content="https://osman-omer.github.io/favicon.jpg">
-    <meta property="og:url" content="https://osman-omer.github.io/">
-
-    <link rel="icon" type="image/jpeg" href="favicon.jpg?v=4.0">
-    <link rel="shortcut icon" type="image/jpeg" href="favicon.jpg?v=4.0">
-    <link rel="apple-touch-icon" href="favicon.jpg?v=4.0">
+    <link rel="icon" type="image/jpeg" href="favicon.jpg?v=5.0">
+    <link rel="shortcut icon" type="image/jpeg" href="favicon.jpg?v=5.0">
+    <link rel="apple-touch-icon" href="favicon.jpg?v=5.0">
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -30,9 +22,7 @@
             --text-grey: #64748b;
             --border: #e2e8f0;
         }
-
         html { scroll-behavior: smooth; }
-
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--bg-page);
@@ -42,7 +32,6 @@
             padding: 40px 20px;
             line-height: 1.6;
         }
-
         .unit {
             background: var(--bg-unit);
             padding: 30px;
@@ -51,20 +40,17 @@
             border: 1px solid var(--border);
             box-shadow: 0 1px 3px rgba(0,0,0,0.05);
         }
-
         header.header-unit {
             border-left: 6px solid var(--primary-blue);
             display: flex; justify-content: space-between; align-items: center;
             gap: 20px;
         }
-
         .header-text h1 { margin: 0; font-size: 2.1rem; font-weight: 700; color: #000; }
         .role { font-size: 1.1rem; color: var(--primary-blue); font-weight: 600; margin: 4px 0; }
         .uni-details { font-size: 0.9rem; color: var(--text-grey); font-weight: 500; }
-        
         .logo-container { width: 100px; height: 100px; display: flex; flex-shrink: 0; align-items: center; justify-content: center; }
         .uni-logo { max-width: 100%; max-height: 100%; object-fit: contain; }
-
+        
         h2 {
             font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1.5px;
             color: var(--text-grey); margin-bottom: 20px; border-bottom: 1px solid var(--border); padding-bottom: 8px;
@@ -72,29 +58,42 @@
 
         .log-section-title { font-size: 1.1rem; font-weight: 700; margin: 10px 0 20px 0; }
         
+        /* Slider Styling */
         .slides-wrapper { position: relative; overflow: hidden; }
         .slides-container {
             display: flex; overflow-x: auto; scroll-snap-type: x mandatory;
             scrollbar-width: none; gap: 0; scroll-behavior: smooth;
         }
         .slides-container::-webkit-scrollbar { display: none; }
-
         .project-card {
             min-width: 100%; scroll-snap-align: start; background: #fff;
             padding: 25px; border-radius: 10px; border: 1px solid var(--border); box-sizing: border-box;
         }
-
         .p-date { font-size: 0.75rem; font-weight: 700; color: #00a8ff; text-transform: uppercase; }
         .p-title { font-size: 1.25rem; font-weight: 700; margin: 10px 0; }
         .p-desc { font-size: 0.95rem; color: #475569; margin-bottom: 15px; }
-        .tag { font-size: 0.7rem; background: #f1f5f9; color: #475569; padding: 4px 10px; border-radius: 6px; font-weight: 600; margin-right: 6px; }
         
+        /* Unified Tag Styling */
+        .tag { 
+            font-size: 0.7rem; background: #f1f5f9; color: #475569; 
+            padding: 4px 10px; border-radius: 6px; font-weight: 600; 
+            margin-right: 6px; display: inline-block; margin-top: 4px; 
+        }
+
+        /* Certificates Styling */
+        .cert-entry { margin-bottom: 22px; }
+        .cert-header { display: flex; align-items: center; gap: 10px; text-decoration: none; color: inherit; transition: 0.2s; }
+        .cert-header:hover { color: var(--primary-blue); }
+        .cert-header i { color: var(--primary-blue); font-size: 0.9rem; opacity: 0.8; }
+        .cert-name { font-weight: 700; font-size: 1rem; text-decoration: underline; text-underline-offset: 3px; }
+        .cert-org { font-size: 0.85rem; color: var(--text-grey); font-weight: 500; margin: 4px 0 8px 24px; }
+        .cert-tags { margin-left: 24px; }
+
         .p-link {
             display: inline-block; margin-top: 10px; padding: 8px 18px;
             background: var(--primary-blue); color: white; text-decoration: none;
             border-radius: 6px; font-size: 0.85rem; font-weight: 600;
         }
-
         .dots { display: flex; justify-content: center; gap: 8px; margin-top: 15px; }
         .dot { width: 8px; height: 8px; border-radius: 50%; background: #cbd5e1; transition: 0.3s; cursor: pointer; }
         .dot.active { background: var(--primary-blue); width: 18px; border-radius: 4px; }
@@ -106,13 +105,12 @@
             transition: all 0.2s ease; display: flex; align-items: center; justify-content: center; gap: 8px;
         }
         .l-card:hover { border-color: var(--primary-blue); color: var(--primary-blue); background: #f0f7ff; }
-
+        
         .black-footer {
             background: #1b1f23; color: #ffffff; padding: 30px;
             border-radius: 12px; text-align: center; font-size: 0.85rem;
             display: flex; flex-direction: column; align-items: center; gap: 10px; margin-top: 10px;
         }
-
         @media (max-width: 600px) {
             header.header-unit { flex-direction: column; text-align: center; border-left: none; border-top: 6px solid var(--primary-blue); }
             .logo-container { margin-top: 10px; }
@@ -168,27 +166,49 @@
                 <article class="project-card">
                     <span class="p-date">Jan 11, 2026</span>
                     <div class="p-title">Air Quality Analysis (JHU Case Study)</div>
-                    <p class="p-desc">Replicating a Johns Hopkins University case study to analyze air pollutants, focusing on data distribution via histograms and statistical means.</p>
-                    <div class="p-tools">
-                        <span class="tag">R</span> 
-                        <span class="tag">Tidyverse</span> 
-                        <span class="tag">Histograms</span> 
-                        <span class="tag">JHU-Curriculum</span>
-                    </div>
+                    <p class="p-desc">Replicating a Johns Hopkins University case study to analyze air pollutants using Tidyverse and central tendency measures.</p>
+                    <div class="p-tools"><span class="tag">R</span> <span class="tag">Tidyverse</span> <span class="tag">Histograms</span> <span class="tag">JHU-Curriculum</span></div>
                     <a href="https://github.com/osman-omer/air-quality-eda-r" target="_blank" class="p-link">View on GitHub →</a>
                 </article>
             </div>
-            <div class="dots">
-                <div class="dot active"></div>
-                <div class="dot"></div>
-                <div class="dot"></div>
-                <div class="dot"></div>
+            <div class="dots"><div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+        </div>
+    </section>
+
+    <section class="unit">
+        <h2>Relevant Training & Certificates</h2>
+        
+        <div class="cert-entry">
+            <a href="https://www.coursera.org/account/accomplishments/professional-cert/TG7U3R90WE4H" target="_blank" class="cert-header">
+                <i class="fas fa-certificate"></i>
+                <span class="cert-name">Google Data Analytics Professional Certificate</span>
+            </a>
+            <div class="cert-org">Google | Coursera</div>
+            <div class="cert-tags">
+                <span class="tag">Data Cleaning</span> <span class="tag">SQL</span> <span class="tag">R</span> <span class="tag">Tableau</span> <span class="tag">Spreadsheet</span>
             </div>
         </div>
 
-        <div class="log-section-title" style="margin-top: 40px; color: var(--text-grey);">📚 Systematic Review & Meta-analysis</div>
-        <div class="project-card" style="border: 2px dashed var(--border); background: #fcfcfc; text-align: center;">
-            <p style="margin:0; font-weight: 600; color: var(--text-grey);">Upcoming Soon</p>
+        <div class="cert-entry">
+            <a href="https://www.coursera.org/account/accomplishments/specialization/KVHT1NUWZTKS" target="_blank" class="cert-header">
+                <i class="fas fa-certificate"></i>
+                <span class="cert-name">Biostatistics in Public Health</span>
+            </a>
+            <div class="cert-org">Johns Hopkins University | Coursera</div>
+            <div class="cert-tags">
+                <span class="tag">Biostatistics</span> <span class="tag">Hypothesis testing</span> <span class="tag">Regression</span>
+            </div>
+        </div>
+
+        <div class="cert-entry">
+            <a href="https://www.coursera.org/account/accomplishments/verify/MIEAMAK2YABW" target="_blank" class="cert-header">
+                <i class="fas fa-certificate"></i>
+                <span class="cert-name">Understanding Research Methods</span>
+            </a>
+            <div class="cert-org">University of London | Coursera</div>
+            <div class="cert-tags">
+                <span class="tag">Medical Research</span>
+            </div>
         </div>
     </section>
 
@@ -215,7 +235,7 @@
         const slider = document.getElementById('slider');
         const dots = document.querySelectorAll('.dot');
         const updateDots = () => {
-            const index = Math.round(slider.scrollLeft / slider.offsetWidth);
+            const index = Math.round(slider.scrollLeft / (slider.offsetWidth || 1));
             dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
         };
         slider.addEventListener('scroll', updateDots);
@@ -226,5 +246,5 @@
         });
     </script>
 </body>
-</html>
+                                                                                                                                                             </html>
 
