@@ -98,13 +98,16 @@
             margin-right: 6px; display: inline-block; margin-top: 4px; 
         }
 
-        .cert-entry { margin-bottom: 22px; }
-        .cert-header { display: flex; align-items: center; gap: 10px; text-decoration: none; color: inherit; transition: 0.2s; }
-        .cert-header:hover { color: var(--primary-blue); }
-        .cert-header i { color: var(--primary-blue); font-size: 0.9rem; opacity: 0.8; }
-        .cert-name { font-weight: 700; font-size: 1rem; text-decoration: underline; text-underline-offset: 3px; }
-        .cert-org { font-size: 0.85rem; color: var(--primary-blue); font-weight: 600; margin: 4px 0 8px 24px; }
-        .cert-tags { margin-left: 24px; }
+        /* Certificate Accent Style Restored */
+        .cert-entry { 
+            margin-bottom: 22px; 
+            padding-left: 15px;
+            border-left: 3px solid var(--primary-blue);
+        }
+        .cert-header { display: flex; align-items: center; gap: 10px; text-decoration: none; color: inherit; }
+        .cert-header:hover .cert-name { color: var(--primary-blue); }
+        .cert-name { font-weight: 700; font-size: 1rem; text-decoration: underline; text-underline-offset: 3px; transition: 0.2s; }
+        .cert-org { font-size: 0.85rem; color: var(--primary-blue); font-weight: 600; margin: 4px 0 8px 0; }
 
         .p-link {
             display: inline-block; margin-top: 10px; padding: 8px 18px;
@@ -156,7 +159,6 @@
 
     <section class="unit">
         <h2>Learning Log</h2>
-        
         <div class="log-section-title">📊 Unit 1: Exploratory Data Analysis (EDA)</div>
         <div class="slides-wrapper">
             <div class="slides-container" id="slider">
@@ -184,7 +186,7 @@
                 <article class="project-card">
                     <span class="p-date">Jan 11, 2026</span>
                     <div class="p-title">Air Quality Analysis (JHU Case Study)</div>
-                    <p class="p-desc">Replicating a Johns Hopkins University case study to analyze air pollutants using Tidyverse and central tendency measures.</p>
+                    <p class="p-desc">Replicating a Johns Hopkins University case study to analyze air pollutants using Tidyverse.</p>
                     <div class="p-tools"><span class="tag">R</span> <span class="tag">Tidyverse</span> <span class="tag">Histograms</span> <span class="tag">JHU-Curriculum</span></div>
                     <a href="https://github.com/osman-omer/air-quality-eda-r" target="_blank" class="p-link">View on GitHub →</a>
                 </article>
@@ -194,17 +196,15 @@
 
         <hr style="border: 0; border-top: 1px dashed var(--border); margin: 30px 0;">
 
-        <div class="log-section-title"><i class="fas fa-microscope"></i> Unit 2: Statistical Inference</div>
-        <article class="project-card">
+        <div class="log-section-title"><i class="fas fa-magnifying-glass"></i> Unit 2: Statistical Inference</div>
+        <article class="project-card" style="min-width: auto;">
             <span class="p-date">Jan 17, 2026</span>
             <div class="p-title">Heart Disease: Statistical Inference (Cholesterol)</div>
-            <p class="p-desc">
-                Statistical analysis of cholesterol differences by sex using <strong>Welch t-test</strong>. Includes normality checks with <strong>QQ-plots</strong> and effect size calculation via <strong>Cohen's d</strong>.
-            </p>
+            <p class="p-desc">Statistical analysis of cholesterol differences by sex using <strong>Welch t-test</strong>. Includes normality checks and effect size calculation via <strong>Cohen's d</strong>.</p>
             <div class="p-tools">
-                <span class="tag">R Markdown</span> <span class="tag">Welch t-test</span> <span class="tag">P-value</span> <span class="tag">Cohen’s d</span>
+                <span class="tag">R Markdown</span> <span class="tag">Welch t-test</span> <span class="tag">p < 0.05</span> <span class="tag">Cohen’s d</span>
             </div>
-            <a href="https://github.com/osman-omer/inferential-statistics-heart" target="_blank" class="p-link">View Research Report →</a>
+            <a href="https://github.com/osman-omer/inferential-statistics-heart" target="_blank" class="p-link">View on GitHub →</a>
         </article>
     </section>
 
@@ -244,17 +244,6 @@
                 <span class="tag">Biostatistics</span> <span class="tag">Hypothesis testing</span> <span class="tag">Regression</span>
             </div>
         </div>
-
-        <div class="cert-entry">
-            <a href="https://www.coursera.org/account/accomplishments/verify/MIEAMAK2YABW" target="_blank" class="cert-header">
-                <i class="fas fa-certificate"></i>
-                <span class="cert-name">Understanding Research Methods</span>
-            </a>
-            <div class="cert-org">University of London | Coursera</div>
-            <div class="cert-tags">
-                <span class="tag">Medical Research</span>
-            </div>
-        </div>
     </section>
 
     <section class="unit">
@@ -281,6 +270,7 @@
         const slider = document.getElementById('slider');
         const dots = document.querySelectorAll('.dot');
         const updateDots = () => {
+            if (!slider) return;
             const index = Math.round(slider.scrollLeft / (slider.offsetWidth || 1));
             dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
         };
@@ -293,4 +283,4 @@
     </script>
 </body>
     </html>
-    
+                    
