@@ -31,7 +31,7 @@
 
     <link rel="icon" type="image/jpeg" href="favicon.jpg?v=5.0">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/dist/css/all.min.css">
 
     <style>
         :root {
@@ -76,9 +76,9 @@
             color: var(--text-grey); margin-bottom: 20px; border-bottom: 1px solid var(--border); padding-bottom: 8px;
         }
 
-        .log-section-title { font-size: 1.1rem; font-weight: 700; margin: 10px 0 20px 0; }
+        .log-section-title { font-size: 1.1rem; font-weight: 700; margin: 10px 0 20px 0; display: flex; align-items: center; gap: 8px; }
         
-        .slides-wrapper { position: relative; overflow: hidden; }
+        .slides-wrapper { position: relative; overflow: hidden; margin-bottom: 30px; }
         .slides-container {
             display: flex; overflow-x: auto; scroll-snap-type: x mandatory;
             scrollbar-width: none; gap: 0; scroll-behavior: smooth;
@@ -156,7 +156,8 @@
 
     <section class="unit">
         <h2>Learning Log</h2>
-        <div class="log-section-title">📊 Exploratory Data Analysis (EDA)</div>
+        
+        <div class="log-section-title">📊 Unit 1: Exploratory Data Analysis (EDA)</div>
         <div class="slides-wrapper">
             <div class="slides-container" id="slider">
                 <article class="project-card">
@@ -190,12 +191,38 @@
             </div>
             <div class="dots"><div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
         </div>
+
+        <hr style="border: 0; border-top: 1px dashed var(--border); margin: 30px 0;">
+
+        <div class="log-section-title"><i class="fas fa-microscope"></i> Unit 2: Statistical Inference</div>
+        <article class="project-card">
+            <span class="p-date">Jan 17, 2026</span>
+            <div class="p-title">Heart Disease: Statistical Inference (Cholesterol)</div>
+            <p class="p-desc">
+                Statistical analysis of cholesterol differences by sex using <strong>Welch t-test</strong>. Includes normality checks with <strong>QQ-plots</strong> and effect size calculation via <strong>Cohen's d</strong>.
+            </p>
+            <div class="p-tools">
+                <span class="tag">R Markdown</span> <span class="tag">Welch t-test</span> <span class="tag">P-value</span> <span class="tag">Cohen’s d</span>
+            </div>
+            <a href="https://github.com/osman-omer/inferential-statistics-heart" target="_blank" class="p-link">View Research Report →</a>
+        </article>
     </section>
 
     <section class="unit">
         <h2>Relevant Training & Certificates</h2>
         <div class="log-section-title">🎓 Academic Credentials</div>
         
+        <div class="cert-entry">
+            <a href="https://www.coursera.org/account/accomplishments/verify/Q2GMU8EFUHV8" target="_blank" class="cert-header">
+                <i class="fas fa-certificate"></i>
+                <span class="cert-name">R Programming</span>
+            </a>
+            <div class="cert-org">Johns Hopkins University | Coursera</div>
+            <div class="cert-tags">
+                <span class="tag">Functions</span> <span class="tag">R Base</span> <span class="tag">Swirl</span> <span class="tag">Subsetting</span>
+            </div>
+        </div>
+
         <div class="cert-entry">
             <a href="https://www.coursera.org/account/accomplishments/professional-cert/TG7U3R90WE4H" target="_blank" class="cert-header">
                 <i class="fas fa-certificate"></i>
@@ -265,5 +292,5 @@
         });
     </script>
 </body>
-                </html>
-                
+    </html>
+    
