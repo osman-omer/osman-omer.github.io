@@ -1,9 +1,9 @@
-/* Osman Portfolio Master Styles */
+/* 1. Global Styles */
 :root {
-    --bg-page: #f8fafc;
-    --bg-unit: #ffffff;
     --primary-blue: #0056b3;
     --verify-blue: #1877F2;
+    --bg-page: #f8fafc;
+    --bg-unit: #ffffff;
     --text-dark: #1e293b;
     --text-grey: #64748b;
     --border: #e2e8f0;
@@ -19,6 +19,7 @@ body {
     line-height: 1.6;
 }
 
+/* 2. Layout Units */
 .unit {
     background: var(--bg-unit);
     padding: 30px;
@@ -30,45 +31,115 @@ body {
 
 header.header-unit {
     border-left: 6px solid var(--primary-blue);
-    display: flex; justify-content: space-between; align-items: center; gap: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
 }
 
-.role { color: var(--primary-blue) !important; font-weight: 600; margin: 4px 0; }
-
-/* Tags Styling */
-.tag { 
-    font-size: 0.7rem; 
-    background: #f1f5f9; 
-    color: #475569; 
-    padding: 4px 10px; 
-    border-radius: 6px; 
+/* 3. Typography & Tags */
+.role { 
+    color: var(--primary-blue) !important; 
     font-weight: 600; 
-    margin-right: 6px; 
-    display: inline-block; 
-    margin-top: 4px; 
+    margin: 4px 0; 
 }
 
-/* Slider & Dots */
-.slides-wrapper { position: relative; overflow: hidden; margin-bottom: 30px; }
-.slides-container { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; gap: 0; scroll-behavior: smooth; }
-.project-card { min-width: 100%; scroll-snap-align: start; padding: 25px; border: 1px solid var(--border); box-sizing: border-box; border-radius: 10px; background: #fff; }
+.tag {
+    font-size: 0.7rem;
+    background: #f1f5f9;
+    color: var(--text-grey);
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-weight: 600;
+    margin-right: 6px;
+    display: inline-block;
+    margin-top: 6px;
+}
 
-.dot { width: 8px; height: 8px; border-radius: 50%; background: #cbd5e1; transition: 0.3s; cursor: pointer; display: inline-block; margin: 0 4px; }
-.dot.active { background: var(--primary-blue); width: 18px; border-radius: 4px; }
+/* 4. Slider & Dots */
+.slides-wrapper { position: relative; overflow: hidden; margin-bottom: 20px; }
+.slides-container { 
+    display: flex; 
+    overflow-x: auto; 
+    scroll-snap-type: x mandatory; 
+    scrollbar-width: none; 
+    gap: 0; 
+    scroll-behavior: smooth; 
+}
+.slides-container::-webkit-scrollbar { display: none; }
 
-/* Links & Buttons */
-.p-link { display: inline-block; margin-top: 10px; padding: 8px 18px; background: var(--primary-blue); color: white; text-decoration: none; border-radius: 6px; font-size: 0.85rem; font-weight: 600; margin-right: 8px; }
-.verify-icon { color: var(--verify-blue); margin-right: 10px; font-size: 1.1rem; }
+.project-card { 
+    min-width: 100%; 
+    scroll-snap-align: start; 
+    padding: 25px; 
+    border: 1px solid var(--border); 
+    box-sizing: border-box; 
+    border-radius: 10px; 
+}
 
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #cbd5e1;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    display: inline-block;
+    margin: 0 4px;
+}
+.dot.active {
+    background: var(--primary-blue);
+    width: 20px;
+    border-radius: 4px;
+}
+
+/* 5. Buttons & Icons */
+.p-link {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 8px 18px;
+    background: var(--primary-blue);
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-right: 8px;
+}
+
+.verify-icon { color: var(--verify-blue); margin-right: 12px; font-size: 1.1rem; }
+
+/* 6. Grid & Footer */
 .links-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; }
-.l-card { padding: 12px; text-align: center; border: 1px solid var(--border); border-radius: 8px; text-decoration: none; color: var(--text-dark); font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px; }
+.l-card { 
+    padding: 12px; 
+    text-align: center; 
+    border: 1px solid var(--border); 
+    border-radius: 8px; 
+    text-decoration: none; 
+    color: var(--text-dark); 
+    font-weight: 600; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    gap: 8px; 
+}
 
-.black-footer { background: #1b1f23; color: white; padding: 30px; border-radius: 12px; text-align: center; font-size: 0.85rem; }
+.black-footer { 
+    background: #1b1f23; 
+    color: white; 
+    padding: 30px; 
+    border-radius: 12px; 
+    text-align: center; 
+    font-size: 0.85rem; 
+}
 
-.logo-container { width: 100px; height: 100px; display: flex; flex-shrink: 0; align-items: center; justify-content: center; }
-.uni-logo { max-width: 100%; max-height: 100%; object-fit: contain; }
+.logo-container { width: 100px; height: 100px; display: flex; flex-shrink: 0; }
+.uni-logo { max-width: 100%; height: auto; object-fit: contain; }
 
+/* 7. Responsive */
 @media (max-width: 600px) {
     header.header-unit { flex-direction: column; text-align: center; }
     .logo-container { order: 2; margin: 0 auto; }
 }
+
