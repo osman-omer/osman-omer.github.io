@@ -3,11 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <meta name="description" content="Osman Omer Mustafa - Medical Student & Researcher at Assiut University. Specialized in Clinical Research and Medical Data Analysis using R.">
-    <meta name="keywords" content="Osman Omer Mustafa, Medical Research, Assiut University, Data Analysis, R Programming, Clinical Research Egypt">
+    <meta name="keywords" content="Osman Omer Mustafa, Medical Research, Assiut University, Data Analysis, R Programming, Clinical Research Egypt, Biostatistics, EDA, Systematic Review">
+    <meta name="author" content="Osman Omer Mustafa">
     
     <title>Osman Omer Mustafa | Portfolio</title>
     
+    <meta property="og:title" content="Osman Omer Mustafa | Portfolio">
+    <meta property="og:description" content="Medical Student & Researcher at Assiut University. Explore my journey in Clinical Data Science.">
+    <meta property="og:url" content="https://osman-omer.github.io/">
+    <meta property="og:type" content="website">
+
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -33,121 +40,7 @@
     <link rel="icon" type="image/jpeg" href="favicon.jpg?v=5.0">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/dist/css/all.min.css">
-
-    <style>
-        :root {
-            --bg-page: #f8fafc;
-            --bg-unit: #ffffff;
-            --primary-blue: #0056b3;
-            --accent-light-blue: #add8e6; /* اللون الأزرق الفاتح للدائرة */
-            --text-dark: #1e293b;
-            --text-grey: #64748b;
-            --border: #e2e8f0;
-        }
-        html { scroll-behavior: smooth; }
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-page);
-            color: var(--text-dark);
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 40px 20px;
-            line-height: 1.6;
-        }
-        .unit {
-            background: var(--bg-unit);
-            padding: 30px;
-            border-radius: 12px;
-            margin-bottom: 25px;
-            border: 1px solid var(--border);
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-        }
-        header.header-unit {
-            border-left: 6px solid var(--primary-blue);
-            display: flex; justify-content: space-between; align-items: center;
-            gap: 20px;
-        }
-        .header-text h1 { margin: 0; font-size: 2.1rem; font-weight: 700; color: #000; }
-        .role { font-size: 1.1rem; color: var(--primary-blue); font-weight: 600; margin: 4px 0; }
-        .uni-details { font-size: 0.9rem; color: var(--text-grey); font-weight: 500; }
-        .logo-container { width: 100px; height: 100px; display: flex; flex-shrink: 0; align-items: center; justify-content: center; }
-        .uni-logo { max-width: 100%; max-height: 100%; object-fit: contain; }
-        
-        h2 {
-            font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1.5px;
-            color: var(--text-grey); margin-bottom: 20px; border-bottom: 1px solid var(--border); padding-bottom: 8px;
-        }
-
-        .log-section-title { font-size: 1.1rem; font-weight: 700; margin: 10px 0 20px 0; display: flex; align-items: center; gap: 8px; }
-        
-        /* Unit 1 Slider */
-        .slides-wrapper { position: relative; overflow: hidden; margin-bottom: 30px; }
-        .slides-container {
-            display: flex; overflow-x: auto; scroll-snap-type: x mandatory;
-            scrollbar-width: none; gap: 0; scroll-behavior: smooth;
-        }
-        .slides-container::-webkit-scrollbar { display: none; }
-        .project-card {
-            min-width: 100%; scroll-snap-align: start; background: #fff;
-            padding: 25px; border-radius: 10px; border: 1px solid var(--border); box-sizing: border-box;
-        }
-        .p-date { font-size: 0.75rem; font-weight: 700; color: #00a8ff; text-transform: uppercase; }
-        .p-title { font-size: 1.25rem; font-weight: 700; margin: 10px 0; }
-        .p-desc { font-size: 0.95rem; color: #475569; margin-bottom: 15px; }
-        
-        .tag { 
-            font-size: 0.7rem; background: #f1f5f9; color: #475569; 
-            padding: 4px 10px; border-radius: 6px; font-weight: 600; 
-            margin-right: 6px; display: inline-block; margin-top: 4px; 
-        }
-
-        /* Certificate Styling with Blue Dot (🧿 Style) */
-        .cert-entry { 
-            margin-bottom: 22px; 
-            padding-left: 25px;
-            position: relative;
-        }
-        .cert-entry::before {
-            content: "";
-            position: absolute;
-            left: 0; top: 6px;
-            width: 12px; height: 12px;
-            background-color: var(--accent-light-blue);
-            border-radius: 50%;
-        }
-        .cert-header { display: flex; align-items: center; gap: 10px; text-decoration: none; color: inherit; }
-        .cert-name { font-weight: 700; font-size: 1rem; text-decoration: underline; text-underline-offset: 3px; }
-        .cert-org { font-size: 0.85rem; color: var(--primary-blue); font-weight: 600; margin: 4px 0 8px 0; }
-
-        .p-link {
-            display: inline-block; margin-top: 10px; padding: 8px 18px;
-            background: var(--primary-blue); color: white; text-decoration: none;
-            border-radius: 6px; font-size: 0.85rem; font-weight: 600;
-        }
-        .dots { display: flex; justify-content: center; gap: 8px; margin-top: 15px; }
-        .dot { width: 8px; height: 8px; border-radius: 50%; background: #cbd5e1; transition: 0.3s; cursor: pointer; }
-        .dot.active { background: var(--primary-blue); width: 18px; border-radius: 4px; }
-
-        /* Links Grid */
-        .links-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; }
-        .l-card { 
-            padding: 12px; text-align: center; background: #fff; border: 1px solid var(--border); 
-            border-radius: 8px; text-decoration: none; color: var(--text-dark); font-size: 0.85rem; font-weight: 600;
-            transition: all 0.2s ease; display: flex; align-items: center; justify-content: center; gap: 8px;
-        }
-        .l-card:hover { border-color: var(--primary-blue); color: var(--primary-blue); background: #f0f7ff; }
-        
-        .black-footer {
-            background: #1b1f23; color: #ffffff; padding: 30px;
-            border-radius: 12px; text-align: center; font-size: 0.85rem; margin-top: 10px;
-        }
-
-        /* Responsive Header: Logo under text on Mobile */
-        @media (max-width: 600px) {
-            header.header-unit { flex-direction: column; text-align: center; }
-            .logo-container { margin: 15px auto 0 auto; }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -163,101 +56,126 @@
     </header>
 
     <section class="unit">
-        <h2>About Me</h2>
-        <p style="margin:0;">
-            Fourth-year Medical Student at Assiut University. Building a foundation in <strong>Clinical Research</strong> with a focus on <strong>Medical Data Analysis</strong>. Actively learning <strong>R programming</strong> to contribute to evidence-based medicine.
-        </p>
+        <h2 style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1.5px; color: #64748b; margin-bottom: 20px; border-bottom: 1px solid #e2e8f0; padding-bottom: 8px;">About Me</h2>
+        <p style="margin:0;">Fourth-year Medical Student at Assiut University. Building a foundation in <strong>Clinical Research</strong> with a focus on <strong>Medical Data Analysis</strong>. Actively learning <strong>R programming</strong> to contribute to evidence-based medicine.</p>
     </section>
 
     <section class="unit">
-        <h2>Learning Log</h2>
-        <div class="log-section-title">📊 Unit 1: Exploratory Data Analysis (EDA)</div>
+        <h2 style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1.5px; color: #64748b; margin-bottom: 20px; border-bottom: 1px solid #e2e8f0; padding-bottom: 8px;">Learning Log</h2>
+        
+        <div style="font-size: 1.1rem; font-weight: 700; margin-bottom: 20px;"><i class="fas fa-chart-bar"></i> Unit 1: Exploratory Data Analysis (EDA)</div>
+        
         <div class="slides-wrapper">
             <div class="slides-container" id="slider">
                 <article class="project-card">
-                    <span class="p-date">Jan 4, 2026</span>
-                    <div class="p-title">Clinical Data Exploration</div>
-                    <p class="p-desc">Initial exploratory project on medical records utilizing public datasets to understand data structure.</p>
-                    <div class="p-tools"><span class="tag">R</span> <span class="tag">Tidyverse</span> <span class="tag">Box plots</span></div>
-                    <a href="https://github.com/osman-omer/clinical-data-analysis-r" target="_blank" class="p-link">View on GitHub →</a>
+                    <span style="font-size: 0.75rem; font-weight: 700; color: #00a8ff; text-transform: uppercase;">Jan 4, 2026</span>
+                    <div style="font-size: 1.25rem; font-weight: 700; margin: 10px 0;">Clinical Data Exploration</div>
+                    <p style="font-size: 0.95rem; color: #475569; margin-bottom: 15px;">Initial exploratory project on medical records utilizing public datasets.</p>
+                    <div style="margin-bottom: 15px;">
+                        <span style="font-size: 0.7rem; background: #f1f5f9; padding: 4px 10px; border-radius: 6px; font-weight: 600; margin-right: 6px;">R</span>
+                        <span style="font-size: 0.7rem; background: #f1f5f9; padding: 4px 10px; border-radius: 6px; font-weight: 600; margin-right: 6px;">Tidyverse</span>
+                        <span style="font-size: 0.7rem; background: #f1f5f9; padding: 4px 10px; border-radius: 6px; font-weight: 600; margin-right: 6px;">EDA</span>
+                    </div>
+                    <a href="https://github.com/osman-omer/clinical-data-analysis-r" target="_blank" style="display: inline-block; padding: 8px 18px; background: #0056b3; color: white; text-decoration: none; border-radius: 6px; font-size: 0.85rem; font-weight: 600; margin-right: 10px;">GitHub</a>
+                    <a href="https://www.kaggle.com/code/osmanomer/clinical-records-eda-r" target="_blank" style="display: inline-block; padding: 8px 18px; background: #20beff; color: white; text-decoration: none; border-radius: 6px; font-size: 0.85rem; font-weight: 600;">Kaggle</a>
                 </article>
                 <article class="project-card">
-                    <span class="p-date">Jan 6, 2026</span>
-                    <div class="p-title">Heart Disease Descriptive Study</div>
-                    <p class="p-desc">Descriptive analysis focusing on visual comparisons through histograms to evaluate data distribution.</p>
-                    <div class="p-tools"><span class="tag">R</span> <span class="tag">Tidyverse</span> <span class="tag">Histograms</span></div>
-                    <a href="https://github.com/osman-omer/project-2-heart-disease-eda" target="_blank" class="p-link">View on GitHub →</a>
+                    <span style="font-size: 0.75rem; font-weight: 700; color: #00a8ff; text-transform: uppercase;">Jan 6, 2026</span>
+                    <div style="font-size: 1.25rem; font-weight: 700; margin: 10px 0;">Heart Disease Descriptive Study</div>
+                    <p style="font-size: 0.95rem; color: #475569; margin-bottom: 15px;">Descriptive analysis focusing on visual comparisons through histograms.</p>
+                    <div style="margin-bottom: 15px;">
+                        <span style="font-size: 0.7rem; background: #f1f5f9; padding: 4px 10px; border-radius: 6px; font-weight: 600; margin-right: 6px;">R</span>
+                        <span style="font-size: 0.7rem; background: #f1f5f9; padding: 4px 10px; border-radius: 6px; font-weight: 600; margin-right: 6px;">Histograms</span>
+                        <span style="font-size: 0.7rem; background: #f1f5f9; padding: 4px 10px; border-radius: 6px; font-weight: 600; margin-right: 6px;">Systematic Review</span>
+                    </div>
+                    <a href="https://github.com/osman-omer/project-2-heart-disease-eda" target="_blank" style="display: inline-block; padding: 8px 18px; background: #0056b3; color: white; text-decoration: none; border-radius: 6px; font-size: 0.85rem; font-weight: 600;">GitHub</a>
                 </article>
                 <article class="project-card">
-                    <span class="p-date">Jan 9, 2026</span>
-                    <div class="p-title">Heart Failure Clinical Analysis</div>
-                    <p class="p-desc">Applying EDA skills to explore clinical features and correlations within heart failure patient data.</p>
-                    <div class="p-tools"><span class="tag">R</span> <span class="tag">Tidyverse</span> <span class="tag">Box plots</span></div>
-                    <a href="https://github.com/osman-omer/heart-failure-eda-learning" target="_blank" class="p-link">View on GitHub →</a>
+                    <span style="font-size: 0.75rem; font-weight: 700; color: #00a8ff; text-transform: uppercase;">Jan 9, 2026</span>
+                    <div style="font-size: 1.25rem; font-weight: 700; margin: 10px 0;">Heart Failure Clinical Analysis</div>
+                    <p style="font-size: 0.95rem; color: #475569; margin-bottom: 15px;">Exploring clinical features and correlations within heart failure patient data.</p>
+                    <div style="margin-bottom: 15px;">
+                        <span style="font-size: 0.7rem; background: #f1f5f9; padding: 4px 10px; border-radius: 6px; font-weight: 600; margin-right: 6px;">R</span>
+                        <span style="font-size: 0.7rem; background: #f1f5f9; padding: 4px 10px; border-radius: 6px; font-weight: 600; margin-right: 6px;">Box plots</span>
+                        <span style="font-size: 0.7rem; background: #f1f5f9; padding: 4px 10px; border-radius: 6px; font-weight: 600; margin-right: 6px;">Tidyverse</span>
+                    </div>
+                    <a href="https://github.com/osman-omer/heart-failure-eda-learning" target="_blank" style="display: inline-block; padding: 8px 18px; background: #0056b3; color: white; text-decoration: none; border-radius: 6px; font-size: 0.85rem; font-weight: 600;">GitHub</a>
                 </article>
                 <article class="project-card">
-                    <span class="p-date">Jan 11, 2026</span>
-                    <div class="p-title">Air Quality Analysis (JHU Case Study)</div>
-                    <p class="p-desc">Replicating a Johns Hopkins University case study to analyze air pollutants using Tidyverse.</p>
-                    <div class="p-tools"><span class="tag">R</span> <span class="tag">Tidyverse</span> <span class="tag">JHU-Curriculum</span></div>
-                    <a href="https://github.com/osman-omer/air-quality-eda-r" target="_blank" class="p-link">View on GitHub →</a>
+                    <span style="font-size: 0.75rem; font-weight: 700; color: #00a8ff; text-transform: uppercase;">Jan 11, 2026</span>
+                    <div style="font-size: 1.25rem; font-weight: 700; margin: 10px 0;">Air Quality Analysis (JHU Case Study)</div>
+                    <p style="font-size: 0.95rem; color: #475569; margin-bottom: 15px;">Replicating a Johns Hopkins University case study to analyze air pollutants.</p>
+                    <div style="margin-bottom: 15px;">
+                        <span style="font-size: 0.7rem; background: #f1f5f9; padding: 4px 10px; border-radius: 6px; font-weight: 600; margin-right: 6px;">R</span>
+                        <span style="font-size: 0.7rem; background: #f1f5f9; padding: 4px 10px; border-radius: 6px; font-weight: 600; margin-right: 6px;">JHU-Curriculum</span>
+                        <span style="font-size: 0.7rem; background: #f1f5f9; padding: 4px 10px; border-radius: 6px; font-weight: 600; margin-right: 6px;">Case Study</span>
+                    </div>
+                    <a href="https://github.com/osman-omer/air-quality-eda-r" target="_blank" style="display: inline-block; padding: 8px 18px; background: #0056b3; color: white; text-decoration: none; border-radius: 6px; font-size: 0.85rem; font-weight: 600;">GitHub</a>
                 </article>
             </div>
-            <div class="dots"><div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+            <div style="display: flex; justify-content: center; gap: 8px; margin-top: 15px;">
+                <div class="dot active" style="width: 8px; height: 8px; border-radius: 50%; background: #cbd5e1; transition: 0.3s; cursor: pointer;"></div>
+                <div class="dot" style="width: 8px; height: 8px; border-radius: 50%; background: #cbd5e1; transition: 0.3s; cursor: pointer;"></div>
+                <div class="dot" style="width: 8px; height: 8px; border-radius: 50%; background: #cbd5e1; transition: 0.3s; cursor: pointer;"></div>
+                <div class="dot" style="width: 8px; height: 8px; border-radius: 50%; background: #cbd5e1; transition: 0.3s; cursor: pointer;"></div>
+            </div>
         </div>
 
-        <hr style="border: 0; border-top: 1px dashed var(--border); margin: 30px 0;">
+        <hr style="border: 0; border-top: 1px dashed #e2e8f0; margin: 30px 0;">
 
-        <div class="log-section-title"><i class="fas fa-magnifying-glass"></i> Unit 2: Statistical Inference</div>
-        <article class="project-card" style="min-width: auto;">
-            <span class="p-date">Jan 17, 2026</span>
-            <div class="p-title">Heart Disease: Statistical Inference (Cholesterol)</div>
-            <p class="p-desc">Statistical analysis of cholesterol differences by sex using <strong>Welch t-test</strong>. Includes normality checks with <strong>QQ-plots</strong> and effect size calculation via <strong>Cohen's d</strong>.</p>
-            <div class="p-tools">
-                <span class="tag">R Markdown</span> <span class="tag">Welch t-test</span> <span class="tag">p < 0.05</span> <span class="tag">Cohen’s d</span>
+        <div style="font-size: 1.1rem; font-weight: 700; margin-bottom: 20px;">🔍 Unit 2: Statistical Inference</div>
+        <article class="project-card">
+            <span style="font-size: 0.75rem; font-weight: 700; color: #00a8ff; text-transform: uppercase;">Jan 17, 2026</span>
+            <div style="font-size: 1.25rem; font-weight: 700; margin: 10px 0;">Heart Disease: Statistical Inference (Cholesterol)</div>
+            <p style="font-size: 0.95rem; color: #475569; margin-bottom: 15px;">Statistical analysis of cholesterol differences using <strong>Welch t-test</strong> and <strong>QQ-plots</strong>.</p>
+            <div style="margin-bottom: 15px;">
+                <span style="font-size: 0.7rem; background: #f1f5f9; padding: 4px 10px; border-radius: 6px; font-weight: 600; margin-right: 6px;">Welch t-test</span>
+                <span style="font-size: 0.7rem; background: #f1f5f9; padding: 4px 10px; border-radius: 6px; font-weight: 600; margin-right: 6px;">p < 0.05</span>
+                <span style="font-size: 0.7rem; background: #f1f5f9; padding: 4px 10px; border-radius: 6px; font-weight: 600; margin-right: 6px;">QQ-plots</span>
             </div>
-            <a href="https://github.com/osman-omer/inferential-statistics-heart" target="_blank" class="p-link">View on GitHub →</a>
+            <a href="https://github.com/osman-omer/inferential-statistics-heart" target="_blank" style="display: inline-block; padding: 8px 18px; background: #0056b3; color: white; text-decoration: none; border-radius: 6px; font-size: 0.85rem; font-weight: 600;">GitHub</a>
         </article>
     </section>
 
     <section class="unit">
-        <h2>Relevant Training & Certificates</h2>
-        <div class="log-section-title">🎓 Academic Credentials</div>
+        <h2 style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1.5px; color: #64748b; margin-bottom: 20px; border-bottom: 1px solid #e2e8f0; padding-bottom: 8px;">Training & Certificates</h2>
         
-        <div class="cert-entry">
-            <a href="https://www.coursera.org/account/accomplishments/verify/Q2GMU8EFUHV8" target="_blank" class="cert-header">
-                <span class="cert-name">R Programming</span>
-            </a>
-            <div class="cert-org">Johns Hopkins University | Coursera</div>
-            <div class="cert-tags">
-                <span class="tag">Functions</span> <span class="tag">R Base</span> <span class="tag">Swirl</span> <span class="tag">Subsetting</span>
+        <div style="margin-bottom: 22px; display: flex; align-items: flex-start; gap: 12px;">
+            <i class="fas fa-check-circle" style="color: #1877F2; font-size: 1.1rem; margin-top: 4px;"></i>
+            <div>
+                <a href="https://www.coursera.org/account/accomplishments/verify/Q2GMU8EFUHV8" target="_blank" style="font-weight: 700; font-size: 1rem; text-decoration: underline; text-underline-offset: 3px; color: inherit;">R Programming</a>
+                <div style="font-size: 0.85rem; color: #0056b3; font-weight: 600; margin: 4px 0 8px 0;">Johns Hopkins University | Coursera</div>
+                <div><span style="font-size: 0.7rem; background: #f1f5f9; padding: 4px 10px; border-radius: 6px; font-weight: 600;">Functions</span> <span style="font-size: 0.7rem; background: #f1f5f9; padding: 4px 10px; border-radius: 6px; font-weight: 600;">R Base</span></div>
             </div>
         </div>
-
-        <div class="cert-entry">
-            <a href="https://www.coursera.org/account/accomplishments/professional-cert/TG7U3R90WE4H" target="_blank" class="cert-header">
-                <span class="cert-name">Google Data Analytics Professional Certificate</span>
-            </a>
-            <div class="cert-org">Google | Coursera</div>
+        <div style="margin-bottom: 22px; display: flex; align-items: flex-start; gap: 12px;">
+            <i class="fas fa-check-circle" style="color: #1877F2; font-size: 1.1rem; margin-top: 4px;"></i>
+            <div>
+                <a href="https://www.coursera.org/account/accomplishments/professional-cert/TG7U3R90WE4H" target="_blank" style="font-weight: 700; font-size: 1rem; text-decoration: underline; text-underline-offset: 3px; color: inherit;">Google Data Analytics</a>
+                <div style="font-size: 0.85rem; color: #0056b3; font-weight: 600; margin: 4px 0 8px 0;">Google | Coursera</div>
+                <div><span style="font-size: 0.7rem; background: #f1f5f9; padding: 4px 10px; border-radius: 6px; font-weight: 600;">SQL</span> <span style="font-size: 0.7rem; background: #f1f5f9; padding: 4px 10px; border-radius: 6px; font-weight: 600;">Tableau</span> <span style="font-size: 0.7rem; background: #f1f5f9; padding: 4px 10px; border-radius: 6px; font-weight: 600;">Data Cleaning</span></div>
+            </div>
         </div>
-
-        <div class="cert-entry">
-            <a href="https://www.coursera.org/account/accomplishments/specialization/KVHT1NUWZTKS" target="_blank" class="cert-header">
-                <span class="cert-name">Biostatistics in Public Health</span>
-            </a>
-            <div class="cert-org">Johns Hopkins University | Coursera</div>
+        <div style="margin-bottom: 22px; display: flex; align-items: flex-start; gap: 12px;">
+            <i class="fas fa-check-circle" style="color: #1877F2; font-size: 1.1rem; margin-top: 4px;"></i>
+            <div>
+                <a href="https://www.coursera.org/account/accomplishments/specialization/KVHT1NUWZTKS" target="_blank" style="font-weight: 700; font-size: 1rem; text-decoration: underline; text-underline-offset: 3px; color: inherit;">Biostatistics in Public Health</a>
+                <div style="font-size: 0.85rem; color: #0056b3; font-weight: 600; margin: 4px 0 8px 0;">Johns Hopkins University | Coursera</div>
+                <div><span style="font-size: 0.7rem; background: #f1f5f9; padding: 4px 10px; border-radius: 6px; font-weight: 600;">Hypothesis testing</span> <span style="font-size: 0.7rem; background: #f1f5f9; padding: 4px 10px; border-radius: 6px; font-weight: 600;">Regression</span></div>
+            </div>
         </div>
-
-        <div class="cert-entry">
-            <a href="https://www.coursera.org/account/accomplishments/verify/MIEAMAK2YABW" target="_blank" class="cert-header">
-                <span class="cert-name">Understanding Research Methods</span>
-            </a>
-            <div class="cert-org">University of London | Coursera</div>
+        <div style="margin-bottom: 22px; display: flex; align-items: flex-start; gap: 12px;">
+            <i class="fas fa-check-circle" style="color: #1877F2; font-size: 1.1rem; margin-top: 4px;"></i>
+            <div>
+                <a href="https://www.coursera.org/account/accomplishments/verify/MIEAMAK2YABW" target="_blank" style="font-weight: 700; font-size: 1rem; text-decoration: underline; text-underline-offset: 3px; color: inherit;">Understanding Research Methods</a>
+                <div style="font-size: 0.85rem; color: #0056b3; font-weight: 600; margin: 4px 0 8px 0;">University of London | Coursera</div>
+                <div><span style="font-size: 0.7rem; background: #f1f5f9; padding: 4px 10px; border-radius: 6px; font-weight: 600;">Medical Research</span> <span style="font-size: 0.7rem; background: #f1f5f9; padding: 4px 10px; border-radius: 6px; font-weight: 600;">Critical Appraisal</span></div>
+            </div>
         </div>
     </section>
 
     <section class="unit">
-        <h2>Academic Profiles</h2>
+        <h2 style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1.5px; color: #64748b; margin-bottom: 20px; border-bottom: 1px solid #e2e8f0; padding-bottom: 8px;">Academic Profiles</h2>
         <div class="links-grid">
             <a href="https://github.com/osman-omer" target="_blank" class="l-card"><i class="fab fa-github"></i> GitHub</a>
             <a href="https://www.linkedin.com/in/osmanomer10/" target="_blank" class="l-card"><i class="fab fa-linkedin"></i> LinkedIn</a>
@@ -273,21 +191,7 @@
         <p>© 2026 Osman Omer Mustafa | Medical Journey Documentation</p>
     </footer>
 
-    <script>
-        const slider = document.getElementById('slider');
-        const dots = document.querySelectorAll('.dot');
-        const updateDots = () => {
-            if (!slider) return;
-            const index = Math.round(slider.scrollLeft / (slider.offsetWidth || 1));
-            dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
-        };
-        slider.addEventListener('scroll', updateDots);
-        dots.forEach((dot, i) => {
-            dot.addEventListener('click', () => {
-                slider.scrollTo({ left: i * slider.offsetWidth, behavior: 'smooth' });
-            });
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
-                    </html>
-                    
+                                                                                                           </html>
+                                                                                                               
