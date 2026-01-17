@@ -24,7 +24,8 @@
         "https://www.linkedin.com/in/osmanomer10/",
         "https://github.com/osman-omer",
         "https://orcid.org/0009-0003-4138-029X",
-        "https://osf.io/7nzhk/"
+        "https://osf.io/7nzhk/",
+        "https://www.researchgate.net/profile/Osman-Omer-Mustafa"
       ]
     }
     </script>
@@ -38,7 +39,7 @@
             --bg-page: #f8fafc;
             --bg-unit: #ffffff;
             --primary-blue: #0056b3;
-            --accent-blue: #3b82f6;
+            --accent-light-blue: #add8e6; /* اللون الأزرق الفاتح للدائرة */
             --text-dark: #1e293b;
             --text-grey: #64748b;
             --border: #e2e8f0;
@@ -79,6 +80,7 @@
 
         .log-section-title { font-size: 1.1rem; font-weight: 700; margin: 10px 0 20px 0; display: flex; align-items: center; gap: 8px; }
         
+        /* Unit 1 Slider */
         .slides-wrapper { position: relative; overflow: hidden; margin-bottom: 30px; }
         .slides-container {
             display: flex; overflow-x: auto; scroll-snap-type: x mandatory;
@@ -99,19 +101,19 @@
             margin-right: 6px; display: inline-block; margin-top: 4px; 
         }
 
-        /* Certificate Accent Style (Requested 🧿 style inspired) */
+        /* Certificate Styling with Blue Dot (🧿 Style) */
         .cert-entry { 
             margin-bottom: 22px; 
-            padding-left: 20px;
+            padding-left: 25px;
             position: relative;
         }
         .cert-entry::before {
             content: "";
             position: absolute;
-            left: 0; top: 5px;
-            width: 5px; height: 20px;
-            background-color: var(--accent-blue);
-            border-radius: 10px;
+            left: 0; top: 6px;
+            width: 12px; height: 12px;
+            background-color: var(--accent-light-blue);
+            border-radius: 50%;
         }
         .cert-header { display: flex; align-items: center; gap: 10px; text-decoration: none; color: inherit; }
         .cert-name { font-weight: 700; font-size: 1rem; text-decoration: underline; text-underline-offset: 3px; }
@@ -126,6 +128,7 @@
         .dot { width: 8px; height: 8px; border-radius: 50%; background: #cbd5e1; transition: 0.3s; cursor: pointer; }
         .dot.active { background: var(--primary-blue); width: 18px; border-radius: 4px; }
 
+        /* Links Grid */
         .links-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; }
         .l-card { 
             padding: 12px; text-align: center; background: #fff; border: 1px solid var(--border); 
@@ -136,8 +139,13 @@
         
         .black-footer {
             background: #1b1f23; color: #ffffff; padding: 30px;
-            border-radius: 12px; text-align: center; font-size: 0.85rem;
-            display: flex; flex-direction: column; align-items: center; gap: 10px; margin-top: 10px;
+            border-radius: 12px; text-align: center; font-size: 0.85rem; margin-top: 10px;
+        }
+
+        /* Responsive Header: Logo under text on Mobile */
+        @media (max-width: 600px) {
+            header.header-unit { flex-direction: column; text-align: center; }
+            .logo-container { margin: 15px auto 0 auto; }
         }
     </style>
 </head>
@@ -184,14 +192,14 @@
                     <span class="p-date">Jan 9, 2026</span>
                     <div class="p-title">Heart Failure Clinical Analysis</div>
                     <p class="p-desc">Applying EDA skills to explore clinical features and correlations within heart failure patient data.</p>
-                    <div class="p-tools"><span class="tag">R</span> <span class="tag">Tidyverse</span> <span class="tag">Box plots</span> <span class="tag">Histograms</span></div>
+                    <div class="p-tools"><span class="tag">R</span> <span class="tag">Tidyverse</span> <span class="tag">Box plots</span></div>
                     <a href="https://github.com/osman-omer/heart-failure-eda-learning" target="_blank" class="p-link">View on GitHub →</a>
                 </article>
                 <article class="project-card">
                     <span class="p-date">Jan 11, 2026</span>
                     <div class="p-title">Air Quality Analysis (JHU Case Study)</div>
                     <p class="p-desc">Replicating a Johns Hopkins University case study to analyze air pollutants using Tidyverse.</p>
-                    <div class="p-tools"><span class="tag">R</span> <span class="tag">Tidyverse</span> <span class="tag">Histograms</span> <span class="tag">JHU-Curriculum</span></div>
+                    <div class="p-tools"><span class="tag">R</span> <span class="tag">Tidyverse</span> <span class="tag">JHU-Curriculum</span></div>
                     <a href="https://github.com/osman-omer/air-quality-eda-r" target="_blank" class="p-link">View on GitHub →</a>
                 </article>
             </div>
@@ -218,7 +226,6 @@
         
         <div class="cert-entry">
             <a href="https://www.coursera.org/account/accomplishments/verify/Q2GMU8EFUHV8" target="_blank" class="cert-header">
-                <i class="fas fa-certificate"></i>
                 <span class="cert-name">R Programming</span>
             </a>
             <div class="cert-org">Johns Hopkins University | Coursera</div>
@@ -229,35 +236,23 @@
 
         <div class="cert-entry">
             <a href="https://www.coursera.org/account/accomplishments/professional-cert/TG7U3R90WE4H" target="_blank" class="cert-header">
-                <i class="fas fa-certificate"></i>
                 <span class="cert-name">Google Data Analytics Professional Certificate</span>
             </a>
             <div class="cert-org">Google | Coursera</div>
-            <div class="cert-tags">
-                <span class="tag">Data Cleaning</span> <span class="tag">SQL</span> <span class="tag">R</span> <span class="tag">Tableau</span> <span class="tag">Spreadsheet</span>
-            </div>
         </div>
 
         <div class="cert-entry">
             <a href="https://www.coursera.org/account/accomplishments/specialization/KVHT1NUWZTKS" target="_blank" class="cert-header">
-                <i class="fas fa-certificate"></i>
                 <span class="cert-name">Biostatistics in Public Health</span>
             </a>
             <div class="cert-org">Johns Hopkins University | Coursera</div>
-            <div class="cert-tags">
-                <span class="tag">Biostatistics</span> <span class="tag">Hypothesis testing</span> <span class="tag">Regression</span>
-            </div>
         </div>
 
         <div class="cert-entry">
             <a href="https://www.coursera.org/account/accomplishments/verify/MIEAMAK2YABW" target="_blank" class="cert-header">
-                <i class="fas fa-certificate"></i>
                 <span class="cert-name">Understanding Research Methods</span>
             </a>
             <div class="cert-org">University of London | Coursera</div>
-            <div class="cert-tags">
-                <span class="tag">Medical Research</span>
-            </div>
         </div>
     </section>
 
@@ -275,10 +270,7 @@
     </section>
 
     <footer class="black-footer">
-        <div class="footer-main">
-            <i class="fab fa-github" style="margin-right: 8px;"></i>
-            <span>© 2026 Osman Omer Mustafa | Medical Journey Documentation</span>
-        </div>
+        <p>© 2026 Osman Omer Mustafa | Medical Journey Documentation</p>
     </footer>
 
     <script>
@@ -297,5 +289,5 @@
         });
     </script>
 </body>
-                </html>
+                    </html>
                     
