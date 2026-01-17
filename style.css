@@ -1,0 +1,54 @@
+/* Osman Portfolio - General Styles */
+:root {
+    --bg-page: #f8fafc;
+    --bg-unit: #ffffff;
+    --primary-blue: #0056b3;
+    --verify-blue: #1877F2;
+    --text-dark: #1e293b;
+    --text-grey: #64748b;
+    --border: #e2e8f0;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-page);
+    color: var(--text-dark);
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    line-height: 1.6;
+}
+
+.unit {
+    background: var(--bg-unit);
+    padding: 30px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+    border: 1px solid var(--border);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+header.header-unit {
+    border-left: 6px solid var(--primary-blue);
+    display: flex; justify-content: space-between; align-items: center; gap: 20px;
+}
+
+.logo-container { width: 100px; height: 100px; display: flex; flex-shrink: 0; align-items: center; justify-content: center; }
+.uni-logo { max-width: 100%; max-height: 100%; object-fit: contain; }
+
+/* Mobile Responsive */
+@media (max-width: 600px) {
+    header.header-unit { flex-direction: column; text-align: center; }
+    .logo-container { margin: 15px auto 0 auto; order: 2; }
+}
+
+/* Slider & Projects */
+.slides-wrapper { position: relative; overflow: hidden; margin-bottom: 30px; }
+.slides-container { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; gap: 0; scroll-behavior: smooth; }
+.project-card { min-width: 100%; scroll-snap-align: start; padding: 25px; border: 1px solid var(--border); box-sizing: border-box; border-radius: 10px; }
+
+/* Social Links Grid */
+.links-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; }
+.l-card { padding: 12px; text-align: center; border: 1px solid var(--border); border-radius: 8px; text-decoration: none; color: var(--text-dark); font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px; }
+
+.black-footer { background: #1b1f23; color: white; padding: 30px; border-radius: 12px; text-align: center; font-size: 0.85rem; }
