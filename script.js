@@ -1,26 +1,28 @@
-// Slider Logic for Osman's Portfolio
+// Osman Portfolio - Slider Logic v2.0
 document.addEventListener('DOMContentLoaded', () => {
     const slider = document.getElementById('slider');
     const dots = document.querySelectorAll('.dot');
 
-    if (slider) {
+    if (slider && dots.length > 0) {
+        // Function to update dots based on scroll position
         const updateDots = () => {
             const index = Math.round(slider.scrollLeft / slider.offsetWidth);
-            dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+            });
         };
 
+        // Sync dots when user scrolls or swipes
         slider.addEventListener('scroll', updateDots);
 
+        // Allow clicking dots to navigate
         dots.forEach((dot, i) => {
             dot.addEventListener('click', () => {
-                slider.scrollTo({ left: i * slider.offsetWidth, behavior: 'smooth' });
+                slider.scrollTo({
+                    left: i * slider.offsetWidth,
+                    behavior: 'smooth'
+                });
             });
-        });
-
-        // Keyboard Support (Arrow Keys)
-        window.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowRight') slider.scrollBy({ left: slider.offsetWidth, behavior: 'smooth' });
-            if (e.key === 'ArrowLeft') slider.scrollBy({ left: -slider.offsetWidth, behavior: 'smooth' });
         });
     }
 });
