@@ -38,6 +38,7 @@
             --bg-page: #f8fafc;
             --bg-unit: #ffffff;
             --primary-blue: #0056b3;
+            --accent-blue: #3b82f6;
             --text-dark: #1e293b;
             --text-grey: #64748b;
             --border: #e2e8f0;
@@ -98,15 +99,22 @@
             margin-right: 6px; display: inline-block; margin-top: 4px; 
         }
 
-        /* Certificate Accent Style Restored */
+        /* Certificate Accent Style (Requested 🧿 style inspired) */
         .cert-entry { 
             margin-bottom: 22px; 
-            padding-left: 15px;
-            border-left: 3px solid var(--primary-blue);
+            padding-left: 20px;
+            position: relative;
+        }
+        .cert-entry::before {
+            content: "";
+            position: absolute;
+            left: 0; top: 5px;
+            width: 5px; height: 20px;
+            background-color: var(--accent-blue);
+            border-radius: 10px;
         }
         .cert-header { display: flex; align-items: center; gap: 10px; text-decoration: none; color: inherit; }
-        .cert-header:hover .cert-name { color: var(--primary-blue); }
-        .cert-name { font-weight: 700; font-size: 1rem; text-decoration: underline; text-underline-offset: 3px; transition: 0.2s; }
+        .cert-name { font-weight: 700; font-size: 1rem; text-decoration: underline; text-underline-offset: 3px; }
         .cert-org { font-size: 0.85rem; color: var(--primary-blue); font-weight: 600; margin: 4px 0 8px 0; }
 
         .p-link {
@@ -130,10 +138,6 @@
             background: #1b1f23; color: #ffffff; padding: 30px;
             border-radius: 12px; text-align: center; font-size: 0.85rem;
             display: flex; flex-direction: column; align-items: center; gap: 10px; margin-top: 10px;
-        }
-        @media (max-width: 600px) {
-            header.header-unit { flex-direction: column; text-align: center; border-left: none; border-top: 6px solid var(--primary-blue); }
-            .logo-container { margin-top: 10px; }
         }
     </style>
 </head>
@@ -200,7 +204,7 @@
         <article class="project-card" style="min-width: auto;">
             <span class="p-date">Jan 17, 2026</span>
             <div class="p-title">Heart Disease: Statistical Inference (Cholesterol)</div>
-            <p class="p-desc">Statistical analysis of cholesterol differences by sex using <strong>Welch t-test</strong>. Includes normality checks and effect size calculation via <strong>Cohen's d</strong>.</p>
+            <p class="p-desc">Statistical analysis of cholesterol differences by sex using <strong>Welch t-test</strong>. Includes normality checks with <strong>QQ-plots</strong> and effect size calculation via <strong>Cohen's d</strong>.</p>
             <div class="p-tools">
                 <span class="tag">R Markdown</span> <span class="tag">Welch t-test</span> <span class="tag">p < 0.05</span> <span class="tag">Cohen’s d</span>
             </div>
@@ -244,6 +248,17 @@
                 <span class="tag">Biostatistics</span> <span class="tag">Hypothesis testing</span> <span class="tag">Regression</span>
             </div>
         </div>
+
+        <div class="cert-entry">
+            <a href="https://www.coursera.org/account/accomplishments/verify/MIEAMAK2YABW" target="_blank" class="cert-header">
+                <i class="fas fa-certificate"></i>
+                <span class="cert-name">Understanding Research Methods</span>
+            </a>
+            <div class="cert-org">University of London | Coursera</div>
+            <div class="cert-tags">
+                <span class="tag">Medical Research</span>
+            </div>
+        </div>
     </section>
 
     <section class="unit">
@@ -282,5 +297,5 @@
         });
     </script>
 </body>
-    </html>
+                </html>
                     
