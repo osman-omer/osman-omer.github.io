@@ -77,15 +77,32 @@ body {
     margin-bottom: 20px;
     border-bottom: 1px solid var(--border);
     padding-bottom: 8px;
+    margin-top: 40px;
 }
 
-.unit-title {
+.section-title:first-of-type {
+    margin-top: 20px;
+}
+
+.unit-subtitle {
     font-size: 1.1rem;
-    font-weight: 700;
-    margin-bottom: 20px;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin: 35px 0 20px 0;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
+}
+
+.unit-subtitle i {
+    color: var(--primary-blue);
+    font-size: 0.95rem;
+    width: 20px;
+    text-align: center;
+}
+
+.unit-subtitle:first-of-type {
+    margin-top: 10px;
 }
 
 .section-divider {
@@ -143,6 +160,8 @@ body {
 
 .tag {
     font-size: 0.7rem;
+    background: #f1f5f9;
+    color: var(--text-grey);
     padding: 4px 12px;
     border-radius: 6px;
     font-weight: 600;
@@ -152,41 +171,6 @@ body {
     border: 1px solid var(--border);
     cursor: default;
     user-select: none;
-}
-
-.tag-r {
-    background: #fee;
-    color: #c53030;
-}
-
-.tag-tidy {
-    background: #e6f7ff;
-    color: #0366d6;
-}
-
-.tag-viz {
-    background: #f0fff4;
-    color: #2f855a;
-}
-
-.tag-stat {
-    background: #fef3c7;
-    color: #92400e;
-}
-
-.tag-method {
-    background: #f5f3ff;
-    color: #5b21b6;
-}
-
-.tag-tool {
-    background: #f0f9ff;
-    color: #0c4a6e;
-}
-
-.tag-edu {
-    background: #fdf2f8;
-    color: #9d174d;
 }
 
 .p-link {
@@ -205,6 +189,55 @@ body {
 .p-link:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 86, 179, 0.3);
+}
+
+.coming-soon-card {
+    background: rgba(248, 250, 252, 0.4);
+    border: 2px dashed #cbd5e1;
+    text-align: center;
+    padding: 40px 30px;
+    min-width: auto;
+    margin-top: 10px;
+}
+
+.coming-soon-content {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.coming-soon-icon {
+    font-size: 2.5rem;
+    color: #94a3b8;
+    margin-bottom: 15px;
+    opacity: 0.7;
+}
+
+.coming-soon-title {
+    font-size: 1.3rem;
+    color: #64748b;
+    margin: 10px 0;
+    font-weight: 600;
+}
+
+.coming-soon-text {
+    color: #64748b;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 0;
+    opacity: 0.8;
+}
+
+@media (prefers-color-scheme: dark) {
+    .coming-soon-card {
+        background: rgba(30, 41, 59, 0.3);
+        border-color: #475569;
+    }
+    
+    .coming-soon-icon,
+    .coming-soon-title,
+    .coming-soon-text {
+        color: #94a3b8;
+    }
 }
 
 .cert-entry {
@@ -275,12 +308,16 @@ body {
 }
 
 .black-footer {
-    background: #1b1f23;
-    color: white;
-    padding: 30px;
+    background: var(--bg-unit);
+    color: var(--text-dark);
+    padding: 25px 30px;
     border-radius: 12px;
     text-align: center;
     font-size: 0.85rem;
+    margin-top: 10px;
+    border-top: 3px solid var(--primary-blue);
+    border: 1px solid var(--border);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
 }
 
 .logo-container {
@@ -334,4 +371,8 @@ body {
     .links-grid {
         grid-template-columns: repeat(2, 1fr);
     }
-}
+    
+    .section-title {
+        margin-top: 30px;
+    }
+    }
