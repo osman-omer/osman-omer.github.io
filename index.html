@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Osman Omer Mustafa | Portfolio</title>
     <meta name="description" content="Osman Omer Mustafa - Medical Student & Researcher at Assiut University. Specialized in Clinical Research and Medical Data Analysis using R.">
     <meta name="keywords" content="Osman Omer Mustafa, Medical Research, Assiut University, Data Analysis, R Programming, Clinical Research Egypt">
     
-    <title>Osman Omer Mustafa | Portfolio</title>
     <link rel="canonical" href="https://osman-omer.github.io/" />
     
     <script type="application/ld+json">
@@ -33,107 +33,7 @@
     <link rel="icon" type="image/jpeg" href="favicon.jpg?v=5.0">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
-    <style>
-        :root {
-            --bg-page: #f8fafc;
-            --bg-unit: #ffffff;
-            --primary-blue: #0056b3;
-            --text-dark: #1e293b;
-            --text-grey: #64748b;
-            --border: #e2e8f0;
-        }
-        html { scroll-behavior: smooth; }
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-page);
-            color: var(--text-dark);
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 40px 20px;
-            line-height: 1.6;
-        }
-        .unit {
-            background: var(--bg-unit);
-            padding: 30px;
-            border-radius: 12px;
-            margin-bottom: 25px;
-            border: 1px solid var(--border);
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-        }
-        header.header-unit {
-            border-left: 6px solid var(--primary-blue);
-            display: flex; justify-content: space-between; align-items: center;
-            gap: 20px;
-        }
-        .header-text h1 { margin: 0; font-size: 2.1rem; font-weight: 700; color: #000; }
-        .role { font-size: 1.1rem; color: var(--primary-blue); font-weight: 600; margin: 4px 0; }
-        .uni-details { font-size: 0.9rem; color: var(--text-grey); font-weight: 500; }
-        .logo-container { width: 100px; height: 100px; display: flex; flex-shrink: 0; align-items: center; justify-content: center; }
-        .uni-logo { max-width: 100%; max-height: 100%; object-fit: contain; }
-        
-        h2 {
-            font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1.5px;
-            color: var(--text-grey); margin-bottom: 20px; border-bottom: 1px solid var(--border); padding-bottom: 8px;
-        }
-
-        .log-section-title { font-size: 1.1rem; font-weight: 700; margin: 10px 0 20px 0; }
-        
-        .slides-wrapper { position: relative; overflow: hidden; }
-        .slides-container {
-            display: flex; overflow-x: auto; scroll-snap-type: x mandatory;
-            scrollbar-width: none; gap: 0; scroll-behavior: smooth;
-        }
-        .slides-container::-webkit-scrollbar { display: none; }
-        .project-card {
-            min-width: 100%; scroll-snap-align: start; background: #fff;
-            padding: 25px; border-radius: 10px; border: 1px solid var(--border); box-sizing: border-box;
-        }
-        .p-date { font-size: 0.75rem; font-weight: 700; color: #00a8ff; text-transform: uppercase; }
-        .p-title { font-size: 1.25rem; font-weight: 700; margin: 10px 0; }
-        .p-desc { font-size: 0.95rem; color: #475569; margin-bottom: 15px; }
-        
-        .tag { 
-            font-size: 0.7rem; background: #f1f5f9; color: #475569; 
-            padding: 4px 10px; border-radius: 6px; font-weight: 600; 
-            margin-right: 6px; display: inline-block; margin-top: 4px; 
-        }
-
-        .cert-entry { margin-bottom: 22px; }
-        .cert-header { display: flex; align-items: center; gap: 10px; text-decoration: none; color: inherit; transition: 0.2s; }
-        .cert-header:hover { color: var(--primary-blue); }
-        .cert-header i { color: var(--primary-blue); font-size: 0.9rem; opacity: 0.8; }
-        .cert-name { font-weight: 700; font-size: 1rem; text-decoration: underline; text-underline-offset: 3px; }
-        .cert-org { font-size: 0.85rem; color: var(--primary-blue); font-weight: 600; margin: 4px 0 8px 24px; }
-        .cert-tags { margin-left: 24px; }
-
-        .p-link {
-            display: inline-block; margin-top: 10px; padding: 8px 18px;
-            background: var(--primary-blue); color: white; text-decoration: none;
-            border-radius: 6px; font-size: 0.85rem; font-weight: 600;
-        }
-        .dots { display: flex; justify-content: center; gap: 8px; margin-top: 15px; }
-        .dot { width: 8px; height: 8px; border-radius: 50%; background: #cbd5e1; transition: 0.3s; cursor: pointer; }
-        .dot.active { background: var(--primary-blue); width: 18px; border-radius: 4px; }
-
-        .links-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; }
-        .l-card { 
-            padding: 12px; text-align: center; background: #fff; border: 1px solid var(--border); 
-            border-radius: 8px; text-decoration: none; color: var(--text-dark); font-size: 0.85rem; font-weight: 600;
-            transition: all 0.2s ease; display: flex; align-items: center; justify-content: center; gap: 8px;
-        }
-        .l-card:hover { border-color: var(--primary-blue); color: var(--primary-blue); background: #f0f7ff; }
-        
-        .black-footer {
-            background: #1b1f23; color: #ffffff; padding: 30px;
-            border-radius: 12px; text-align: center; font-size: 0.85rem;
-            display: flex; flex-direction: column; align-items: center; gap: 10px; margin-top: 10px;
-        }
-        @media (max-width: 600px) {
-            header.header-unit { flex-direction: column; text-align: center; border-left: none; border-top: 6px solid var(--primary-blue); }
-            .logo-container { margin-top: 10px; }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -150,83 +50,134 @@
 
     <section class="unit">
         <h2>About Me</h2>
-        <p style="margin:0;">
+        <p>
             Fourth-year Medical Student at Assiut University. Building a foundation in <strong>Clinical Research</strong> with a focus on <strong>Medical Data Analysis</strong>. Actively learning <strong>R programming</strong> to contribute to evidence-based medicine.
         </p>
     </section>
 
     <section class="unit">
+        <h2>Future Goals</h2>
+        <p>
+            My goal is to gradually build skills in research methodology and 
+            <strong>data analysis</strong>, and to contribute to 
+            <strong>systematic reviews</strong>, <strong>meta-analyses</strong>, 
+            and other research projects in the future.
+        </p>
+    </section>
+
+    <section class="unit">
         <h2>Learning Log</h2>
-        <div class="log-section-title">📊 Exploratory Data Analysis (EDA)</div>
+        
+        <div class="unit-subtitle">
+            <i class="fas fa-chart-bar"></i>
+            <span>Exploratory Data Analysis (EDA)</span>
+        </div>
+        
         <div class="slides-wrapper">
             <div class="slides-container" id="slider">
                 <article class="project-card">
-                    <span class="p-date">Jan 4, 2026</span>
-                    <div class="p-title">Clinical Data Exploration</div>
-                    <p class="p-desc">Initial exploratory project on medical records utilizing public datasets to understand data structure.</p>
-                    <div class="p-tools"><span class="tag">R</span> <span class="tag">Tidyverse</span> <span class="tag">Box plots</span></div>
+                    <span class="project-date">JAN 4, 2026</span>
+                    <h3 class="project-title">Clinical Data Exploration</h3>
+                    <p>Initial exploratory project on medical records utilizing public datasets.</p>
+                    <div><span class="tag">R</span> <span class="tag">Tidyverse</span></div>
                     <a href="https://github.com/osman-omer/clinical-data-analysis-r" target="_blank" class="p-link">View on GitHub →</a>
                 </article>
+
                 <article class="project-card">
-                    <span class="p-date">Jan 6, 2026</span>
-                    <div class="p-title">Heart Disease Descriptive Study</div>
-                    <p class="p-desc">Descriptive analysis focusing on visual comparisons through histograms to evaluate data distribution.</p>
-                    <div class="p-tools"><span class="tag">R</span> <span class="tag">Tidyverse</span> <span class="tag">Histograms</span></div>
+                    <span class="project-date">JAN 6, 2026</span>
+                    <h3 class="project-title">Heart Disease Descriptive Study</h3>
+                    <p>Descriptive analysis focusing on visual comparisons through histograms.</p>
+                    <div><span class="tag">R</span> <span class="tag">Histograms</span> <span class="tag">Tidyverse</span></div>
                     <a href="https://github.com/osman-omer/project-2-heart-disease-eda" target="_blank" class="p-link">View on GitHub →</a>
                 </article>
+
                 <article class="project-card">
-                    <span class="p-date">Jan 9, 2026</span>
-                    <div class="p-title">Heart Failure Clinical Analysis</div>
-                    <p class="p-desc">Applying EDA skills to explore clinical features and correlations within heart failure patient data.</p>
-                    <div class="p-tools"><span class="tag">R</span> <span class="tag">Tidyverse</span> <span class="tag">Box plots</span> <span class="tag">Histograms</span></div>
+                    <span class="project-date">JAN 9, 2026</span>
+                    <h3 class="project-title">Heart Failure Clinical Analysis</h3>
+                    <p>Exploring clinical features and correlations within heart failure patient data.</p>
+                    <div><span class="tag">R</span> <span class="tag">Box plots</span> <span class="tag">Tidyverse</span> <span class="tag">Histogram</span></div>
                     <a href="https://github.com/osman-omer/heart-failure-eda-learning" target="_blank" class="p-link">View on GitHub →</a>
                 </article>
+
                 <article class="project-card">
-                    <span class="p-date">Jan 11, 2026</span>
-                    <div class="p-title">Air Quality Analysis (JHU Case Study)</div>
-                    <p class="p-desc">Replicating a Johns Hopkins University case study to analyze air pollutants using Tidyverse and central tendency measures.</p>
-                    <div class="p-tools"><span class="tag">R</span> <span class="tag">Tidyverse</span> <span class="tag">Histograms</span> <span class="tag">JHU-Curriculum</span></div>
+                    <span class="project-date">JAN 11, 2026</span>
+                    <h3 class="project-title">Air Quality Analysis (JHU Case Study)</h3>
+                    <p>Replicating a Johns Hopkins University case study to analyze air pollutants.</p>
+                    <div><span class="tag">R</span> <span class="tag">JHU-Curriculum</span> <span class="tag">Case Study</span></div>
                     <a href="https://github.com/osman-omer/air-quality-eda-r" target="_blank" class="p-link">View on GitHub →</a>
                 </article>
             </div>
-            <div class="dots"><div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+            <div class="dots-container">
+                <div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+            </div>
+        </div>
+
+        <hr class="section-divider">
+
+        <div class="unit-subtitle">
+            <i class="fas fa-search"></i>
+            <span>Statistical Inference</span>
+        </div>
+        
+        <article class="project-card standalone">
+            <span class="project-date">JAN 17, 2026</span>
+            <h3 class="project-title">Heart Disease: Statistical Inference</h3>
+            <p>Comparative analysis of cholesterol levels using <strong>Welch t-test</strong> and normality assessment via <strong>QQ-plots</strong>.</p>
+            <div><span class="tag">Welch t-test</span> <span class="tag">p < 0.05</span> <span class="tag">QQ-plots</span> <span class="tag">Inferential</span></div>
+            <a href="https://github.com/osman-omer/inferential-statistics-heart" target="_blank" class="p-link">View on GitHub →</a>
+        </article>
+
+        <hr class="section-divider">
+
+        <div class="unit-subtitle">
+            <i class="fas fa-book-open"></i>
+            <span>Systematic Review & Meta-analysis</span>
+        </div>
+        
+        <div class="project-card coming-soon-card">
+            <div class="coming-soon-content">
+                <i class="fas fa-hourglass-half coming-soon-icon"></i>
+                <h3 class="coming-soon-title">Coming Soon</h3>
+            </div>
         </div>
     </section>
 
     <section class="unit">
-        <h2>Relevant Training & Certificates</h2>
-        <div class="log-section-title">🎓 Academic Credentials</div>
+        <h2>Training & Certificates</h2>
         
         <div class="cert-entry">
-            <a href="https://www.coursera.org/account/accomplishments/professional-cert/TG7U3R90WE4H" target="_blank" class="cert-header">
-                <i class="fas fa-certificate"></i>
-                <span class="cert-name">Google Data Analytics Professional Certificate</span>
-            </a>
-            <div class="cert-org">Google | Coursera</div>
-            <div class="cert-tags">
-                <span class="tag">Data Cleaning</span> <span class="tag">SQL</span> <span class="tag">R</span> <span class="tag">Tableau</span> <span class="tag">Spreadsheet</span>
+            <i class="fas fa-certificate cert-icon"></i>
+            <div>
+                <a href="https://www.coursera.org/account/accomplishments/professional-cert/TG7U3R90WE4H" target="_blank" class="cert-header">Google Data Analytics</a>
+                <div class="cert-org">Google | Coursera</div>
+                <span class="tag">SQL</span> <span class="tag">Tableau</span> <span class="tag">Data Cleaning</span>
             </div>
         </div>
 
         <div class="cert-entry">
-            <a href="https://www.coursera.org/account/accomplishments/specialization/KVHT1NUWZTKS" target="_blank" class="cert-header">
-                <i class="fas fa-certificate"></i>
-                <span class="cert-name">Biostatistics in Public Health</span>
-            </a>
-            <div class="cert-org">Johns Hopkins University | Coursera</div>
-            <div class="cert-tags">
-                <span class="tag">Biostatistics</span> <span class="tag">Hypothesis testing</span> <span class="tag">Regression</span>
+            <i class="fas fa-certificate cert-icon"></i>
+            <div>
+                <a href="https://www.coursera.org/account/accomplishments/specialization/KVHT1NUWZTKS" target="_blank" class="cert-header">Biostatistics in Public Health</a>
+                <div class="cert-org">Johns Hopkins University | Coursera</div>
+                <span class="tag">Hypothesis testing</span> <span class="tag">Regression</span> <span class="tag">P-values</span>
             </div>
         </div>
 
         <div class="cert-entry">
-            <a href="https://www.coursera.org/account/accomplishments/verify/MIEAMAK2YABW" target="_blank" class="cert-header">
-                <i class="fas fa-certificate"></i>
-                <span class="cert-name">Understanding Research Methods</span>
-            </a>
-            <div class="cert-org">University of London | Coursera</div>
-            <div class="cert-tags">
-                <span class="tag">Medical Research</span>
+            <i class="fas fa-certificate cert-icon"></i>
+            <div>
+                <a href="https://www.coursera.org/account/accomplishments/verify/MIEAMAK2YABW" target="_blank" class="cert-header">Understanding Research Methods</a>
+                <div class="cert-org">University of London | Coursera</div>
+                <span class="tag">Medical Research</span> <span class="tag">Critical Appraisal</span>
+            </div>
+        </div>
+
+        <div class="cert-entry">
+            <i class="fas fa-certificate cert-icon"></i>
+            <div>
+                <a href="https://www.coursera.org/account/accomplishments/verify/Q2GMU8EFUHV8" target="_blank" class="cert-header">R Programming</a>
+                <div class="cert-org">Johns Hopkins University | Coursera</div>
+                <span class="tag">Functions</span> <span class="tag">R Base</span> <span class="tag">Simulation</span>
             </div>
         </div>
     </section>
@@ -234,36 +185,34 @@
     <section class="unit">
         <h2>Academic Profiles</h2>
         <div class="links-grid">
-            <a href="https://github.com/osman-omer" target="_blank" class="l-card"><i class="fab fa-github"></i> GitHub</a>
-            <a href="https://www.linkedin.com/in/osmanomer10/" target="_blank" class="l-card"><i class="fab fa-linkedin"></i> LinkedIn</a>
-            <a href="https://orcid.org/0009-0003-4138-029X" target="_blank" class="l-card"><i class="fab fa-orcid"></i> ORCID</a>
-            <a href="https://scholar.google.com/citations?user=1DifMQUAAAAJ" target="_blank" class="l-card"><i class="fas fa-graduation-cap"></i> Scholar</a>
-            <a href="https://osf.io/7nzhk/" target="_blank" class="l-card"><i class="fab fa-hubspot"></i> OSF</a>
-            <a href="https://www.researchgate.net/profile/Osman-Omer-Mustafa" target="_blank" class="l-card"><i class="fab fa-researchgate"></i> ResearchGate</a>
-            <a href="mailto:osman.omer249@med.aun.edu.eg" class="l-card"><i class="fas fa-envelope"></i> Email</a>
+            <a href="https://github.com/osman-omer" target="_blank" class="l-card">
+                <i class="fab fa-github"></i> GitHub
+            </a>
+            <a href="https://www.linkedin.com/in/osmanomer10/" target="_blank" class="l-card">
+                <i class="fab fa-linkedin"></i> LinkedIn
+            </a>
+            <a href="https://orcid.org/0009-0003-4138-029X" target="_blank" class="l-card">
+                <i class="fab fa-orcid"></i> ORCID
+            </a>
+            <a href="https://scholar.google.com/citations?user=1DifMQUAAAAJ" target="_blank" class="l-card">
+                <i class="fas fa-graduation-cap"></i> Scholar
+            </a>
+            <a href="https://osf.io/7nzhk/" target="_blank" class="l-card">
+                <i class="fas fa-archive"></i> OSF
+            </a>
+            <a href="https://www.researchgate.net/profile/Osman-Omer-Mustafa" target="_blank" class="l-card">
+                <i class="fab fa-researchgate"></i> ResearchGate
+            </a>
+            <a href="mailto:osman.omer249@med.aun.edu.eg" class="l-card">
+                <i class="fas fa-envelope"></i> Email
+            </a>
         </div>
     </section>
 
     <footer class="black-footer">
-        <div class="footer-main">
-            <i class="fab fa-github" style="margin-right: 8px;"></i>
-            <span>© 2026 Osman Omer Mustafa | Medical Journey Documentation</span>
-        </div>
+        <p>© <span id="currentYear">2026</span> Osman Omer Mustafa | Medical Journey Documentation</p>
     </footer>
 
-    <script>
-        const slider = document.getElementById('slider');
-        const dots = document.querySelectorAll('.dot');
-        const updateDots = () => {
-            const index = Math.round(slider.scrollLeft / (slider.offsetWidth || 1));
-            dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
-        };
-        slider.addEventListener('scroll', updateDots);
-        dots.forEach((dot, i) => {
-            dot.addEventListener('click', () => {
-                slider.scrollTo({ left: i * slider.offsetWidth, behavior: 'smooth' });
-            });
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
-        </html>
+    </html>
