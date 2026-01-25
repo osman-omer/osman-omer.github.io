@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // السلايدر الأول (EDA)
     const slider = document.getElementById('slider');
-    const dots = document.querySelectorAll('.dot');
-    const currentYearEl = document.getElementById('currentYear');
+    const dots = document.querySelectorAll('.dots-container .dot');
     
     if (slider && dots.length > 0) {
         const updateDots = () => {
@@ -29,10 +29,43 @@ document.addEventListener('DOMContentLoaded', () => {
         updateDots();
     }
     
+    // السلايدر الثاني (Statistical Inference)
+    const inferenceSlider = document.getElementById('inference-slider');
+    const inferenceDots = document.querySelectorAll('#inference-dots .dot');
+    
+    if (inferenceSlider && inferenceDots.length > 0) {
+        const updateInferenceDots = () => {
+            const index = Math.round(inferenceSlider.scrollLeft / inferenceSlider.offsetWidth);
+            inferenceDots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+            });
+        };
+        
+        let inferenceScrollTimer;
+        inferenceSlider.addEventListener('scroll', () => {
+            clearTimeout(inferenceScrollTimer);
+            inferenceScrollTimer = setTimeout(updateInferenceDots, 100);
+        });
+        
+        inferenceDots.forEach((dot, i) => {
+            dot.addEventListener('click', () => {
+                inferenceSlider.scrollTo({
+                    left: i * inferenceSlider.offsetWidth,
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        updateInferenceDots();
+    }
+    
+    // تحديث السنة الحالية
+    const currentYearEl = document.getElementById('currentYear');
     if (currentYearEl) {
         currentYearEl.textContent = new Date().getFullYear();
     }
     
+    // تحميل متأخر للصور
     const lazyImages = document.querySelectorAll('img[loading="lazy"]');
     if ('loading' in HTMLImageElement.prototype) {
         lazyImages.forEach(img => {
@@ -40,6 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
+    // نظام الوضع المظلم
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
     
     const updateTheme = () => {
@@ -54,11 +88,12 @@ document.addEventListener('DOMContentLoaded', () => {
     prefersDark.addEventListener('change', updateTheme);
     updateTheme();
     
+    // تأثيرات hover للمشاريع
     const projectCards = document.querySelectorAll('.project-card:not(.coming-soon-card)');
     projectCards.forEach(card => {
         card.addEventListener('mouseenter', () => {
             card.style.transform = 'translateY(-5px)';
-            card.style.boxShadow = '0 8px 25px rgba(0, 86, 179, 0.15)';
+            card.style.boxShadow = '0 10px 25px rgba(0, 86, 179, 0.15)';
         });
         
         card.addEventListener('mouseleave', () => {
@@ -66,4 +101,25 @@ document.addEventListener('DOMContentLoaded', () => {
             card.style.boxShadow = 'none';
         });
     });
+    
+    // تأثيرات hover للـ Coming Soon
+    const comingSoonCard = document.querySelector('.coming-soon-card');
+    if (comingSoonCard) {
+        comingSoonCard.addEventListener('mouseenter', () => {
+            const icon = comingSoonCard.querySelector('.coming-soon-icon');
+            if (icon) {
+                icon.style.color = 'var(--primary-blue)';
+                icon.style.transform = 'scale(1.1)';
+            }
+        });
+        
+        comingSoonCard.addEventListener('mouseleave', () => {
+            const icon = comingSoonCard.querySelector('.coming-soon-icon');
+            if (icon) {
+                const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                icon.style.color = isDark ? '#64748b' : '#94a3b8';
+                icon.style.transform = 'scale(1)';
+            }
+        });
+    }
 });
