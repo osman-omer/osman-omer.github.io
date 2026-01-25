@@ -43,16 +43,34 @@ class PortfolioSlider {
         this.slider.addEventListener('touchstart', (e) => {
             this.touchStartX = e.touches[0].clientX;
             this.isDragging = false;
+            
+            const card = e.target.closest('.project-card');
+            if (card) {
+                card.style.pointerEvents = 'none';
+            }
         });
         
         this.slider.addEventListener('touchmove', (e) => {
             this.isDragging = true;
+            
+            if (this.isDragging) {
+                e.preventDefault();
+            }
         });
         
         this.slider.addEventListener('touchend', (e) => {
+            const card = e.target.closest('.project-card');
+            if (card) {
+                setTimeout(() => {
+                    card.style.pointerEvents = 'auto';
+                }, 100);
+            }
+            
             this.touchEndX = e.changedTouches[0].clientX;
             this.handleSwipe();
         });
+        
+        this.slider.style.touchAction = 'pan-y pinch-zoom';
     }
     
     handleSwipe() {
@@ -126,7 +144,7 @@ class PortfolioApp {
         this.setupKeyboardNavigation();
         this.setupCurrentYear();
         this.setupTheme();
-        this.setupHoverEffects();
+        this.setupTouchOptimization();
     }
     
     setupSliders() {
@@ -184,40 +202,12 @@ class PortfolioApp {
         updateTheme();
     }
     
-    setupHoverEffects() {
-        const projectCards = document.querySelectorAll('.project-card:not(.coming-soon-card)');
-        projectCards.forEach(card => {
-            card.addEventListener('mouseenter', () => {
-                card.style.transform = 'translateY(-5px)';
-                card.style.boxShadow = '0 10px 25px rgba(0, 86, 179, 0.15)';
-            });
-            
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = 'translateY(0)';
-                card.style.boxShadow = 'none';
-            });
+    setupTouchOptimization() {
+        const sliders = document.querySelectorAll('.slides-container');
+        sliders.forEach(slider => {
+            slider.addEventListener('touchstart', () => {}, { passive: true });
+            slider.addEventListener('touchmove', () => {}, { passive: false });
         });
-        
-        const comingSoonCard = document.querySelector('.coming-soon-card');
-        if (comingSoonCard) {
-            comingSoonCard.addEventListener('mouseenter', () => {
-                const icon = comingSoonCard.querySelector('.coming-soon-icon');
-                if (icon) {
-                    const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                    icon.style.color = isDark ? '#60a5fa' : 'var(--primary-blue)';
-                    icon.style.transform = 'scale(1.1)';
-                }
-            });
-            
-            comingSoonCard.addEventListener('mouseleave', () => {
-                const icon = comingSoonCard.querySelector('.coming-soon-icon');
-                if (icon) {
-                    const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                    icon.style.color = isDark ? '#64748b' : '#94a3b8';
-                    icon.style.transform = 'scale(1)';
-                }
-            });
-        }
     }
 }
 
