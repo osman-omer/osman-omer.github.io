@@ -6,6 +6,7 @@ class PortfolioSlider {
         this.touchStartX = 0;
         this.touchEndX = 0;
         this.isDragging = false;
+        this.startTime = 0;
         
         if (this.slider && this.dots.length > 0) {
             this.init();
@@ -43,22 +44,36 @@ class PortfolioSlider {
         this.slider.addEventListener('touchstart', (e) => {
             this.touchStartX = e.touches[0].clientX;
             this.isDragging = false;
+            this.startTime = Date.now();
+            
+            this.slider.style.scrollBehavior = 'auto';
             
             const card = e.target.closest('.project-card');
             if (card) {
                 card.style.pointerEvents = 'none';
+                card.style.transform = 'none';
             }
         });
         
         this.slider.addEventListener('touchmove', (e) => {
-            this.isDragging = true;
+            if (!this.touchStartX) return;
             
-            if (this.isDragging) {
+            this.isDragging = true;
+            const touchX = e.touches[0].clientX;
+            const diff = this.touchStartX - touchX;
+            
+            if (Math.abs(diff) > 10) {
                 e.preventDefault();
             }
         });
         
         this.slider.addEventListener('touchend', (e) => {
+            if (!this.isDragging) return;
+            
+            setTimeout(() => {
+                this.slider.style.scrollBehavior = 'smooth';
+            }, 50);
+            
             const card = e.target.closest('.project-card');
             if (card) {
                 setTimeout(() => {
@@ -68,9 +83,16 @@ class PortfolioSlider {
             
             this.touchEndX = e.changedTouches[0].clientX;
             this.handleSwipe();
+            this.isDragging = false;
+            this.touchStartX = 0;
         });
         
-        this.slider.style.touchAction = 'pan-y pinch-zoom';
+        this.slider.addEventListener('touchcancel', () => {
+            this.isDragging = false;
+            this.touchStartX = 0;
+        });
+        
+        this.slider.style.touchAction = 'pan-y';
     }
     
     handleSwipe() {
@@ -140,11 +162,38 @@ class PortfolioApp {
     }
     
     init() {
+        this.setupMobileOptimization();
         this.setupSliders();
         this.setupKeyboardNavigation();
         this.setupCurrentYear();
         this.setupTheme();
         this.setupTouchOptimization();
+    }
+    
+    setupMobileOptimization() {
+        const isTouchDevice = 'ontouchstart' in window || 
+                             navigator.maxTouchPoints > 0;
+        
+        if (isTouchDevice) {
+            document.documentElement.classList.add('touch-device');
+            
+            const style = document.createElement('style');
+            style.textContent = `
+                .touch-device .slides-container {
+                    scroll-behavior: auto !important;
+                }
+                
+                .touch-device .project-card {
+                    -webkit-transform: translate3d(0,0,0);
+                    transform: translate3d(0,0,0);
+                }
+                
+                .touch-device * {
+                    -webkit-tap-highlight-color: transparent;
+                }
+            `;
+            document.head.appendChild(style);
+        }
     }
     
     setupSliders() {
@@ -206,7 +255,6 @@ class PortfolioApp {
         const sliders = document.querySelectorAll('.slides-container');
         sliders.forEach(slider => {
             slider.addEventListener('touchstart', () => {}, { passive: true });
-            slider.addEventListener('touchmove', () => {}, { passive: false });
         });
     }
 }
