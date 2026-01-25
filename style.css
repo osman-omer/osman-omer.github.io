@@ -104,6 +104,8 @@ body {
     scroll-snap-type: x mandatory;
     scrollbar-width: none;
     gap: 0;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: auto;
 }
 
 .slides-container::-webkit-scrollbar {
@@ -118,6 +120,9 @@ body {
     border-radius: 10px;
     box-sizing: border-box;
     flex-shrink: 0;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
 }
 
 .project-date {
@@ -327,60 +332,8 @@ body {
     .unit {
         padding: 20px;
     }
-    
-    .slides-container {
-        -webkit-overflow-scrolling: touch;
-        scroll-behavior: auto;
-    }
-}
-
-@media (hover: hover) and (pointer: fine) {
-    .unit:hover {
-        border-top-color: var(--primary-blue);
-    }
-    
-    .project-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 25px rgba(0, 86, 179, 0.15);
-    }
-    
-    .project-card {
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    
-    .p-link:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(0, 86, 179, 0.3);
-    }
-    
-    .p-link {
-        transition: all 0.2s ease;
-    }
-    
-    .cert-header:hover {
-        color: var(--primary-blue);
-    }
-    
-    .cert-header {
-        transition: color 0.3s ease;
-    }
-    
-    .l-card:hover {
-        border-color: var(--primary-blue);
-        color: var(--primary-blue);
-        background: var(--bg-page);
-        transform: translateY(-2px);
-    }
-    
-    .l-card {
-        transition: all 0.3s ease;
-    }
-    
-    .dot {
-        transition: all 0.3s ease;
-    }
 }
 
 * {
     -webkit-tap-highlight-color: transparent;
-    }
+}
