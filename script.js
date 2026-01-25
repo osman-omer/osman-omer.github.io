@@ -134,8 +134,6 @@ class PortfolioApp {
         const inferenceSlider = new PortfolioSlider('inference-slider', 'inference-dots');
         
         this.sliders.push(edaSlider, inferenceSlider);
-        
-        document.querySelector('.dots-container').id = 'slider-dots';
     }
     
     setupKeyboardNavigation() {
