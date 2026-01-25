@@ -25,6 +25,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             });
         });
+        
+        updateDots();
     }
     
     if (currentYearEl) {
@@ -51,4 +53,17 @@ document.addEventListener('DOMContentLoaded', () => {
     
     prefersDark.addEventListener('change', updateTheme);
     updateTheme();
+    
+    const projectCards = document.querySelectorAll('.project-card:not(.coming-soon-card)');
+    projectCards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            card.style.transform = 'translateY(-5px)';
+            card.style.boxShadow = '0 8px 25px rgba(0, 86, 179, 0.15)';
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'translateY(0)';
+            card.style.boxShadow = 'none';
+        });
+    });
 });
