@@ -146,11 +146,16 @@ body {
     border: 1px solid var(--border);
     box-sizing: border-box;
     border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 86, 179, 0.1);
 }
 
 .project-card.standalone {
     min-width: auto;
-    margin-bottom: 20px;
 }
 
 .project-date {
@@ -201,33 +206,109 @@ body {
     box-shadow: 0 4px 12px rgba(0, 86, 179, 0.3);
 }
 
+/* تحسينات Coming Soon */
 .coming-soon-card {
     background: rgba(248, 250, 252, 0.4);
     border: 2px dashed #cbd5e1;
     text-align: center;
-    padding: 40px 30px;
+    padding: 50px 30px;
     min-width: auto;
     margin-top: 10px;
-    opacity: 0.5;
-    backdrop-filter: blur(2px);
+    border-radius: 12px;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.coming-soon-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.1), 
+        transparent
+    );
+    transition: left 0.7s ease;
+}
+
+.coming-soon-card:hover::before {
+    left: 100%;
+}
+
+.coming-soon-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary-blue);
+    box-shadow: 0 10px 25px rgba(0, 86, 179, 0.1);
 }
 
 .coming-soon-content {
     max-width: 400px;
     margin: 0 auto;
+    position: relative;
+    z-index: 1;
 }
 
 .coming-soon-icon {
-    font-size: 2.5rem;
+    font-size: 3rem;
     color: #94a3b8;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+}
+
+.coming-soon-card:hover .coming-soon-icon {
+    color: var(--primary-blue);
+    transform: scale(1.1);
 }
 
 .coming-soon-title {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     color: #64748b;
     margin: 10px 0;
-    font-weight: 600;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.coming-soon-subtitle {
+    font-size: 0.9rem;
+    color: #94a3b8;
+    margin-top: 10px;
+    font-style: italic;
+}
+
+/* تحسينات للوضع المظلم */
+@media (prefers-color-scheme: dark) {
+    .coming-soon-card {
+        background: rgba(30, 41, 59, 0.3);
+        border-color: #475569;
+        border-style: dashed;
+        backdrop-filter: blur(10px);
+    }
+    
+    .coming-soon-card:hover {
+        background: rgba(30, 41, 59, 0.5);
+        border-color: var(--primary-blue);
+        box-shadow: 0 10px 25px rgba(0, 86, 179, 0.2);
+    }
+    
+    .coming-soon-icon {
+        color: #64748b;
+    }
+    
+    .coming-soon-card:hover .coming-soon-icon {
+        color: #60a5fa;
+    }
+    
+    .coming-soon-title {
+        color: #cbd5e1;
+    }
+    
+    .coming-soon-subtitle {
+        color: #94a3b8;
+    }
 }
 
 .cert-entry {
@@ -366,7 +447,15 @@ body {
         margin-top: 30px;
     }
     
-    .project-card.standalone {
-        padding: 20px;
+    .coming-soon-card {
+        padding: 30px 20px;
+    }
+    
+    .coming-soon-icon {
+        font-size: 2.5rem;
+    }
+    
+    .coming-soon-title {
+        font-size: 1.3rem;
     }
     }
