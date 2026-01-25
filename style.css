@@ -6,7 +6,6 @@
     --text-grey: #64748b;
     --border: #e2e8f0;
     --transition-speed: 0.3s;
-    --is-touch-device: false;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -123,8 +122,6 @@ body {
     scrollbar-width: none;
     gap: 0;
     scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
-    overscroll-behavior-x: contain;
 }
 
 .slides-container::-webkit-scrollbar {
@@ -138,18 +135,6 @@ body {
     border: 1px solid var(--border);
     border-radius: 10px;
     box-sizing: border-box;
-}
-
-@media (hover: hover) and (pointer: fine) {
-    .project-card {
-        transition: transform var(--transition-speed) ease, 
-                   box-shadow var(--transition-speed) ease;
-    }
-    
-    .project-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 25px rgba(0, 86, 179, 0.15);
-    }
 }
 
 .project-date {
@@ -207,7 +192,6 @@ body {
     text-align: center;
     padding: 50px 30px;
     border-radius: 12px;
-    transition: all 0.4s ease;
     position: relative;
     overflow: hidden;
     backdrop-filter: blur(2px);
@@ -226,23 +210,6 @@ body {
 
 .coming-soon-card:hover::before {
     left: 100%;
-}
-
-@media (hover: hover) and (pointer: fine) {
-    .coming-soon-card:hover {
-        transform: translateY(-5px);
-        border-color: var(--primary-blue);
-        box-shadow: 0 10px 25px rgba(0, 86, 179, 0.1);
-    }
-    
-    .coming-soon-icon {
-        transition: all 0.3s ease;
-    }
-    
-    .coming-soon-card:hover .coming-soon-icon {
-        color: var(--primary-blue);
-        transform: scale(1.1);
-    }
 }
 
 .coming-soon-content {
@@ -309,16 +276,6 @@ body {
     align-items: flex-start;
 }
 
-@media (hover: hover) and (pointer: fine) {
-    .cert-entry {
-        transition: transform var(--transition-speed) ease;
-    }
-    
-    .cert-entry:hover {
-        transform: translateX(5px);
-    }
-}
-
 .cert-icon {
     color: var(--primary-blue);
     margin-right: 12px;
@@ -367,17 +324,11 @@ body {
     gap: 8px;
 }
 
-@media (hover: hover) and (pointer: fine) {
-    .l-card {
-        transition: all var(--transition-speed) ease;
-    }
-    
-    .l-card:hover {
-        border-color: var(--primary-blue);
-        color: var(--primary-blue);
-        background: var(--bg-page);
-        transform: translateY(-2px);
-    }
+.l-card:hover {
+    border-color: var(--primary-blue);
+    color: var(--primary-blue);
+    background: var(--bg-page);
+    transform: translateY(-2px);
 }
 
 .black-footer {
@@ -437,6 +388,49 @@ body {
     margin-left: 10px;
 }
 
+@media (hover: hover) and (pointer: fine) {
+    .project-card {
+        transition: transform var(--transition-speed) ease, 
+                   box-shadow var(--transition-speed) ease;
+    }
+    
+    .project-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 86, 179, 0.15);
+    }
+    
+    .coming-soon-card {
+        transition: all 0.4s ease;
+    }
+    
+    .coming-soon-card:hover {
+        transform: translateY(-5px);
+        border-color: var(--primary-blue);
+        box-shadow: 0 10px 25px rgba(0, 86, 179, 0.1);
+    }
+    
+    .coming-soon-icon {
+        transition: all 0.3s ease;
+    }
+    
+    .coming-soon-card:hover .coming-soon-icon {
+        color: var(--primary-blue);
+        transform: scale(1.1);
+    }
+    
+    .cert-entry {
+        transition: transform var(--transition-speed) ease;
+    }
+    
+    .cert-entry:hover {
+        transform: translateX(5px);
+    }
+    
+    .l-card {
+        transition: all var(--transition-speed) ease;
+    }
+}
+
 @media (max-width: 600px) {
     body {
         padding: 20px 15px;
@@ -486,29 +480,61 @@ body {
         min-width: 12px;
         min-height: 12px;
     }
+    
+    .slides-container {
+        scroll-behavior: auto;
+        -webkit-overflow-scrolling: touch;
+    }
 }
 
 @media (hover: none) and (pointer: coarse) {
     .project-card,
     .l-card,
     .cert-entry,
-    .coming-soon-card {
-        transition: none;
+    .coming-soon-card,
+    .unit,
+    .p-link,
+    .dot {
+        transition: none !important;
     }
     
     .project-card:hover,
     .l-card:hover,
     .cert-entry:hover,
     .coming-soon-card:hover {
-        transform: none;
-        box-shadow: none;
-        border-color: var(--border);
-        background: inherit;
-        color: inherit;
+        transform: none !important;
+        box-shadow: none !important;
+        border-color: var(--border) !important;
+        background: inherit !important;
+        color: inherit !important;
     }
     
     .coming-soon-card:hover .coming-soon-icon {
-        transform: none;
-        color: #94a3b8;
+        transform: none !important;
+        color: #94a3b8 !important;
+    }
+    
+    .p-link:hover {
+        transform: none !important;
+        box-shadow: none !important;
+    }
+    
+    .unit:hover {
+        border-top-color: transparent !important;
+    }
+    
+    * {
+        -webkit-tap-highlight-color: transparent;
+    }
+    
+    .slides-container {
+        -webkit-overflow-scrolling: touch;
+        overflow-scrolling: touch;
+    }
+}
+
+@media (prefers-color-scheme: dark) and (hover: none) and (pointer: coarse) {
+    .coming-soon-card:hover .coming-soon-icon {
+        color: #64748b !important;
     }
         }
