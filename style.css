@@ -105,7 +105,6 @@ body {
     scrollbar-width: none;
     gap: 0;
     -webkit-overflow-scrolling: touch;
-    scroll-behavior: auto;
 }
 
 .slides-container::-webkit-scrollbar {
@@ -120,9 +119,6 @@ body {
     border-radius: 10px;
     box-sizing: border-box;
     flex-shrink: 0;
-    -webkit-user-select: none;
-    user-select: none;
-    -webkit-touch-callout: none;
 }
 
 .project-date {
@@ -332,8 +328,4 @@ body {
     .unit {
         padding: 20px;
     }
-}
-
-* {
-    -webkit-tap-highlight-color: transparent;
 }
