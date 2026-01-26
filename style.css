@@ -5,6 +5,7 @@
     --text-dark: #1e293b;
     --text-grey: #64748b;
     --border: #e2e8f0;
+    --transition-speed: 0.3s;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -34,6 +35,8 @@ body {
     margin: 0 auto;
     padding: 40px 20px;
     line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .unit {
@@ -41,11 +44,19 @@ body {
     padding: 30px;
     border-radius: 12px;
     margin-bottom: 25px;
+    margin-top: 5px;
     border: 1px solid var(--border);
-    border-top: 3px solid var(--primary-blue);
+    border-top: 3px solid transparent;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06), 0 4px 16px rgba(0, 0, 0, 0.04);
+    transition: border-top-color var(--transition-speed) ease;
+}
+
+.unit:hover {
+    border-top-color: var(--primary-blue);
 }
 
 .header-unit {
+    border-left: 6px solid var(--primary-blue);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -56,6 +67,7 @@ body {
     margin: 0;
     font-size: 2.1rem;
     font-weight: 700;
+    line-height: 1.2;
 }
 
 .role {
@@ -87,6 +99,10 @@ body {
     text-align: center;
 }
 
+.unit-subtitle:first-of-type {
+    margin-top: 10px;
+}
+
 .section-divider {
     border: 0;
     border-top: 1px dashed var(--border);
@@ -95,6 +111,7 @@ body {
 
 .slides-wrapper {
     position: relative;
+    overflow: hidden;
     margin-bottom: 20px;
 }
 
@@ -104,6 +121,7 @@ body {
     scroll-snap-type: x mandatory;
     scrollbar-width: none;
     gap: 0;
+    scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
 }
 
@@ -118,7 +136,12 @@ body {
     border: 1px solid var(--border);
     border-radius: 10px;
     box-sizing: border-box;
-    flex-shrink: 0;
+    transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 86, 179, 0.1);
 }
 
 .project-date {
@@ -126,13 +149,16 @@ body {
     font-weight: 700;
     color: #00a8ff;
     text-transform: uppercase;
+    display: block;
     margin-bottom: 5px;
+    letter-spacing: 0.5px;
 }
 
 .project-title {
     font-size: 1.25rem;
     font-weight: 700;
     margin: 10px 0;
+    line-height: 1.3;
 }
 
 .tag {
@@ -146,6 +172,7 @@ body {
     margin-top: 6px;
     display: inline-block;
     border: 1px solid var(--border);
+    user-select: none;
 }
 
 .p-link {
@@ -158,6 +185,12 @@ body {
     border-radius: 6px;
     font-size: 0.85rem;
     font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.p-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 86, 179, 0.3);
 }
 
 .coming-soon-card {
@@ -166,17 +199,50 @@ body {
     text-align: center;
     padding: 50px 30px;
     border-radius: 12px;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(2px);
+}
+
+.coming-soon-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.7s ease;
+}
+
+.coming-soon-card:hover::before {
+    left: 100%;
+}
+
+.coming-soon-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary-blue);
+    box-shadow: 0 10px 25px rgba(0, 86, 179, 0.1);
 }
 
 .coming-soon-content {
     max-width: 400px;
     margin: 0 auto;
+    position: relative;
+    z-index: 1;
 }
 
 .coming-soon-icon {
     font-size: 3rem;
     color: #94a3b8;
     margin-bottom: 20px;
+    transition: all 0.3s ease;
+}
+
+.coming-soon-card:hover .coming-soon-icon {
+    color: var(--primary-blue);
+    transform: scale(1.1);
 }
 
 .coming-soon-title {
@@ -184,18 +250,55 @@ body {
     color: #64748b;
     margin: 10px 0;
     font-weight: 700;
+    letter-spacing: 0.5px;
 }
 
 .coming-soon-subtitle {
     font-size: 0.9rem;
     color: #94a3b8;
     margin-top: 10px;
+    font-style: italic;
+}
+
+@media (prefers-color-scheme: dark) {
+    .coming-soon-card {
+        background: rgba(30, 41, 59, 0.3);
+        border-color: #475569;
+        backdrop-filter: blur(10px);
+    }
+    
+    .coming-soon-card:hover {
+        background: rgba(30, 41, 59, 0.5);
+        border-color: var(--primary-blue);
+        box-shadow: 0 10px 25px rgba(0, 86, 179, 0.2);
+    }
+    
+    .coming-soon-icon {
+        color: #64748b;
+    }
+    
+    .coming-soon-card:hover .coming-soon-icon {
+        color: #60a5fa;
+    }
+    
+    .coming-soon-title {
+        color: #cbd5e1;
+    }
+    
+    .coming-soon-subtitle {
+        color: #94a3b8;
+    }
 }
 
 .cert-entry {
     margin-bottom: 22px;
     display: flex;
     align-items: flex-start;
+    transition: transform var(--transition-speed) ease;
+}
+
+.cert-entry:hover {
+    transform: translateX(5px);
 }
 
 .cert-icon {
@@ -210,7 +313,13 @@ body {
     color: inherit;
     text-decoration: underline;
     text-underline-offset: 3px;
+    transition: color var(--transition-speed) ease;
+    display: block;
     margin-bottom: 4px;
+}
+
+.cert-header:hover {
+    color: var(--primary-blue);
 }
 
 .cert-org {
@@ -238,6 +347,14 @@ body {
     align-items: center;
     justify-content: center;
     gap: 8px;
+    transition: all var(--transition-speed) ease;
+}
+
+.l-card:hover {
+    border-color: var(--primary-blue);
+    color: var(--primary-blue);
+    background: var(--bg-page);
+    transform: translateY(-2px);
 }
 
 .black-footer {
@@ -250,6 +367,7 @@ body {
     margin-top: 10px;
     border-top: 3px solid var(--primary-blue);
     border: 1px solid var(--border);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
 }
 
 .logo-container {
@@ -278,7 +396,9 @@ body {
     height: 8px;
     border-radius: 50%;
     background: #cbd5e1;
+    transition: all var(--transition-speed) ease;
     cursor: pointer;
+    flex-shrink: 0;
 }
 
 .dot.active {
@@ -302,6 +422,8 @@ body {
     .header-unit {
         flex-direction: column;
         text-align: center;
+        border-left: none;
+        border-top: 6px solid var(--primary-blue);
     }
     
     .logo-container {
@@ -328,4 +450,4 @@ body {
     .unit {
         padding: 20px;
     }
-}
+    }
