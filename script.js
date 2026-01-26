@@ -28,7 +28,7 @@ class PortfolioSlider {
                 this.updateDots();
                 this.updateSliderIndicator();
             }, 100);
-        });
+        }, { passive: true });
     }
     
     setupDotsNavigation() {
@@ -43,16 +43,22 @@ class PortfolioSlider {
         this.slider.addEventListener('touchstart', (e) => {
             this.touchStartX = e.touches[0].clientX;
             this.isDragging = false;
-        });
+        }, { passive: true });
         
         this.slider.addEventListener('touchmove', (e) => {
-            this.isDragging = true;
-        });
+            if (!this.isDragging) {
+                const touchX = e.touches[0].clientX;
+                const diff = Math.abs(touchX - this.touchStartX);
+                if (diff > 10) {
+                    this.isDragging = true;
+                }
+            }
+        }, { passive: true });
         
         this.slider.addEventListener('touchend', (e) => {
             this.touchEndX = e.changedTouches[0].clientX;
             this.handleSwipe();
-        });
+        }, { passive: true });
     }
     
     handleSwipe() {
@@ -68,6 +74,7 @@ class PortfolioSlider {
                 this.scrollToIndex(this.currentIndex - 1);
             }
         }
+        this.isDragging = false;
     }
     
     scrollToIndex(index) {
