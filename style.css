@@ -123,6 +123,7 @@ body {
     gap: 0;
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
+    touch-action: pan-y;
 }
 
 .slides-container::-webkit-scrollbar {
