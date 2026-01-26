@@ -3,6 +3,9 @@ class PortfolioSlider {
         this.slider = document.getElementById(sliderId);
         this.dots = document.querySelectorAll(`#${dotsContainerId} .dot`);
         this.currentIndex = 0;
+        this.touchStartX = 0;
+        this.touchEndX = 0;
+        this.isDragging = false;
         
         if (this.slider && this.dots.length > 0) {
             this.init();
@@ -12,7 +15,7 @@ class PortfolioSlider {
     init() {
         this.setupScrollListener();
         this.setupDotsNavigation();
-        this.setupMobileTouch();
+        this.setupTouchEvents();
         this.updateDots();
         this.updateSliderIndicator();
     }
@@ -36,41 +39,35 @@ class PortfolioSlider {
         });
     }
     
-    setupMobileTouch() {
-        let startX = 0;
-        let isDragging = false;
-        
+    setupTouchEvents() {
         this.slider.addEventListener('touchstart', (e) => {
-            startX = e.touches[0].clientX;
-            isDragging = true;
-            this.slider.style.scrollBehavior = 'auto';
+            this.touchStartX = e.touches[0].clientX;
+            this.isDragging = false;
         });
         
         this.slider.addEventListener('touchmove', (e) => {
-            if (!isDragging) return;
-            e.preventDefault();
+            this.isDragging = true;
         });
         
         this.slider.addEventListener('touchend', (e) => {
-            if (!isDragging) return;
-            
-            const endX = e.changedTouches[0].clientX;
-            const diff = startX - endX;
-            const threshold = 50;
-            
-            if (Math.abs(diff) > threshold) {
-                if (diff > 0 && this.currentIndex < this.dots.length - 1) {
-                    this.scrollToIndex(this.currentIndex + 1);
-                } else if (diff < 0 && this.currentIndex > 0) {
-                    this.scrollToIndex(this.currentIndex - 1);
-                }
-            }
-            
-            isDragging = false;
-            setTimeout(() => {
-                this.slider.style.scrollBehavior = 'smooth';
-            }, 100);
+            this.touchEndX = e.changedTouches[0].clientX;
+            this.handleSwipe();
         });
+    }
+    
+    handleSwipe() {
+        if (!this.isDragging) return;
+        
+        const swipeThreshold = 50;
+        const swipeDistance = this.touchStartX - this.touchEndX;
+        
+        if (Math.abs(swipeDistance) > swipeThreshold) {
+            if (swipeDistance > 0 && this.currentIndex < this.dots.length - 1) {
+                this.scrollToIndex(this.currentIndex + 1);
+            } else if (swipeDistance < 0 && this.currentIndex > 0) {
+                this.scrollToIndex(this.currentIndex - 1);
+            }
+        }
     }
     
     scrollToIndex(index) {
@@ -129,11 +126,13 @@ class PortfolioApp {
         this.setupKeyboardNavigation();
         this.setupCurrentYear();
         this.setupTheme();
+        this.setupHoverEffects();
     }
     
     setupSliders() {
         const edaSlider = new PortfolioSlider('slider', 'slider-dots');
         const inferenceSlider = new PortfolioSlider('inference-slider', 'inference-dots');
+        
         this.sliders.push(edaSlider, inferenceSlider);
     }
     
@@ -184,8 +183,51 @@ class PortfolioApp {
         prefersDark.addEventListener('change', updateTheme);
         updateTheme();
     }
+    
+    setupHoverEffects() {
+        const projectCards = document.querySelectorAll('.project-card:not(.coming-soon-card)');
+        projectCards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-5px)';
+                card.style.boxShadow = '0 10px 25px rgba(0, 86, 179, 0.15)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+                card.style.boxShadow = 'none';
+            });
+        });
+        
+        const comingSoonCard = document.querySelector('.coming-soon-card');
+        if (comingSoonCard) {
+            comingSoonCard.addEventListener('mouseenter', () => {
+                const icon = comingSoonCard.querySelector('.coming-soon-icon');
+                if (icon) {
+                    const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                    icon.style.color = isDark ? '#60a5fa' : 'var(--primary-blue)';
+                    icon.style.transform = 'scale(1.1)';
+                }
+            });
+            
+            comingSoonCard.addEventListener('mouseleave', () => {
+                const icon = comingSoonCard.querySelector('.coming-soon-icon');
+                if (icon) {
+                    const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                    icon.style.color = isDark ? '#64748b' : '#94a3b8';
+                    icon.style.transform = 'scale(1)';
+                }
+            });
+        }
+    }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
     new PortfolioApp();
+    
+    const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+    if ('loading' in HTMLImageElement.prototype) {
+        lazyImages.forEach(img => {
+            img.loading = 'lazy';
+        });
+    }
 });
