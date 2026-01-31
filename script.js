@@ -232,4 +232,9 @@ document.addEventListener('DOMContentLoaded', () => {
     new PortfolioApp();
     
     const lazyImages = document.querySelectorAll('img[loading="lazy"]');
-    if ('loading' in
+    if ('loading' in HTMLImageElement.prototype) {
+        lazyImages.forEach(img => {
+            img.loading = 'lazy';
+        });
+    }
+});
