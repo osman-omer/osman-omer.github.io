@@ -1,15 +1,19 @@
 class PortfolioSlider {
     constructor(sliderId, dotsContainerId) {
         this.slider = document.getElementById(sliderId);
-        this.dots = document.querySelectorAll(`#${dotsContainerId} .dot`);
+        this.dotsContainer = document.getElementById(dotsContainerId);
+        this.dots = this.dotsContainer ? this.dotsContainer.querySelectorAll('.dot') : [];
         this.currentIndex = 0;
         this.touchStartX = 0;
         this.touchEndX = 0;
         this.isDragging = false;
         
-        if (this.slider && this.dots.length > 0) {
-            this.init();
+        if (!this.slider || this.dots.length === 0) {
+            console.warn(`Slider "${sliderId}" or its dots not found. Skipping.`);
+            return;
         }
+        
+        this.init();
     }
     
     init() {
@@ -17,7 +21,7 @@ class PortfolioSlider {
         this.setupDotsNavigation();
         this.setupTouchEvents();
         this.updateDots();
-        this.updateSliderIndicator();
+        this.ensureIndicator();
     }
     
     setupScrollListener() {
@@ -26,7 +30,6 @@ class PortfolioSlider {
             clearTimeout(scrollTimer);
             scrollTimer = setTimeout(() => {
                 this.updateDots();
-                this.updateSliderIndicator();
             }, 100);
         }, { passive: true });
     }
@@ -85,28 +88,34 @@ class PortfolioSlider {
         });
         this.currentIndex = index;
         this.updateDots();
-        this.updateSliderIndicator();
     }
     
     updateDots() {
         const index = Math.round(this.slider.scrollLeft / this.slider.offsetWidth);
         this.currentIndex = index;
+        
         this.dots.forEach((dot, i) => {
             dot.classList.toggle('active', i === index);
         });
+        
+        this.updateIndicator();
     }
     
-    updateSliderIndicator() {
-        const totalSlides = this.dots.length;
-        const currentSlide = this.currentIndex + 1;
-        
-        let indicator = this.slider.parentElement.querySelector('.slider-nav-indicator');
+    ensureIndicator() {
+        let indicator = this.dotsContainer.querySelector('.slider-nav-indicator');
         if (!indicator) {
             indicator = document.createElement('span');
             indicator.className = 'slider-nav-indicator';
-            this.slider.parentElement.querySelector('.dots-container').appendChild(indicator);
+            this.dotsContainer.appendChild(indicator);
         }
-        indicator.textContent = `${currentSlide}/${totalSlides}`;
+        this.updateIndicator();
+    }
+    
+    updateIndicator() {
+        const indicator = this.dotsContainer.querySelector('.slider-nav-indicator');
+        if (indicator) {
+            indicator.textContent = `${this.currentIndex + 1}/${this.dots.length}`;
+        }
     }
     
     nextSlide() {
@@ -129,18 +138,23 @@ class PortfolioApp {
     }
     
     init() {
-        this.setupSliders();
-        this.setupKeyboardNavigation();
-        this.setupCurrentYear();
-        this.setupTheme();
-        this.setupHoverEffects();
+        setTimeout(() => {
+            this.setupSliders();
+            this.setupKeyboardNavigation();
+            this.setupCurrentYear();
+            this.setupTheme();
+            this.setupHoverEffects();
+        }, 100);
     }
     
     setupSliders() {
         const edaSlider = new PortfolioSlider('slider', 'slider-dots');
         const inferenceSlider = new PortfolioSlider('inference-slider', 'inference-dots');
+        const regressionSlider = new PortfolioSlider('regression-slider', 'regression-dots');
         
-        this.sliders.push(edaSlider, inferenceSlider);
+        if (edaSlider.slider) this.sliders.push(edaSlider);
+        if (inferenceSlider.slider) this.sliders.push(inferenceSlider);
+        if (regressionSlider.slider) this.sliders.push(regressionSlider);
     }
     
     setupKeyboardNavigation() {
@@ -228,13 +242,8 @@ class PortfolioApp {
     }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => new PortfolioApp());
+} else {
     new PortfolioApp();
-    
-    const lazyImages = document.querySelectorAll('img[loading="lazy"]');
-    if ('loading' in HTMLImageElement.prototype) {
-        lazyImages.forEach(img => {
-            img.loading = 'lazy';
-        });
-    }
-});
+                }
