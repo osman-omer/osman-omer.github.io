@@ -246,4 +246,4 @@ if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => new PortfolioApp());
 } else {
     new PortfolioApp();
-                }
+            }
