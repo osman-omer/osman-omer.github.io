@@ -9,7 +9,6 @@ class PortfolioSlider {
         this.isDragging = false;
         
         if (!this.slider || this.dots.length === 0) {
-            console.warn(`Slider "${sliderId}" or its dots not found. Skipping.`);
             return;
         }
         
@@ -30,7 +29,6 @@ class PortfolioSlider {
             clearTimeout(scrollTimer);
             scrollTimer = setTimeout(() => {
                 this.updateDots();
-                this.updateIndicator();
             }, 50);
         }, { passive: true });
     }
@@ -89,36 +87,32 @@ class PortfolioSlider {
         });
         this.currentIndex = index;
         this.updateDots();
-        this.updateIndicator();
     }
     
     updateDots() {
         if (this.dots.length === 0) return;
         
-        const scrollLeft = this.slider.scrollLeft;
         const cardWidth = this.slider.querySelector('.project-card').offsetWidth;
-        const index = Math.round(scrollLeft / cardWidth);
+        if (!cardWidth) return;
         
-        // التأكد من أن index ضمن النطاق الصحيح
+        const index = Math.round(this.slider.scrollLeft / cardWidth);
         const validIndex = Math.min(Math.max(index, 0), this.dots.length - 1);
         this.currentIndex = validIndex;
         
         this.dots.forEach((dot, i) => {
             dot.classList.toggle('active', i === validIndex);
         });
+        
+        this.updateIndicator();
     }
     
     ensureIndicator() {
-        // البحث عن المؤشر الموجود
         let indicator = this.dotsContainer.querySelector('.slider-nav-indicator');
-        
-        // إذا لم يكن موجوداً، نقوم بإنشائه
         if (!indicator) {
             indicator = document.createElement('span');
             indicator.className = 'slider-nav-indicator';
             this.dotsContainer.appendChild(indicator);
         }
-        
         this.updateIndicator();
     }
     
@@ -142,124 +136,33 @@ class PortfolioSlider {
     }
 }
 
-class PortfolioApp {
-    constructor() {
-        this.sliders = [];
-        this.init();
-    }
+document.addEventListener('DOMContentLoaded', function() {
+    const sliders = [
+        new PortfolioSlider('slider', 'slider-dots'),
+        new PortfolioSlider('inference-slider', 'inference-dots'),
+        new PortfolioSlider('linear-reg-slider', 'linear-reg-dots')
+    ];
     
-    init() {
-        setTimeout(() => {
-            this.setupSliders();
-            this.setupKeyboardNavigation();
-            this.setupCurrentYear();
-            this.setupTheme();
-            this.setupHoverEffects();
-        }, 150);
-    }
-    
-    setupSliders() {
-        const edaSlider = new PortfolioSlider('slider', 'slider-dots');
-        const inferenceSlider = new PortfolioSlider('inference-slider', 'inference-dots');
-        const linearRegSlider = new PortfolioSlider('linear-reg-slider', 'linear-reg-dots');
+    document.addEventListener('keydown', function(e) {
+        if (e.target.matches('input, textarea, [contenteditable="true"]')) return;
         
-        // إضافة السلايدرز فقط إذا كانت صالحة (تحتوي على عناصر)
-        if (edaSlider.slider && edaSlider.dots.length > 0) this.sliders.push(edaSlider);
-        if (inferenceSlider.slider && inferenceSlider.dots.length > 0) this.sliders.push(inferenceSlider);
-        if (linearRegSlider.slider && linearRegSlider.dots.length > 0) this.sliders.push(linearRegSlider);
-    }
-    
-    setupKeyboardNavigation() {
-        document.addEventListener('keydown', (e) => {
-            // تجاهل إذا كان المستخدم يكتب في حقل إدخال
-            if (e.target.matches('input, textarea, [contenteditable="true"]')) return;
-            
-            // البحث عن السلايدر النشط (الذي يحتوي على مؤشر الماوس)
-            const activeSliderElement = document.querySelector('.slides-container:hover');
-            
-            if (!activeSliderElement) return;
-            
-            // البحث عن كائن السلايدر المطابق
-            const sliderInstance = this.sliders.find(s => s.slider === activeSliderElement);
-            if (!sliderInstance) return;
-            
-            // التعامل مع مفاتيح الأسهم
-            switch(e.key) {
-                case 'ArrowRight':
-                    e.preventDefault();
-                    sliderInstance.nextSlide();
-                    break;
-                case 'ArrowLeft':
-                    e.preventDefault();
-                    sliderInstance.prevSlide();
-                    break;
-            }
-        });
-    }
-    
-    setupCurrentYear() {
-        const currentYearEl = document.getElementById('currentYear');
-        if (currentYearEl) {
-            currentYearEl.textContent = new Date().getFullYear();
+        const activeSliderElement = document.querySelector('.slides-container:hover');
+        if (!activeSliderElement) return;
+        
+        const activeSlider = sliders.find(s => s.slider === activeSliderElement);
+        if (!activeSlider) return;
+        
+        if (e.key === 'ArrowRight') {
+            e.preventDefault();
+            activeSlider.nextSlide();
+        } else if (e.key === 'ArrowLeft') {
+            e.preventDefault();
+            activeSlider.prevSlide();
         }
-    }
+    });
     
-    setupTheme() {
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
-        
-        const updateTheme = () => {
-            const isDark = prefersDark.matches;
-            document.documentElement.style.setProperty('--bg-page', isDark ? '#0f172a' : '#f8fafc');
-            document.documentElement.style.setProperty('--bg-unit', isDark ? '#1e293b' : '#ffffff');
-            document.documentElement.style.setProperty('--text-dark', isDark ? '#f1f5f9' : '#1e293b');
-            document.documentElement.style.setProperty('--text-grey', isDark ? '#94a3b8' : '#64748b');
-            document.documentElement.style.setProperty('--border', isDark ? '#334155' : '#e2e8f0');
-        };
-        
-        prefersDark.addEventListener('change', updateTheme);
-        updateTheme();
+    const yearElement = document.getElementById('currentYear');
+    if (yearElement) {
+        yearElement.textContent = new Date().getFullYear();
     }
-    
-    setupHoverEffects() {
-        const projectCards = document.querySelectorAll('.project-card:not(.coming-soon-card)');
-        projectCards.forEach(card => {
-            card.addEventListener('mouseenter', () => {
-                card.style.transform = 'translateY(-5px)';
-                card.style.boxShadow = '0 10px 25px rgba(0, 86, 179, 0.15)';
-            });
-            
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = 'translateY(0)';
-                card.style.boxShadow = 'none';
-            });
-        });
-        
-        const comingSoonCard = document.querySelector('.coming-soon-card');
-        if (comingSoonCard) {
-            comingSoonCard.addEventListener('mouseenter', () => {
-                const icon = comingSoonCard.querySelector('.coming-soon-icon');
-                if (icon) {
-                    const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                    icon.style.color = isDark ? '#60a5fa' : 'var(--primary-blue)';
-                    icon.style.transform = 'scale(1.1)';
-                }
-            });
-            
-            comingSoonCard.addEventListener('mouseleave', () => {
-                const icon = comingSoonCard.querySelector('.coming-soon-icon');
-                if (icon) {
-                    const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                    icon.style.color = isDark ? '#64748b' : '#94a3b8';
-                    icon.style.transform = 'scale(1)';
-                }
-            });
-        }
-    }
-}
-
-// التأكد من تحميل الصفحة بالكامل قبل بدء التطبيق
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => new PortfolioApp());
-} else {
-    new PortfolioApp();
-}
+});
