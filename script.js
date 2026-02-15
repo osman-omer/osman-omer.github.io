@@ -30,7 +30,8 @@ class PortfolioSlider {
             clearTimeout(scrollTimer);
             scrollTimer = setTimeout(() => {
                 this.updateDots();
-            }, 100);
+                this.updateIndicator();
+            }, 50);
         }, { passive: true });
     }
     
@@ -88,32 +89,42 @@ class PortfolioSlider {
         });
         this.currentIndex = index;
         this.updateDots();
-    }
-    
-    updateDots() {
-        const index = Math.round(this.slider.scrollLeft / this.slider.offsetWidth);
-        this.currentIndex = index;
-        
-        this.dots.forEach((dot, i) => {
-            dot.classList.toggle('active', i === index);
-        });
-        
         this.updateIndicator();
     }
     
+    updateDots() {
+        if (this.dots.length === 0) return;
+        
+        const scrollLeft = this.slider.scrollLeft;
+        const cardWidth = this.slider.querySelector('.project-card').offsetWidth;
+        const index = Math.round(scrollLeft / cardWidth);
+        
+        // التأكد من أن index ضمن النطاق الصحيح
+        const validIndex = Math.min(Math.max(index, 0), this.dots.length - 1);
+        this.currentIndex = validIndex;
+        
+        this.dots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === validIndex);
+        });
+    }
+    
     ensureIndicator() {
+        // البحث عن المؤشر الموجود
         let indicator = this.dotsContainer.querySelector('.slider-nav-indicator');
+        
+        // إذا لم يكن موجوداً، نقوم بإنشائه
         if (!indicator) {
             indicator = document.createElement('span');
             indicator.className = 'slider-nav-indicator';
             this.dotsContainer.appendChild(indicator);
         }
+        
         this.updateIndicator();
     }
     
     updateIndicator() {
         const indicator = this.dotsContainer.querySelector('.slider-nav-indicator');
-        if (indicator) {
+        if (indicator && this.dots.length > 0) {
             indicator.textContent = `${this.currentIndex + 1}/${this.dots.length}`;
         }
     }
@@ -144,7 +155,7 @@ class PortfolioApp {
             this.setupCurrentYear();
             this.setupTheme();
             this.setupHoverEffects();
-        }, 100);
+        }, 150);
     }
     
     setupSliders() {
@@ -152,25 +163,27 @@ class PortfolioApp {
         const inferenceSlider = new PortfolioSlider('inference-slider', 'inference-dots');
         const linearRegSlider = new PortfolioSlider('linear-reg-slider', 'linear-reg-dots');
         
-        if (edaSlider.slider) this.sliders.push(edaSlider);
-        if (inferenceSlider.slider) this.sliders.push(inferenceSlider);
-        if (linearRegSlider.slider) this.sliders.push(linearRegSlider);
-        
-        // القسم الرابع (advanced) فاضي، فلا ننشئ له سلايدر
+        // إضافة السلايدرز فقط إذا كانت صالحة (تحتوي على عناصر)
+        if (edaSlider.slider && edaSlider.dots.length > 0) this.sliders.push(edaSlider);
+        if (inferenceSlider.slider && inferenceSlider.dots.length > 0) this.sliders.push(inferenceSlider);
+        if (linearRegSlider.slider && linearRegSlider.dots.length > 0) this.sliders.push(linearRegSlider);
     }
     
     setupKeyboardNavigation() {
         document.addEventListener('keydown', (e) => {
+            // تجاهل إذا كان المستخدم يكتب في حقل إدخال
             if (e.target.matches('input, textarea, [contenteditable="true"]')) return;
             
-            const activeSlider = document.querySelector('.slides-container:hover') || 
-                               document.elementFromPoint(e.clientX, e.clientY)?.closest('.slides-container');
+            // البحث عن السلايدر النشط (الذي يحتوي على مؤشر الماوس)
+            const activeSliderElement = document.querySelector('.slides-container:hover');
             
-            if (!activeSlider) return;
+            if (!activeSliderElement) return;
             
-            const sliderInstance = this.sliders.find(s => s.slider === activeSlider);
+            // البحث عن كائن السلايدر المطابق
+            const sliderInstance = this.sliders.find(s => s.slider === activeSliderElement);
             if (!sliderInstance) return;
             
+            // التعامل مع مفاتيح الأسهم
             switch(e.key) {
                 case 'ArrowRight':
                     e.preventDefault();
@@ -244,8 +257,9 @@ class PortfolioApp {
     }
 }
 
+// التأكد من تحميل الصفحة بالكامل قبل بدء التطبيق
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => new PortfolioApp());
 } else {
     new PortfolioApp();
-                                              }
+}
