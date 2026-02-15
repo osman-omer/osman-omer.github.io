@@ -150,11 +150,13 @@ class PortfolioApp {
     setupSliders() {
         const edaSlider = new PortfolioSlider('slider', 'slider-dots');
         const inferenceSlider = new PortfolioSlider('inference-slider', 'inference-dots');
-        const regressionSlider = new PortfolioSlider('regression-slider', 'regression-dots');
+        const linearRegSlider = new PortfolioSlider('linear-reg-slider', 'linear-reg-dots');
         
         if (edaSlider.slider) this.sliders.push(edaSlider);
         if (inferenceSlider.slider) this.sliders.push(inferenceSlider);
-        if (regressionSlider.slider) this.sliders.push(regressionSlider);
+        if (linearRegSlider.slider) this.sliders.push(linearRegSlider);
+        
+        // القسم الرابع (advanced) فاضي، فلا ننشئ له سلايدر
     }
     
     setupKeyboardNavigation() {
@@ -246,4 +248,4 @@ if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => new PortfolioApp());
 } else {
     new PortfolioApp();
-            }
+                                              }
