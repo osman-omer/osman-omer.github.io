@@ -37,6 +37,7 @@ body {
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: visible;
 }
 
 .unit {
@@ -111,7 +112,7 @@ body {
 
 .slides-wrapper {
     position: relative;
-    overflow: hidden;
+    overflow: visible;
     margin-bottom: 20px;
 }
 
@@ -123,7 +124,9 @@ body {
     gap: 0;
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
-    touch-action: pan-y;
+    touch-action: pan-x pan-y;
+    min-width: 100%;
+    width: 100%;
 }
 
 .slides-container::-webkit-scrollbar {
@@ -451,4 +454,4 @@ body {
     .unit {
         padding: 20px;
     }
-}
+    }
