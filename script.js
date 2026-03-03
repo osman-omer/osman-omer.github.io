@@ -140,7 +140,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const sliders = [
         new PortfolioSlider('slider', 'slider-dots'),
         new PortfolioSlider('inference-slider', 'inference-dots'),
-        new PortfolioSlider('linear-reg-slider', 'linear-reg-dots')
+        new PortfolioSlider('linear-reg-slider', 'linear-reg-dots'),
+        new PortfolioSlider('advanced-slider', 'advanced-dots')
     ];
     
     document.addEventListener('keydown', function(e) {
