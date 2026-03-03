@@ -7,8 +7,6 @@ class PortfolioSlider {
         this.touchStartX = 0;
         this.touchEndX = 0;
         this.isDragging = false;
-        this.dragStartX = 0;
-        this.dragScrollLeft = 0;
         
         if (!this.slider || this.dots.length === 0) {
             return;
@@ -21,7 +19,6 @@ class PortfolioSlider {
         this.setupScrollListener();
         this.setupDotsNavigation();
         this.setupTouchEvents();
-        this.setupMouseDragEvents();
         this.setupWheelEvents();
         this.updateDots();
         this.ensureIndicator();
@@ -42,43 +39,9 @@ class PortfolioSlider {
         });
     }
     
-    setupMouseDragEvents() {
-        this.slider.addEventListener('mousedown', (e) => {
-            this.isDragging = true;
-            this.dragStartX = e.clientX;
-            this.dragScrollLeft = this.slider.scrollLeft;
-            this.slider.style.cursor = 'grabbing';
-            this.slider.style.scrollBehavior = 'auto';
-        });
-        
-        this.slider.addEventListener('mousemove', (e) => {
-            if (!this.isDragging) return;
-            
-            const walk = (e.clientX - this.dragStartX) * 2;
-            this.slider.scrollLeft = this.dragScrollLeft - walk;
-        });
-        
-        this.slider.addEventListener('mouseup', () => {
-            this.isDragging = false;
-            this.slider.style.cursor = 'grab';
-            this.slider.style.scrollBehavior = 'smooth';
-            this.snapToNearestSlide();
-        });
-        
-        this.slider.addEventListener('mouseleave', () => {
-            if (this.isDragging) {
-                this.isDragging = false;
-                this.slider.style.cursor = 'grab';
-                this.slider.style.scrollBehavior = 'smooth';
-                this.snapToNearestSlide();
-            }
-        });
-    }
-    
     setupTouchEvents() {
         this.slider.addEventListener('touchstart', (e) => {
             this.touchStartX = e.touches[0].clientX;
-            this.dragScrollLeft = this.slider.scrollLeft;
         }, { passive: true });
         
         this.slider.addEventListener('touchmove', (e) => {
@@ -114,28 +77,16 @@ class PortfolioSlider {
     }
     
     setupWheelEvents() {
+        let wheelTimer;
         this.slider.addEventListener('wheel', (e) => {
             if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
                 e.preventDefault();
-                this.slider.scrollLeft += e.deltaX;
+                clearTimeout(wheelTimer);
+                wheelTimer = setTimeout(() => {
+                    this.updateDots();
+                }, 50);
             }
         }, { passive: false });
-    }
-    
-    snapToNearestSlide() {
-        if (this.dots.length === 0) return;
-        
-        const cardWidth = this.slider.querySelector('.project-card')?.offsetWidth;
-        if (!cardWidth) return;
-        
-        const currentScroll = this.slider.scrollLeft;
-        const index = Math.round(currentScroll / cardWidth);
-        const validIndex = Math.min(Math.max(index, 0), this.dots.length - 1);
-        
-        this.slider.scrollTo({
-            left: validIndex * cardWidth,
-            behavior: 'smooth'
-        });
     }
     
     scrollToIndex(index) {
@@ -214,28 +165,31 @@ function initSliders() {
 document.addEventListener('keydown', function(e) {
     if (e.target.matches('input, textarea, [contenteditable="true"]')) return;
     
-    if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
-        const focused = document.querySelector('.slides-container:hover');
-        
-        if (focused) {
-            const slider = sliders.find(s => s.slider === focused);
-            if (slider) {
-                e.preventDefault();
-                if (e.key === 'ArrowRight') {
-                    slider.nextSlide();
-                } else {
-                    slider.prevSlide();
-                }
-            }
-        }
+    const activeSlider = document.querySelector('.slides-container:focus-within, .slides-container:hover');
+    if (!activeSlider) return;
+    
+    const slider = sliders.find(s => s.slider === activeSlider);
+    if (!slider) return;
+    
+    if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        slider.nextSlide();
+    } else if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        slider.prevSlide();
     }
 });
 
 document.addEventListener('DOMContentLoaded', function() {
     initSliders();
     
+    const yearElement = document.getElementById('currentYear');
+    if (yearElement) {
+        yearElement.textContent = new Date().getFullYear();
+    }
+    
     document.querySelectorAll('.slides-container').forEach(slider => {
-        slider.style.cursor = 'grab';
+        slider.setAttribute('tabindex', '0');
     });
 });
 
