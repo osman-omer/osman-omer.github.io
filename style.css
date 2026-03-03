@@ -129,6 +129,10 @@ body {
     width: 100%;
 }
 
+.slides-container:focus {
+    outline: none;
+}
+
 .slides-container::-webkit-scrollbar {
     display: none;
 }
@@ -454,4 +458,4 @@ body {
     .unit {
         padding: 20px;
     }
-}
+        }
