@@ -19,23 +19,21 @@ class PortfolioSlider {
         this.setupScrollListener();
         this.setupDotsNavigation();
         this.setupTouchEvents();
+        this.setupWheelEvents();
         this.updateDots();
         this.ensureIndicator();
     }
     
     setupScrollListener() {
-        let scrollTimer;
         this.slider.addEventListener('scroll', () => {
-            clearTimeout(scrollTimer);
-            scrollTimer = setTimeout(() => {
-                this.updateDots();
-            }, 50);
+            this.updateDots();
         }, { passive: true });
     }
     
     setupDotsNavigation() {
         this.dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => {
+            dot.addEventListener('click', (e) => {
+                e.preventDefault();
                 this.scrollToIndex(index);
             });
         });
@@ -44,37 +42,51 @@ class PortfolioSlider {
     setupTouchEvents() {
         this.slider.addEventListener('touchstart', (e) => {
             this.touchStartX = e.touches[0].clientX;
-            this.isDragging = false;
         }, { passive: true });
         
         this.slider.addEventListener('touchmove', (e) => {
-            if (!this.isDragging) {
-                const touchX = e.touches[0].clientX;
-                const diff = Math.abs(touchX - this.touchStartX);
-                if (diff > 10) {
-                    this.isDragging = true;
-                }
+            if (!this.touchStartX) return;
+            const touchX = e.touches[0].clientX;
+            const diff = Math.abs(touchX - this.touchStartX);
+            if (diff > 5) {
+                this.isDragging = true;
             }
         }, { passive: true });
         
         this.slider.addEventListener('touchend', (e) => {
-            if (!this.isDragging) return;
+            if (!this.touchStartX || !this.isDragging) {
+                this.touchStartX = 0;
+                return;
+            }
+            
             this.touchEndX = e.changedTouches[0].clientX;
-            this.handleSwipe();
+            const swipeDistance = this.touchStartX - this.touchEndX;
+            const swipeThreshold = 30;
+            
+            if (Math.abs(swipeDistance) > swipeThreshold) {
+                if (swipeDistance > 0 && this.currentIndex < this.dots.length - 1) {
+                    this.scrollToIndex(this.currentIndex + 1);
+                } else if (swipeDistance < 0 && this.currentIndex > 0) {
+                    this.scrollToIndex(this.currentIndex - 1);
+                }
+            }
+            
+            this.touchStartX = 0;
+            this.isDragging = false;
         }, { passive: true });
     }
     
-    handleSwipe() {
-        const swipeThreshold = 50;
-        const swipeDistance = this.touchStartX - this.touchEndX;
-        
-        if (Math.abs(swipeDistance) > swipeThreshold) {
-            if (swipeDistance > 0 && this.currentIndex < this.dots.length - 1) {
-                this.scrollToIndex(this.currentIndex + 1);
-            } else if (swipeDistance < 0 && this.currentIndex > 0) {
-                this.scrollToIndex(this.currentIndex - 1);
+    setupWheelEvents() {
+        let wheelTimer;
+        this.slider.addEventListener('wheel', (e) => {
+            if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+                e.preventDefault();
+                clearTimeout(wheelTimer);
+                wheelTimer = setTimeout(() => {
+                    this.updateDots();
+                }, 50);
             }
-        }
+        }, { passive: false });
     }
     
     scrollToIndex(index) {
@@ -85,8 +97,6 @@ class PortfolioSlider {
             left: index * cardWidth,
             behavior: 'smooth'
         });
-        this.currentIndex = index;
-        this.updateDots();
     }
     
     updateDots() {
@@ -136,14 +146,11 @@ class PortfolioSlider {
     }
 }
 
-// تهيئة السلايدرز
 const sliders = [];
 
 function initSliders() {
-    // مسح السلايدرز القديمة
     sliders.length = 0;
     
-    // إنشاء سلايدرز جديدة
     const slider1 = new PortfolioSlider('slider', 'slider-dots');
     const slider2 = new PortfolioSlider('inference-slider', 'inference-dots');
     const slider3 = new PortfolioSlider('linear-reg-slider', 'linear-reg-dots');
@@ -155,41 +162,24 @@ function initSliders() {
     if (slider4.slider) sliders.push(slider4);
 }
 
-// دعم أزرار الكيبورد لجميع السلايدرز
 document.addEventListener('keydown', function(e) {
     if (e.target.matches('input, textarea, [contenteditable="true"]')) return;
     
+    const activeSlider = document.querySelector('.slides-container:focus-within, .slides-container:hover');
+    if (!activeSlider) return;
+    
+    const slider = sliders.find(s => s.slider === activeSlider);
+    if (!slider) return;
+    
     if (e.key === 'ArrowRight') {
         e.preventDefault();
-        // التمرير للأمام في كل السلايدرز المرئية
-        sliders.forEach(slider => {
-            if (slider.slider && isElementInViewport(slider.slider)) {
-                slider.nextSlide();
-            }
-        });
+        slider.nextSlide();
     } else if (e.key === 'ArrowLeft') {
         e.preventDefault();
-        // التمرير للخلف في كل السلايدرز المرئية
-        sliders.forEach(slider => {
-            if (slider.slider && isElementInViewport(slider.slider)) {
-                slider.prevSlide();
-            }
-        });
+        slider.prevSlide();
     }
 });
 
-// التحقق إذا كان العنصر مرئيًا في الشاشة
-function isElementInViewport(el) {
-    const rect = el.getBoundingClientRect();
-    return (
-        rect.top >= 0 &&
-        rect.left >= 0 &&
-        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-    );
-}
-
-// تهيئة عند تحميل الصفحة
 document.addEventListener('DOMContentLoaded', function() {
     initSliders();
     
@@ -197,11 +187,13 @@ document.addEventListener('DOMContentLoaded', function() {
     if (yearElement) {
         yearElement.textContent = new Date().getFullYear();
     }
+    
+    document.querySelectorAll('.slides-container').forEach(slider => {
+        slider.setAttribute('tabindex', '0');
+    });
 });
 
-// إعادة التهيئة عند تغيير حجم الشاشة (للموبايل)
 window.addEventListener('resize', function() {
-    // إعادة حساب الأبعاد للسلايدرز
     sliders.forEach(slider => {
         if (slider.slider) {
             slider.updateDots();
