@@ -127,9 +127,6 @@ body {
     touch-action: pan-x pan-y;
     min-width: 100%;
     width: 100%;
-}
-
-.slides-container:focus {
     outline: none;
 }
 
@@ -140,6 +137,7 @@ body {
 .project-card {
     min-width: 100%;
     scroll-snap-align: start;
+    scroll-snap-stop: always;
     padding: 25px;
     border: 1px solid var(--border);
     border-radius: 10px;
@@ -274,25 +272,25 @@ body {
         border-color: #475569;
         backdrop-filter: blur(10px);
     }
-    
+
     .coming-soon-card:hover {
         background: rgba(30, 41, 59, 0.5);
         border-color: var(--primary-blue);
         box-shadow: 0 10px 25px rgba(0, 86, 179, 0.2);
     }
-    
+
     .coming-soon-icon {
         color: #64748b;
     }
-    
+
     .coming-soon-card:hover .coming-soon-icon {
         color: #60a5fa;
     }
-    
+
     .coming-soon-title {
         color: #cbd5e1;
     }
-    
+
     .coming-soon-subtitle {
         color: #94a3b8;
     }
@@ -415,6 +413,10 @@ body {
     border-radius: 4px;
 }
 
+.dot:hover:not(.active) {
+    background: #94a3b8;
+}
+
 .slider-nav-indicator {
     font-size: 0.75rem;
     color: var(--text-grey);
@@ -426,104 +428,37 @@ body {
     body {
         padding: 20px 15px;
     }
-    
+
     .header-unit {
         flex-direction: column;
         text-align: center;
         border-left: none;
         border-top: 6px solid var(--primary-blue);
     }
-    
+
     .logo-container {
         order: 2;
         margin: 0 auto;
     }
-    
+
     .links-grid {
         grid-template-columns: repeat(2, 1fr);
     }
-    
+
     .coming-soon-card {
         padding: 30px 20px;
     }
-    
+
     .coming-soon-icon {
         font-size: 2.5rem;
     }
-    
+
     .coming-soon-title {
         font-size: 1.3rem;
     }
-    
+
     .unit {
         padding: 20px;
     }
-        }
-/* ===== أضف هذا في نهاية ملف style.css ===== */
-
-/* Keyboard hint tooltip */
-.keyboard-hint {
-    display: none;
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: rgba(0, 86, 179, 0.08);
-    color: var(--text-grey);
-    font-size: 0.7rem;
-    font-weight: 600;
-    padding: 4px 10px;
-    border-radius: 20px;
-    border: 1px solid var(--border);
-    pointer-events: none;
-    transition: opacity 0.3s ease;
-    z-index: 10;
-    letter-spacing: 0.5px;
-}
-
-.slides-wrapper:hover .keyboard-hint {
-    display: block;
-}
-
-/* Smooth scroll snap improvement */
-.slides-container {
-    scroll-snap-type: x mandatory;
-    scroll-padding: 0;
-}
-
-.project-card {
-    scroll-snap-align: start;
-    scroll-snap-stop: always; /* FIX: prevents skipping cards on fast swipe */
-}
-
-/* Active slider highlight (subtle) */
-.slides-wrapper:hover .slides-container {
-    outline: none;
-}
-
-.slides-wrapper:hover {
-    border-radius: 10px;
-}
-
-/* Dot hover improvement */
-.dot {
-    cursor: pointer;
-    transition: all 0.25s ease;
-}
-
-.dot:hover {
-    background: var(--primary-blue);
-    opacity: 0.6;
-}
-
-/* Smoother card transition */
-.project-card {
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-@media (prefers-color-scheme: dark) {
-    .keyboard-hint {
-        background: rgba(255, 255, 255, 0.05);
-        border-color: #334155;
     }
-}
 
