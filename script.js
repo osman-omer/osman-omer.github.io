@@ -5,14 +5,10 @@ class PortfolioSlider {
         this.dots = this.dotsContainer ? this.dotsContainer.querySelectorAll('.dot') : [];
         this.currentIndex = 0;
         this.touchStartX = 0;
-        this.touchEndX = 0;
         this.isDragging = false;
-        this.isActive = false; // FIX 2: track if this slider is "active/focused"
+        this.isHovered = false;
 
-        if (!this.slider || this.dots.length === 0) {
-            return;
-        }
-
+        if (!this.slider || this.dots.length === 0) return;
         this.init();
     }
 
@@ -21,44 +17,29 @@ class PortfolioSlider {
         this.setupDotsNavigation();
         this.setupTouchEvents();
         this.setupWheelEvents();
-        this.setupFocusTracking(); // FIX 2: new focus tracking
-        this.updateDots(true);
+        this.setupHoverTracking();
+        this.updateDots();
         this.ensureIndicator();
+        this.slider.setAttribute('tabindex', '0');
     }
 
-    // FIX 2: Track which slider is active via hover AND focus
-    setupFocusTracking() {
-        // Mouse enter/leave to track hover
+    setupHoverTracking() {
         this.slider.addEventListener('mouseenter', () => {
-            sliders.forEach(s => s.isActive = false);
-            this.isActive = true;
+            sliders.forEach(s => s.isHovered = false);
+            this.isHovered = true;
         });
         this.slider.addEventListener('mouseleave', () => {
-            this.isActive = false;
+            this.isHovered = false;
         });
-
-        // Click to also activate
-        this.slider.addEventListener('click', () => {
-            sliders.forEach(s => s.isActive = false);
-            this.isActive = true;
-            this.slider.focus();
-        });
-
-        // Touch start to activate
         this.slider.addEventListener('touchstart', () => {
-            sliders.forEach(s => s.isActive = false);
-            this.isActive = true;
+            sliders.forEach(s => s.isHovered = false);
+            this.isHovered = true;
         }, { passive: true });
     }
 
     setupScrollListener() {
-        let scrollTimer;
         this.slider.addEventListener('scroll', () => {
-            // FIX 1: Use requestAnimationFrame for more accurate dot updates during drag
-            cancelAnimationFrame(scrollTimer);
-            scrollTimer = requestAnimationFrame(() => {
-                this.updateDots(false);
-            });
+            requestAnimationFrame(() => this.updateDots());
         }, { passive: true });
     }
 
@@ -77,45 +58,28 @@ class PortfolioSlider {
             this.isDragging = false;
         }, { passive: true });
 
-        this.slider.addEventListener('touchmove', (e) => {
-            if (!this.touchStartX) return;
-            const touchX = e.touches[0].clientX;
-            const diff = Math.abs(touchX - this.touchStartX);
-            if (diff > 5) {
-                this.isDragging = true;
-            }
-            // FIX 1: Update dots in real-time during drag
-            this.updateDots(false);
+        this.slider.addEventListener('touchmove', () => {
+            this.isDragging = true;
+            requestAnimationFrame(() => this.updateDots());
         }, { passive: true });
 
         this.slider.addEventListener('touchend', (e) => {
-            if (!this.touchStartX) {
-                return;
-            }
+            if (!this.touchStartX) return;
+            const swipeDistance = this.touchStartX - e.changedTouches[0].clientX;
 
-            this.touchEndX = e.changedTouches[0].clientX;
-            const swipeDistance = this.touchStartX - this.touchEndX;
-            const swipeThreshold = 30;
-
-            if (this.isDragging && Math.abs(swipeDistance) > swipeThreshold) {
+            if (this.isDragging && Math.abs(swipeDistance) > 30) {
                 if (swipeDistance > 0 && this.currentIndex < this.dots.length - 1) {
                     this.scrollToIndex(this.currentIndex + 1);
                 } else if (swipeDistance < 0 && this.currentIndex > 0) {
                     this.scrollToIndex(this.currentIndex - 1);
                 } else {
-                    // Snap back to current index if no valid swipe target
                     this.scrollToIndex(this.currentIndex);
                 }
-            } else if (!this.isDragging) {
-                // Just a tap, snap to nearest
-                this.updateDots(true);
             }
 
             this.touchStartX = 0;
             this.isDragging = false;
-
-            // FIX 1: final dot update after touch ends
-            setTimeout(() => this.updateDots(true), 300);
+            setTimeout(() => this.updateDots(), 300);
         }, { passive: true });
     }
 
@@ -125,9 +89,7 @@ class PortfolioSlider {
             if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
                 e.preventDefault();
                 clearTimeout(wheelTimer);
-                wheelTimer = setTimeout(() => {
-                    this.updateDots(true);
-                }, 50);
+                wheelTimer = setTimeout(() => this.updateDots(), 50);
             }
         }, { passive: false });
     }
@@ -135,64 +97,41 @@ class PortfolioSlider {
     scrollToIndex(index) {
         const cards = this.slider.querySelectorAll('.project-card');
         if (!cards[index]) return;
-
-        // FIX 1: Use card's actual offsetLeft for precise positioning
-        this.slider.scrollTo({
-            left: cards[index].offsetLeft,
-            behavior: 'smooth'
-        });
-
-        // Optimistically update dots immediately for responsiveness
+        this.slider.scrollTo({ left: cards[index].offsetLeft, behavior: 'smooth' });
         this.currentIndex = index;
         this.syncDots();
         this.updateIndicator();
     }
 
-    // FIX 1: Improved dot update using actual card positions instead of math
-    updateDots(snap = false) {
-        if (this.dots.length === 0) return;
-
+    updateDots() {
+        if (!this.dots.length) return;
         const cards = this.slider.querySelectorAll('.project-card');
         if (!cards.length) return;
 
-        const scrollLeft = this.slider.scrollLeft;
-        const containerWidth = this.slider.offsetWidth;
-        const center = scrollLeft + containerWidth / 2;
-
+        const center = this.slider.scrollLeft + this.slider.offsetWidth / 2;
         let closestIndex = 0;
         let closestDistance = Infinity;
 
         cards.forEach((card, i) => {
-            const cardCenter = card.offsetLeft + card.offsetWidth / 2;
-            const distance = Math.abs(center - cardCenter);
+            const distance = Math.abs((card.offsetLeft + card.offsetWidth / 2) - center);
             if (distance < closestDistance) {
                 closestDistance = distance;
                 closestIndex = i;
             }
         });
 
-        const validIndex = Math.min(Math.max(closestIndex, 0), this.dots.length - 1);
-
-        if (snap && validIndex !== this.currentIndex) {
-            this.scrollToIndex(validIndex);
-            return;
-        }
-
-        this.currentIndex = validIndex;
+        this.currentIndex = Math.min(Math.max(closestIndex, 0), this.dots.length - 1);
         this.syncDots();
         this.updateIndicator();
     }
 
     syncDots() {
-        this.dots.forEach((dot, i) => {
-            dot.classList.toggle('active', i === this.currentIndex);
-        });
+        this.dots.forEach((dot, i) => dot.classList.toggle('active', i === this.currentIndex));
     }
 
     ensureIndicator() {
-        let indicator = this.dotsContainer.querySelector('.slider-nav-indicator');
-        if (!indicator) {
-            indicator = document.createElement('span');
+        if (!this.dotsContainer.querySelector('.slider-nav-indicator')) {
+            const indicator = document.createElement('span');
             indicator.className = 'slider-nav-indicator';
             this.dotsContainer.appendChild(indicator);
         }
@@ -201,21 +140,15 @@ class PortfolioSlider {
 
     updateIndicator() {
         const indicator = this.dotsContainer.querySelector('.slider-nav-indicator');
-        if (indicator && this.dots.length > 0) {
-            indicator.textContent = `${this.currentIndex + 1}/${this.dots.length}`;
-        }
+        if (indicator) indicator.textContent = `${this.currentIndex + 1}/${this.dots.length}`;
     }
 
     nextSlide() {
-        if (this.currentIndex < this.dots.length - 1) {
-            this.scrollToIndex(this.currentIndex + 1);
-        }
+        if (this.currentIndex < this.dots.length - 1) this.scrollToIndex(this.currentIndex + 1);
     }
 
     prevSlide() {
-        if (this.currentIndex > 0) {
-            this.scrollToIndex(this.currentIndex - 1);
-        }
+        if (this.currentIndex > 0) this.scrollToIndex(this.currentIndex - 1);
     }
 }
 
@@ -223,73 +156,29 @@ const sliders = [];
 
 function initSliders() {
     sliders.length = 0;
-
-    const slider1 = new PortfolioSlider('slider', 'slider-dots');
-    const slider2 = new PortfolioSlider('inference-slider', 'inference-dots');
-    const slider3 = new PortfolioSlider('linear-reg-slider', 'linear-reg-dots');
-    const slider4 = new PortfolioSlider('advanced-slider', 'advanced-dots');
-
-    if (slider1.slider) sliders.push(slider1);
-    if (slider2.slider) sliders.push(slider2);
-    if (slider3.slider) sliders.push(slider3);
-    if (slider4.slider) sliders.push(slider4);
+    ['slider', 'inference-slider', 'linear-reg-slider', 'advanced-slider'].forEach((id, i) => {
+        const dotsId = ['slider-dots', 'inference-dots', 'linear-reg-dots', 'advanced-dots'][i];
+        const s = new PortfolioSlider(id, dotsId);
+        if (s.slider) sliders.push(s);
+    });
 }
 
-// FIX 2: Keyboard arrows work on hover (no click needed)
-document.addEventListener('keydown', function (e) {
+document.addEventListener('keydown', function(e) {
     if (e.target.matches('input, textarea, [contenteditable="true"]')) return;
+    if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
 
-    if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
-        // Find active slider (hovered or focused)
-        let targetSlider = sliders.find(s => s.isActive);
+    const target = sliders.find(s => s.isHovered) || sliders.find(s => s.slider === document.activeElement);
+    if (!target) return;
 
-        // Fallback: check if any slider is focused
-        if (!targetSlider) {
-            const focusedEl = document.activeElement;
-            if (focusedEl && focusedEl.classList.contains('slides-container')) {
-                targetSlider = sliders.find(s => s.slider === focusedEl);
-            }
-        }
-
-        // No slider active, do nothing (don't scroll page)
-        if (!targetSlider) return;
-
-        e.preventDefault();
-
-        if (e.key === 'ArrowRight') {
-            targetSlider.nextSlide();
-        } else {
-            targetSlider.prevSlide();
-        }
-    }
+    e.preventDefault();
+    e.key === 'ArrowRight' ? target.nextSlide() : target.prevSlide();
 });
 
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function() {
     initSliders();
-
-    const yearElement = document.getElementById('currentYear');
-    if (yearElement) {
-        yearElement.textContent = new Date().getFullYear();
-    }
-
-    document.querySelectorAll('.slides-container').forEach(slider => {
-        slider.setAttribute('tabindex', '0');
-    });
-
-    // IMPROVEMENT: Add arrow key hint tooltip on sliders
-    document.querySelectorAll('.slides-wrapper').forEach(wrapper => {
-        const hint = document.createElement('div');
-        hint.className = 'keyboard-hint';
-        hint.innerHTML = '<i class="fas fa-keyboard"></i> ← →';
-        wrapper.appendChild(hint);
-    });
+    const yearEl = document.getElementById('currentYear');
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
 });
 
-window.addEventListener('resize', function () {
-    sliders.forEach(slider => {
-        if (slider.slider) {
-            slider.updateDots(false);
-        }
-    });
-});
-                
+window.addEventListener('resize', () => sliders.forEach(s => s.slider && s.updateDots()));
+    
