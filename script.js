@@ -79,7 +79,7 @@ class PortfolioSlider {
 
             this.touchStartX = 0;
             this.isDragging = false;
-            setTimeout(() => this.updateDots(), 300);
+            setTimeout(() => this.updateDots(), 350);
         }, { passive: true });
     }
 
@@ -89,15 +89,17 @@ class PortfolioSlider {
             if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
                 e.preventDefault();
                 clearTimeout(wheelTimer);
-                wheelTimer = setTimeout(() => this.updateDots(), 50);
+                wheelTimer = setTimeout(() => this.updateDots(), 80);
             }
         }, { passive: false });
     }
 
     scrollToIndex(index) {
-        const cards = this.slider.querySelectorAll('.project-card');
-        if (!cards[index]) return;
-        this.slider.scrollTo({ left: cards[index].offsetLeft, behavior: 'smooth' });
+        const total = this.dots.length;
+        if (index < 0 || index >= total) return;
+        const maxScroll = this.slider.scrollWidth - this.slider.clientWidth;
+        const targetScroll = (index / (total - 1)) * maxScroll;
+        this.slider.scrollTo({ left: targetScroll, behavior: 'smooth' });
         this.currentIndex = index;
         this.syncDots();
         this.updateIndicator();
@@ -105,22 +107,12 @@ class PortfolioSlider {
 
     updateDots() {
         if (!this.dots.length) return;
-        const cards = this.slider.querySelectorAll('.project-card');
-        if (!cards.length) return;
-
-        const center = this.slider.scrollLeft + this.slider.offsetWidth / 2;
-        let closestIndex = 0;
-        let closestDistance = Infinity;
-
-        cards.forEach((card, i) => {
-            const distance = Math.abs((card.offsetLeft + card.offsetWidth / 2) - center);
-            if (distance < closestDistance) {
-                closestDistance = distance;
-                closestIndex = i;
-            }
-        });
-
-        this.currentIndex = Math.min(Math.max(closestIndex, 0), this.dots.length - 1);
+        const total = this.dots.length;
+        const maxScroll = this.slider.scrollWidth - this.slider.clientWidth;
+        if (maxScroll <= 0) return;
+        const ratio = this.slider.scrollLeft / maxScroll;
+        const index = Math.min(Math.round(ratio * (total - 1)), total - 1);
+        this.currentIndex = index;
         this.syncDots();
         this.updateIndicator();
     }
@@ -166,10 +158,8 @@ function initSliders() {
 document.addEventListener('keydown', function(e) {
     if (e.target.matches('input, textarea, [contenteditable="true"]')) return;
     if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
-
     const target = sliders.find(s => s.isHovered) || sliders.find(s => s.slider === document.activeElement);
     if (!target) return;
-
     e.preventDefault();
     e.key === 'ArrowRight' ? target.nextSlide() : target.prevSlide();
 });
@@ -181,4 +171,3 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 window.addEventListener('resize', () => sliders.forEach(s => s.slider && s.updateDots()));
-    
