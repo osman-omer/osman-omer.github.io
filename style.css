@@ -459,3 +459,71 @@ body {
         padding: 20px;
     }
         }
+/* ===== أضف هذا في نهاية ملف style.css ===== */
+
+/* Keyboard hint tooltip */
+.keyboard-hint {
+    display: none;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0, 86, 179, 0.08);
+    color: var(--text-grey);
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 10;
+    letter-spacing: 0.5px;
+}
+
+.slides-wrapper:hover .keyboard-hint {
+    display: block;
+}
+
+/* Smooth scroll snap improvement */
+.slides-container {
+    scroll-snap-type: x mandatory;
+    scroll-padding: 0;
+}
+
+.project-card {
+    scroll-snap-align: start;
+    scroll-snap-stop: always; /* FIX: prevents skipping cards on fast swipe */
+}
+
+/* Active slider highlight (subtle) */
+.slides-wrapper:hover .slides-container {
+    outline: none;
+}
+
+.slides-wrapper:hover {
+    border-radius: 10px;
+}
+
+/* Dot hover improvement */
+.dot {
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.dot:hover {
+    background: var(--primary-blue);
+    opacity: 0.6;
+}
+
+/* Smoother card transition */
+.project-card {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+@media (prefers-color-scheme: dark) {
+    .keyboard-hint {
+        background: rgba(255, 255, 255, 0.05);
+        border-color: #334155;
+    }
+}
+
