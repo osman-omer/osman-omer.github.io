@@ -66,7 +66,6 @@ class PortfolioSlider {
         this.slider.addEventListener('touchend', (e) => {
             if (!this.touchStartX) return;
             const swipeDistance = this.touchStartX - e.changedTouches[0].clientX;
-
             if (this.isDragging && Math.abs(swipeDistance) > 30) {
                 if (swipeDistance > 0 && this.currentIndex < this.dots.length - 1) {
                     this.scrollToIndex(this.currentIndex + 1);
@@ -76,7 +75,6 @@ class PortfolioSlider {
                     this.scrollToIndex(this.currentIndex);
                 }
             }
-
             this.touchStartX = 0;
             this.isDragging = false;
             setTimeout(() => this.updateDots(), 350);
@@ -94,12 +92,16 @@ class PortfolioSlider {
         }, { passive: false });
     }
 
+    getCardOffsets() {
+        const cards = this.slider.querySelectorAll('.project-card');
+        return Array.from(cards).map(card => card.offsetLeft);
+    }
+
     scrollToIndex(index) {
-        const total = this.dots.length;
-        if (index < 0 || index >= total) return;
-        const maxScroll = this.slider.scrollWidth - this.slider.clientWidth;
-        const targetScroll = (index / (total - 1)) * maxScroll;
-        this.slider.scrollTo({ left: targetScroll, behavior: 'smooth' });
+        if (index < 0 || index >= this.dots.length) return;
+        const offsets = this.getCardOffsets();
+        if (!offsets[index] && offsets[index] !== 0) return;
+        this.slider.scrollTo({ left: offsets[index], behavior: 'smooth' });
         this.currentIndex = index;
         this.syncDots();
         this.updateIndicator();
@@ -107,12 +109,19 @@ class PortfolioSlider {
 
     updateDots() {
         if (!this.dots.length) return;
-        const total = this.dots.length;
-        const maxScroll = this.slider.scrollWidth - this.slider.clientWidth;
-        if (maxScroll <= 0) return;
-        const ratio = this.slider.scrollLeft / maxScroll;
-        const index = Math.min(Math.round(ratio * (total - 1)), total - 1);
-        this.currentIndex = index;
+        const offsets = this.getCardOffsets();
+        if (!offsets.length) return;
+        const scrollLeft = this.slider.scrollLeft;
+        let closestIndex = 0;
+        let closestDistance = Infinity;
+        offsets.forEach((offset, i) => {
+            const distance = Math.abs(offset - scrollLeft);
+            if (distance < closestDistance) {
+                closestDistance = distance;
+                closestIndex = i;
+            }
+        });
+        this.currentIndex = closestIndex;
         this.syncDots();
         this.updateIndicator();
     }
@@ -171,3 +180,4 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 window.addEventListener('resize', () => sliders.forEach(s => s.slider && s.updateDots()));
+        
