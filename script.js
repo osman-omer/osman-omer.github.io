@@ -1,8 +1,10 @@
 class PortfolioSlider {
-    constructor(sliderId, dotsContainerId) {
+    constructor(sliderId, dotsContainerId, prevBtnId, nextBtnId) {
         this.slider = document.getElementById(sliderId);
         this.dotsContainer = document.getElementById(dotsContainerId);
         this.dots = this.dotsContainer ? this.dotsContainer.querySelectorAll('.dot') : [];
+        this.prevBtn = document.getElementById(prevBtnId);
+        this.nextBtn = document.getElementById(nextBtnId);
         this.currentIndex = 0;
         this.touchStartX = 0;
         this.touchEndX = 0;
@@ -16,15 +18,14 @@ class PortfolioSlider {
     }
     
     init() {
-        // استخدام requestAnimationFrame لتحسين الأداء
         this.isScrolling = false;
         this.setupScrollListener();
         this.setupDotsNavigation();
+        this.setupButtonNavigation();
         this.setupTouchEvents();
         this.updateDots();
         this.ensureIndicator();
         
-        // تحديث عند تحميل الصفحة وبعدها
         setTimeout(() => this.updateDots(), 100);
         setTimeout(() => this.updateDots(), 300);
         setTimeout(() => this.updateDots(), 500);
@@ -49,6 +50,22 @@ class PortfolioSlider {
                 this.scrollToIndex(index);
             });
         });
+    }
+    
+    setupButtonNavigation() {
+        if (this.prevBtn) {
+            this.prevBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.prevSlide();
+            });
+        }
+        
+        if (this.nextBtn) {
+            this.nextBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.nextSlide();
+            });
+        }
     }
     
     setupTouchEvents() {
@@ -81,11 +98,9 @@ class PortfolioSlider {
                 } else if (swipeDistance < 0 && this.currentIndex > 0) {
                     this.scrollToIndex(this.currentIndex - 1);
                 } else {
-                    // حتى لو ما وصلش للحد، نحدث المؤشر
                     setTimeout(() => this.updateDots(), 50);
                 }
             } else {
-                // تحديث المؤشر بعد السحب القصير
                 setTimeout(() => this.updateDots(), 50);
             }
             
@@ -103,7 +118,6 @@ class PortfolioSlider {
             behavior: 'smooth'
         });
         
-        // تحديث بعد التمرير
         setTimeout(() => this.updateDots(), 100);
         setTimeout(() => this.updateDots(), 300);
     }
@@ -118,10 +132,8 @@ class PortfolioSlider {
         const rawIndex = scrollLeft / cardWidth;
         let index = Math.round(rawIndex);
         
-        // التأكد من أن المؤشر ضمن الحدود
         index = Math.min(Math.max(index, 0), this.dots.length - 1);
         
-        // إذا تغير المؤشر، نحدث
         if (this.currentIndex !== index) {
             this.currentIndex = index;
             
@@ -131,7 +143,6 @@ class PortfolioSlider {
             
             this.updateIndicator();
         } else {
-            // حتى لو ما تغيرش، نتأكد أن المؤشر محدث
             this.updateIndicator();
         }
     }
@@ -171,10 +182,10 @@ const sliders = [];
 function initSliders() {
     sliders.length = 0;
     
-    const slider1 = new PortfolioSlider('slider', 'slider-dots');
-    const slider2 = new PortfolioSlider('inference-slider', 'inference-dots');
-    const slider3 = new PortfolioSlider('linear-reg-slider', 'linear-reg-dots');
-    const slider4 = new PortfolioSlider('advanced-slider', 'advanced-dots');
+    const slider1 = new PortfolioSlider('slider', 'slider-dots', 'slider-prev', 'slider-next');
+    const slider2 = new PortfolioSlider('inference-slider', 'inference-dots', 'inference-prev', 'inference-next');
+    const slider3 = new PortfolioSlider('linear-reg-slider', 'linear-reg-dots', 'linear-reg-prev', 'linear-reg-next');
+    const slider4 = new PortfolioSlider('advanced-slider', 'advanced-dots', 'advanced-prev', 'advanced-next');
     
     if (slider1.slider) sliders.push(slider1);
     if (slider2.slider) sliders.push(slider2);
@@ -213,7 +224,6 @@ document.addEventListener('keydown', function(e) {
     }
 });
 
-// تحديث دوري للمؤشرات (كل ثانية) للتأكد من أنها محدثة
 setInterval(() => {
     sliders.forEach(slider => {
         if (slider.slider) {
@@ -238,7 +248,6 @@ document.addEventListener('DOMContentLoaded', function() {
         if (sliders.length > 0 && sliders[0].slider) {
             sliders[0].slider.focus();
         }
-        // تحديث جميع المؤشرات بعد التحميل
         sliders.forEach(slider => {
             if (slider.slider) {
                 slider.updateDots();
@@ -255,7 +264,6 @@ window.addEventListener('resize', function() {
     });
 });
 
-// تحديث عند التمرير في الصفحة (للموبايل)
 window.addEventListener('scroll', function() {
     sliders.forEach(slider => {
         if (slider.slider) {
