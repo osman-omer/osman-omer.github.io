@@ -18,7 +18,6 @@ class PortfolioSlider {
     }
     
     init() {
-        this.isScrolling = false;
         this.setupScrollListener();
         this.setupDotsNavigation();
         this.setupButtonNavigation();
@@ -28,18 +27,13 @@ class PortfolioSlider {
         
         setTimeout(() => this.updateDots(), 100);
         setTimeout(() => this.updateDots(), 300);
-        setTimeout(() => this.updateDots(), 500);
     }
     
     setupScrollListener() {
         this.slider.addEventListener('scroll', () => {
-            if (!this.isScrolling) {
-                this.isScrolling = true;
-                requestAnimationFrame(() => {
-                    this.updateDots();
-                    this.isScrolling = false;
-                });
-            }
+            requestAnimationFrame(() => {
+                this.updateDots();
+            });
         }, { passive: true });
     }
     
@@ -97,11 +91,7 @@ class PortfolioSlider {
                     this.scrollToIndex(this.currentIndex + 1);
                 } else if (swipeDistance < 0 && this.currentIndex > 0) {
                     this.scrollToIndex(this.currentIndex - 1);
-                } else {
-                    setTimeout(() => this.updateDots(), 50);
                 }
-            } else {
-                setTimeout(() => this.updateDots(), 50);
             }
             
             this.touchStartX = 0;
@@ -117,9 +107,6 @@ class PortfolioSlider {
             left: index * cardWidth,
             behavior: 'smooth'
         });
-        
-        setTimeout(() => this.updateDots(), 100);
-        setTimeout(() => this.updateDots(), 300);
     }
     
     updateDots() {
@@ -129,20 +116,16 @@ class PortfolioSlider {
         if (!cardWidth) return;
         
         const scrollLeft = this.slider.scrollLeft;
-        const rawIndex = scrollLeft / cardWidth;
-        let index = Math.round(rawIndex);
+        const index = Math.round(scrollLeft / cardWidth);
+        const validIndex = Math.min(Math.max(index, 0), this.dots.length - 1);
         
-        index = Math.min(Math.max(index, 0), this.dots.length - 1);
-        
-        if (this.currentIndex !== index) {
-            this.currentIndex = index;
+        if (this.currentIndex !== validIndex) {
+            this.currentIndex = validIndex;
             
             this.dots.forEach((dot, i) => {
-                dot.classList.toggle('active', i === index);
+                dot.classList.toggle('active', i === validIndex);
             });
             
-            this.updateIndicator();
-        } else {
             this.updateIndicator();
         }
     }
@@ -199,18 +182,7 @@ document.addEventListener('keydown', function(e) {
     if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
         e.preventDefault();
         
-        let activeSlider = null;
-        
-        activeSlider = document.querySelector('.slides-container:focus');
-        
-        if (!activeSlider) {
-            activeSlider = document.querySelector('.slides-container:hover');
-        }
-        
-        if (!activeSlider && sliders.length > 0) {
-            activeSlider = sliders[0].slider;
-        }
-        
+        const activeSlider = document.querySelector('.slides-container:hover, .slides-container:focus');
         if (!activeSlider) return;
         
         const slider = sliders.find(s => s.slider === activeSlider);
@@ -224,14 +196,6 @@ document.addEventListener('keydown', function(e) {
     }
 });
 
-setInterval(() => {
-    sliders.forEach(slider => {
-        if (slider.slider) {
-            slider.updateDots();
-        }
-    });
-}, 1000);
-
 document.addEventListener('DOMContentLoaded', function() {
     initSliders();
     
@@ -243,17 +207,6 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.slides-container').forEach(slider => {
         slider.setAttribute('tabindex', '0');
     });
-    
-    setTimeout(() => {
-        if (sliders.length > 0 && sliders[0].slider) {
-            sliders[0].slider.focus();
-        }
-        sliders.forEach(slider => {
-            if (slider.slider) {
-                slider.updateDots();
-            }
-        });
-    }, 500);
 });
 
 window.addEventListener('resize', function() {
@@ -263,11 +216,3 @@ window.addEventListener('resize', function() {
         }
     });
 });
-
-window.addEventListener('scroll', function() {
-    sliders.forEach(slider => {
-        if (slider.slider) {
-            slider.updateDots();
-        }
-    });
-}, { passive: true });
